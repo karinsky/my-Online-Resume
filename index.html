@@ -1,0 +1,121 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Building a Portfolio site</title>
+  <link href="css/main.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" src="//normalize-css.googlecode.com/svn/trunk/normalize.css">
+  <script src="js/jQuery.js"></script>
+  <script src="js/myHelper.js"></script>
+</head>
+
+<body>
+  <main>
+
+    <section class="header">
+      <div class="grid">
+        <div class="row">
+          <div class="col4">
+            <div class="logo-box">
+              <img class="logo1" src="http://s3-us-west-1.amazonaws.com/udacity-content/rebrand/svg/logomark.svg" alt="Udacity logo" title="Udacity Online Education">
+              <img class="logo2" src="images/Logo-GoetheUni.jpg" alt="More..." title="Johann Wolfgang Goethe University, Germany">
+              <img class="logo3" src="images/Logo-RuhrUni_ed.jpg" alt="logos" title="Ruhr University Bochum, Germany">
+            </div>
+          </div>
+          <div class="col8">
+            <p class="myname">Karin S Korth</p>
+            <p class="sono capsText">Front End Web Developer & Sociologist</p>
+            <!-- Regarded as individual text pieces which might return with the same formatting & positioning (which could be changed for all instances of the class) -->
+          </div>
+        </div>
+      </div>
+      <div id="contactData"  class="openQuestion">
+        <ul id="topContacts" class="flexRow"></ul>
+      </div>
+    </section>
+
+    <section class="bigpic">
+      <div class="content">
+        <picture>
+          <source media="(min-width: 550px)" srcset="https://s3-us-west-2.amazonaws.com/s.cdpn.io/375581/DSC0007cutedsw600w_2x.JPG 2x, https://s3-us-west-2.amazonaws.com/s.cdpn.io/375581/DSC0007cutedsw600w_1x.JPG 1x">
+            <img class="my-picture" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/375581/DSC0007cutedsw300w.JPG" alt="My picture">
+        </picture>
+      </div>
+    </section>
+
+    <section class="featured">
+      <div id="buttonSkills" class="title-box">
+        <h1 id="resume">Résumé</h1>
+      </div>
+      <div class="works">
+        <!-- 1st work featured -->
+        <div class="work-box">
+          <div class="work-pic">
+            <picture>
+              <source media="(min-width: 550px)" srcset="https://s3-us-west-2.amazonaws.com/s.cdpn.io/375581/200708300154cut600w_2x.JPG 2x, https://s3-us-west-2.amazonaws.com/s.cdpn.io/375581/200708300154cut600w_1x.JPG 1x">
+                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/375581/200708300154cut300w.JPG" alt="Installation with Screen">
+            </picture>
+          </div>
+          <div class="work-name">
+            <h2>Appify</h2>
+          </div>
+          <div class="link">
+            <p>https://github.com/udacity/Appify/</p>
+            <!-- to be replaced with real link, also 3 more times below -->
+          </div>
+        </div>
+        <!-- 2nd work featured -->
+        <div class="work-box">
+          <div class="work-pic">
+            <picture>
+              <source media="(min-width: 550px)" srcset="https://s3-us-west-2.amazonaws.com/s.cdpn.io/375581/200903060017ed600w_2x.JPG 2x, https://s3-us-west-2.amazonaws.com/s.cdpn.io/375581/200903060017ed600w_1x.JPG 1x">
+                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/375581/200903060017ed300w.JPG" alt="Red and white tulips">
+            </picture>
+          </div>
+          <div class="work-name">
+            <h2>No Sunflower</h2>
+          </div>
+          <div class="link">
+            <p>https://github.com/udacity/Sunflower/</p>
+          </div>
+        </div>
+        <!-- 3rd work featured -->
+        <div class="work-box">
+          <div class="work-pic">
+            <picture>
+              <source media="(min-width: 550px)" srcset="https://s3-us-west-2.amazonaws.com/s.cdpn.io/375581/201007020223ed600w_2x.JPG 2x, https://s3-us-west-2.amazonaws.com/s.cdpn.io/375581/201007020223ed600w_1x.JPG 1x">
+                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/375581/201007020223ed300w.JPG" alt="Brick wall with peeling blue paint">
+            </picture>
+          </div>
+          <div class="work-name">
+            <h2>Bokeh</h2>
+          </div>
+          <div class="link">
+            <p>https://github.com/udacity/Bokeh//</p>
+          </div>
+        </div>
+        <!-- A 4th work featured, hopefully -->
+        <div class="work-box">
+          <div class="work-pic">
+            <picture>
+              <source media="(min-width: 550px)" srcset="https://s3-us-west-2.amazonaws.com/s.cdpn.io/375581/201007020063cuted600w_2x.JPG 2x, https://s3-us-west-2.amazonaws.com/s.cdpn.io/375581/201007020063cuted600w_1x.JPG 1x">
+                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/375581/201007020063cuted300w.JPG" alt="Colorful glass block window">
+            </picture>
+          </div>
+          <div class="work-name">
+            <h2>[Project]</h2>
+          </div>
+          <div class="link">
+            <p>[Link]</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+<script src="js/myResumebuilder.js"></script>
+</body>
+
+</html>
