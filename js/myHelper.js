@@ -6,4 +6,5 @@ var HTMLgithub = '<li class="flex-item"><span class="capsText">Github</span><spa
 var HTMLlinkedin = '<li class="flex-item"><span class="capsText">Linkedin</span><span class="boldText">%data%</span></li>';
 var HTMLlocation = '<li class="flex-item"><span class="capsText">Location</span><span class="boldText">%data%</span></li>';
 
+var HTMLskills = '<li class="flex-item"><span class="boldText">%data%</span></li>';
 

@@ -14,7 +14,7 @@ document.querySelector(".logo3").onmouseover = function() {
 // Preparing 'bio' pieces:
 
 var myInfo = {
-	"myWelcome" : "discover creativity, diligence, and an analytical mind set 'made in Germany'",
+	"myWelcome" : "Discover creativity, diligence, and an analytical mind 'made in Germany'",
 	"myLocation" : "Chicago (IL) U.S.A.",
 	"contactInfo" : {
 		"myMobile" : "(1) 312 914 8834",
@@ -24,7 +24,7 @@ var myInfo = {
 		},
 	"mySkills" : [
 		"analysis",
-		"clear design",
+		"user oriented",
 		"drive & dedication",
 		"project management",
 		"teaching",
@@ -58,4 +58,24 @@ $("#topContacts").append(formLocation);
 // Add 'skills at a glance' on button click
 
 var skillsButton = "<button>Skills at a Glance</button>";
-$("#buttonSkills").append(skillsButton);
+$("#buttonSkills").prepend(skillsButton);
+
+/* 1st step: replace content in #buttonSkills [h1] with diff. html
+   additionally: recreate disappeared button
+   2nd step: add 'skills' in new flex-box*/
+
+
+
+$("#buttonSkills").html('<div id="skills" class="flexRow boldText"></div>');
+
+var skillsRemove = "<button>Remove Skills On a Glance</button>";
+$("#skills").append(skillsRemove);
+
+for (skill in myInfo.mySkills) {
+	var formSkills = 
+		HTMLskills.replace("%data%", myInfo.mySkills[skill]);
+		$("#skills").append(formSkills);
+}
+
+
+
