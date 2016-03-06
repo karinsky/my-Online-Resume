@@ -23,16 +23,22 @@ var myInfo = {
 		"myGithub" : "karinsky"
 		},
 	"mySkills" : [
-		"analysis",
-		"user oriented",
-		"drive & dedication",
-		"project management",
-		"teaching",
-		"team-playing"
+		"Analysis",
+		"Drive & Dedication",
+		"Project Management",
+		"Teaching",
+		"Team Player",
+		"User Oriented",
 		]
 };
 
 // Appending contact infos:
+
+var contactSelect = 
+	$("#header");
+var contactNode = 
+	$("<div id='contactData'><ul id='topContacts' class='flexRow'></ul></div>");
+contactSelect.append(contactNode);
 
 var formMobile = 
 	HTMLmobile.replace("%data%", myInfo.contactInfo.myMobile);
@@ -52,24 +58,33 @@ $("#topContacts").append(formLinkedin);
 $("#topContacts").append(formLocation);
 
 /*  Media queries adjusting for screen size in css
-	(They use the same break points so it seemed more efficient)
-	to add some css to existing media queries*/
+	(They use the same break points so it seemed more 
+	efficient to add some css to existing media queries)*/
+
 
 // Add 'skills at a glance' on button click
 
-var skillsButton = "<button>Skills at a Glance</button>";
-$("#buttonSkills").prepend(skillsButton);
+// 1) add html node for both + button
 
-/* 1st step: replace content in #buttonSkills [h1] with diff. html
-   additionally: recreate disappeared button
-   2nd step: add 'skills' in new flex-box*/
+var skillsSelect = 
+	$("#featured");
+var skillsNode = 
+	$("<div id='buttonSkills'></div>");
+skillsSelect.prepend(skillsNode);
 
+var glanceButton = "<button>Skills at a Glance</button>";
+$("#buttonSkills").append(glanceButton);
+/* this position best for small screen; 
+   Can I 'move' #buttonSkills (see eg 'insertBefore/After()'') for wide screen
+   with an event listener registering screen width (like in media queries)??
+   Desired for wider screens: append button to '#bigpic' (+ eventually prepend
+   'contactButton# to '#bigpic'*/
 
+// 'action' on button click:
 
-$("#buttonSkills").html('<div id="skills" class="flexRow boldText"></div>');
+// a) prepend flex-box + skills [needs to get into '.click(function)'-toggle]
 
-var skillsRemove = "<button>Remove Skills On a Glance</button>";
-$("#skills").append(skillsRemove);
+$("#buttonSkills").prepend('<div id="skills" class="flexRow boldText"></div>');
 
 for (skill in myInfo.mySkills) {
 	var formSkills = 
@@ -77,5 +92,14 @@ for (skill in myInfo.mySkills) {
 		$("#skills").append(formSkills);
 }
 
+// b) tried to replace string on button -> needs trigger for function
 
+function buttonReplace () {
+	var get2 = $("#skillsButton");
+	var remove2 = get2.replace("Skills at a Glance", "Remove Skills ...");
+	$("#skillsButton") = remove2;
+}
+
+
+// Section 'featured'--prepared for diff. use, here: Portfolio site
 

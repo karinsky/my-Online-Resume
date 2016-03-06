@@ -33,6 +33,7 @@ h6 {
 
 h1 {
   font-size: 16px;
+  padding: 15px 0;
   /*18px with min-width: 400px*/
   
   font-weight: bold;
@@ -83,7 +84,7 @@ span {
 *
 */
 
-.header {
+#header {
   width: auto;
   padding-right: 10px;
   border-bottom-style: solid;
@@ -129,14 +130,14 @@ span {
   padding: 10px 0px 0px;
   text-align: right;
   color: #BCBBBB;
-  font-size: 36px;
+  font-size: 30px;
   font-weight: normal;
   letter-spacing: 3px;
   text-shadow: 2px 2px 1px #777474;
 }
 
 .sono {
-  padding: 3px 3px 0px;
+  padding: 3px 3px 10px;
   text-align: right;
 }
 
@@ -160,10 +161,16 @@ span {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: flex-start;
+  padding: 10px 20px;
+}
+
+.flex-item {
+  padding-right: 10px;
 }
 
 #topContacts {
-  padding: 10px 20px;
+  border-top-style: solid;
+  border-top-color: #bcbbbb;
 }
 
 
@@ -173,7 +180,7 @@ span {
 *
 */
 
-.bigpic {
+#bigpic {
   max-width: 100%;
   max-height: 300px;
   margin: 15px auto 15px;
@@ -191,6 +198,8 @@ span {
   max-height: 300px;
   margin: 0;
 }
+/* with button/s left, add margin left on small screen to push the 
+middle pic to the right ...?? -> makes pic too small! */
 
 .my-picture {
   display: block;
@@ -208,7 +217,7 @@ span {
 *(2 main breakpoints adjust to 2-row and 4-row display)*
 */
 
-.featured {
+#featured {
   max-width: 100%;
   text-align: center;
   border-top-style: solid;
@@ -218,6 +227,11 @@ span {
 
 #buttonSkills {
   text-align: left;
+}
+
+#skills {
+  border-bottom-style: solid;
+  border-bottom-color: #bcbbbb;
 }
 
 button {
@@ -291,13 +305,16 @@ button {
   h1 {
     font-size: 18px;
   }
+  .myname {
+    font-size: 36px;
+  }
 }
 /*
 *@ Section Header
 */
 
 @media screen and (min-width: 490px) {
-  .header {
+  #header {
     padding-right: 20px;
   }
 }
@@ -318,7 +335,7 @@ button {
   font-size: 14px;
   }
   #topContacts {
-  padding: 20px 20px 10px 20px;
+  padding: 10px 20px;
   }
 }
 
@@ -338,12 +355,9 @@ button {
     width: 80px;
     padding: 20px;
   }
-  #topContacts {
-  padding: 5px 20px 10px 20px;
-  }
 }
 
-@media screen and (min-width: 412px) and (max-width: 489px) {
+@media screen and (min-width: 450px) and (max-width: 489px) {
   .myname {
     padding-top: 45px;
   }
@@ -353,20 +367,20 @@ button {
 */
 
 @media screen and (min-width: 490px) {
-  .bigpic {
+  #bigpic {
     padding: 10px;
   }
 }
 
 @media screen and (min-width: 800px) and (max-width: 1200px) {
-  .bigpic {
+  #bigpic {
     background-image: image-set(url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/375581/200804080143cuted1200w_1x.JPG) 1x, url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/375581/200804080143cuted1200w_2x.JPG) 2x);
     background-image: -webkit-image-set(url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/375581/200804080143cuted1200w_1x.JPG) 1x, url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/375581/200804080143cuted1200w_2x.JPG) 2x);
   }
 }
 
 @media screen and (min-width: 1201px) {
-  .bigpic {
+  #bigpic {
     background-image: image-set(url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/375581/200804080143cuted1600w_1x.JPG) 1x, url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/375581/200804080143cuted1600w_2x.JPG) 2x);
     background-image: -webkit-image-set(url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/375581/200804080143cuted1600w_1x.JPG) 1x, url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/375581/200804080143cuted1600w_2x.JPG) 2x);
   }
