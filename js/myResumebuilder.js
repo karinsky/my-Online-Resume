@@ -1,20 +1,35 @@
 
-// Mouseover identifying logos
+// Mouseover identifying logos:
 
-document.querySelector(".logo1").onmouseover = function() {
-	title="Udacity Online Education"
+function hoover() {
+	var getLogo1, getLogo2, getLogo3;
+	getLogo1 = $("#logo1");
+	getLogo2 = $("#logo2");
+	getLogo3 = $("#logo3");
+	getLogo1.onmouseover = showText1;
+	getLogo2.onmouseover = showText2;
+	getLogo3.onmouseover = showText3;
+	function showText1 () {
+		var textLogo1 = "Udacity Online Programs";
+		getLogo1.innerHTML(textLogo1);
+	}
+	function showText2 () {
+		var textLogo2 = "Johann Wolfgang Goethe University, Germany";
+		getLogo2.innerHTML(textLogo2);
+	}
+	function showText3 () {
+		var textLogo3 = "Ruhr University Bochum, Germany";
+		getLogo3.innerHTML(textLogo3);
+	}
 }
-document.querySelector(".logo2").onmouseover = function() {
-	title="Johann Wolfgang Goethe University, Germany"
-}
-document.querySelector(".logo3").onmouseover = function() {
-	title="Ruhr University Bochum, Germany"
-}
+$(hoover);
 
-// Preparing 'bio' pieces:
+//(1) The 'bio-section' (header + footer)
+
+// Preparing 'bio' object:
 
 var myInfo = {
-	"myWelcome" : "Discover creativity, diligence, and an analytical mind 'made in Germany'",
+	"myWelcome" : "I fell for Front End Web Programming because I could finally join two sides of my mind in a crisis moment of my life: my visual sences which love art + design, and my trained analytical brain which equally loves to identify and solve challenging problems",
 	"myLocation" : "Chicago (IL) U.S.A.",
 	"contactInfo" : {
 		"myMobile" : "(1) 312 914 8834",
@@ -31,6 +46,8 @@ var myInfo = {
 		"User Oriented",
 		]
 };
+
+// Still missing: pre/append name + role + biopic
 
 // Appending contact infos:
 
@@ -63,6 +80,12 @@ $("#topContacts").append(formLocation);
 
 
 // Add 'skills at a glance' on button click
+
+/* Note on P2 requirements:
+I include 'skills' in the bio-object as required, but I
+(try to) build a modular function(object?) to actually
+add skills (on a button click) in a differents section
+of my html. [I am still not sure whr to include the code]*/
 
 // 1) add html node for both + button
 
@@ -100,6 +123,26 @@ function buttonReplace () {
 	$("#skillsButton") = remove2;
 }
 
+/* Maybe, I can include all functions for bio data in its object...
+-> trying to place a 'welcome'*/
+
+var welcomeSelect = 
+	$(".content");
+var welcomeNode = $("<p id='welcomeText class=italic'></p>")
+welcomeSelect.prepend(welcomeNode);
+
+$("#welcomeText").append("xx");
+/*var formWelcome = 
+	HTMLwelcomeMsg.replace("%data%", myInfo.myWelcome);
+$("#welcomeText").append(formWelcome);
+
+Maybe, some steps back: figure out, how to place a new container
+in bigpic...XXX*/
+
+
 
 // Section 'featured'--prepared for diff. use, here: Portfolio site
+/* (2) html section 'featured' hosts the required
+'P2 sections' of 'work', 'education', 'projects' and
+the map*/
 
