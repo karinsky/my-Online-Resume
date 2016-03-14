@@ -37,7 +37,7 @@ var bio = {
 		"github" : "karinsky",
 		"location" : "Chicago (IL) U.S.A."
 		},
-	"welcomeMessage" : "Hello world!<br><br>I fell for Front End Web Programming because it allows to unite two long separated sides of my life: my visual sences which love art and design, and my trained analytical brain which equally loves to identify and solve problems methodically.",
+	"welcomeMessage" : "Welcome!<br><br>I fell for Front End Web Programming because it allows me to unite two long separated sides of my life: my visual sences which love art and design, and my trained analytical brain which equally loves to identify and solve problems systematically.",
 	"skills" : [
 		"Analysis",
 		"Project Management",

@@ -62,7 +62,7 @@ span {
 }
 
 .quote-white {
-  font-size: 12px;
+  font-size: 8px;
   font-style: italic;
   color: white;
 }
@@ -206,7 +206,7 @@ span {
 #bigpicContent {
   display: flex;
   display: -webkit-flex;
-  flex-direction: row;
+  flex-direction: column-reverse;
   flex-wrap: wrap;
   justify-content: space-around;
   align-items: center;
@@ -216,7 +216,7 @@ span {
 }
 
 #biopic {
-  max-width: 70%;
+  max-width: 100%;
   max-height: 300px;
   margin: 0;
   flex: 0 1 auto;
@@ -224,9 +224,9 @@ span {
 
 #my-picture {
   display: block; /*inline aligns left, block takes whole width*/
-  margin: 0 auto;
+  margin: 10px auto 0 auto;
   max-height: 300px;
-  width: 20%;
+  width: 35%;
   border: 2px solid white;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
@@ -235,8 +235,7 @@ span {
 
 /*Including 'welcomeText'*/
 #welcome {
-  display: inline;
-  max-width: 30%;
+  max-width: 100%;
   max-height: 300px;
   margin: 0;
   flex: 0 1 auto;
@@ -339,6 +338,9 @@ button {
   .myname {
     font-size: 36px;
   }
+  .quote-white {
+    font-size: 10px;
+  }
 }
 /*
 *@ Section Header
@@ -348,9 +350,6 @@ button {
   #header {
     padding-right: 20px;
   }
-}
-
-@media screen and (min-width: 490px) {
   .logo-box {
     flex-direction: row;
     align-items: center;
@@ -363,10 +362,10 @@ button {
     justify-content: space-around;
   }
   .boldText {
-  font-size: 14px;
+    font-size: 14px;
   }
   #topContacts {
-  padding: 10px 20px;
+    padding: 10px 20px;
   }
 }
 
@@ -401,12 +400,39 @@ button {
   #bigpic {
     padding: 10px;
   }
+  .quote-white {
+    font-size: 12px;
+  }
+}
+
+@media screen and (min-width: 550px) {
+  #bigpicContent {
+    flex-direction: row;
+  }
+  #biopic {
+    max-width: 60%;
+  }
+  #welcome {
+    max-width: 40%;
+  }
+  #my-picture {
+    width: 45%;
+  }
+}
+
+@media screen and (min-width: 650px) {
+    #my-picture {
+    width: 35%;
+  }
 }
 
 @media screen and (min-width: 800px) and (max-width: 1200px) {
   #bigpic {
     background-image: image-set(url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/375581/200804080143cuted1200w_1x.JPG) 1x, url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/375581/200804080143cuted1200w_2x.JPG) 2x);
     background-image: -webkit-image-set(url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/375581/200804080143cuted1200w_1x.JPG) 1x, url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/375581/200804080143cuted1200w_2x.JPG) 2x);
+  }
+  #welcome {
+    align-self: flex-end;
   }
 }
 
@@ -415,7 +441,15 @@ button {
     background-image: image-set(url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/375581/200804080143cuted1600w_1x.JPG) 1x, url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/375581/200804080143cuted1600w_2x.JPG) 2x);
     background-image: -webkit-image-set(url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/375581/200804080143cuted1600w_1x.JPG) 1x, url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/375581/200804080143cuted1600w_2x.JPG) 2x);
   }
+  #my-picture {
+  width: 45%;
+  }
+  #welcome {
+    align-self: flex-end;
+    padding-bottom: 15px
+  }
 }
+
 /*
 *@ Section Featured Work
 */
