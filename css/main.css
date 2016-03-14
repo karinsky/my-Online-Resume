@@ -49,7 +49,8 @@ h2 {
 }
 
 p {
-  margin: 1px 0;
+  margin: 0;
+  padding: 5px;
 }
 
 ul {
@@ -58,6 +59,16 @@ ul {
 
 span {
   padding: 5px;
+}
+
+.quote-white {
+  font-size: 12px;
+  font-style: italic;
+  color: white;
+}
+
+.inline {
+  display: inline;
 }
 
 /*
@@ -104,21 +115,21 @@ span {
 }
 /*flex-direction to 'row' and align-items to 'center' beyond 580px min-width*/
 
-.logo1 {
+#logo1 {
   height: 35px;
   width: 45px;
   padding: 0 0 10px 0;
   flex: 0 1 auto;
 }
 
-.logo2 {
+#logo2 {
   height: 45px;
   width: 45px;
   padding: 10px;
   flex: 0 1 auto;
 }
 
-.logo3 {
+#logo3 {
   height: 45px;
   width: 45px;
   padding: 10px;
@@ -156,8 +167,8 @@ span {
 }
 
 .flexRow {
-  display: -webkit-flex;
   display: flex;
+  display: -webkit-flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: flex-start;
@@ -173,10 +184,9 @@ span {
   border-top-color: #bcbbbb;
 }
 
-
 /*
 *
-*Main Section: Main Pic*
+*Section: Main Pic*
 *
 */
 
@@ -193,16 +203,27 @@ span {
 /*padding to 10px beyond 490px min-width*/
 /*srcset-strategy replaced with media querries, below, for background image*/
 
-.content {
+#bigpicContent {
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
   max-width: 100%;
   max-height: 300px;
   margin: 0;
 }
-/* with button/s left, add margin left on small screen to push the 
-middle pic to the right ...?? -> makes pic too small! */
 
-.my-picture {
-  display: block;
+#biopic {
+  max-width: 70%;
+  max-height: 300px;
+  margin: 0;
+  flex: 0 1 auto;
+  }
+
+#my-picture {
+  display: block; /*inline aligns left, block takes whole width*/
   margin: 0 auto;
   max-height: 300px;
   width: 20%;
@@ -211,6 +232,16 @@ middle pic to the right ...?? -> makes pic too small! */
   -moz-border-radius: 50%;
   border-radius: 50%;
 }
+
+/*Including 'welcomeText'*/
+#welcome {
+  display: inline;
+  max-width: 30%;
+  max-height: 300px;
+  margin: 0;
+  flex: 0 1 auto;
+}
+
 /*
 *
 *Main Section: Featured Works*
@@ -324,7 +355,7 @@ button {
     flex-direction: row;
     align-items: center;
   }
-  .logo1 {
+  #logo1 {
     padding: 0px;
     margin: 0 10px;
   }
@@ -340,17 +371,17 @@ button {
 }
 
 @media screen and (min-width: 800px) {
-  .logo1 {
+  #logo1 {
     height: 88px;
     width: 88px;
     padding: 18px;
   }
-  .logo2 {
+  #logo2 {
     height: 80px;
     width: 80px;
     padding: 18px;
   }
-  .logo3 {
+  #logo3 {
     height: 80px;
     width: 80px;
     padding: 20px;

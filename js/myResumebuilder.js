@@ -28,24 +28,26 @@ $(hoover);
 
 // Preparing 'bio' object:
 
-var myInfo = {
-	"myWelcome" : "I fell for Front End Web Programming because I could finally join two sides of my mind in a crisis moment of my life: my visual sences which love art + design, and my trained analytical brain which equally loves to identify and solve challenging problems",
-	"myLocation" : "Chicago (IL) U.S.A.",
-	"contactInfo" : {
-		"myMobile" : "(1) 312 914 8834",
-		"myEmail" : "k.s.korth@gmail.com",
-		"myLinkedin" : "(upcoming)",
-		"myGithub" : "karinsky"
+var bio = {
+	"name": "Karin S Korth",
+	"role": "Front End Web Developer & Sociologist",
+	"contacts": {
+		"mobile" : "(1) 312 914 8834",
+		"email" : "k.s.korth@gmail.com",
+		"github" : "karinsky",
+		"location" : "Chicago (IL) U.S.A."
 		},
-	"mySkills" : [
+	"welcomeMessage" : "Hello world!<br><br>I fell for Front End Web Programming because it allows to unite two long separated sides of my life: my visual sences which love art and design, and my trained analytical brain which equally loves to identify and solve problems methodically.",
+	"skills" : [
 		"Analysis",
-		"Drive & Dedication",
 		"Project Management",
 		"Teaching",
 		"Team Player",
-		"User Oriented",
-		]
-};
+		"User Oriented"
+		],
+	"biopic" : "xx" // comma when the function follows
+//	"display" : function {}
+}
 
 // Still missing: pre/append name + role + biopic
 
@@ -58,20 +60,17 @@ var contactNode =
 contactSelect.append(contactNode);
 
 var formMobile = 
-	HTMLmobile.replace("%data%", myInfo.contactInfo.myMobile);
+	HTMLmobile.replace("%data%", bio.contacts.mobile);
 var formEmail =
-	HTMLemail.replace("%data%", myInfo.contactInfo.myEmail);
+	HTMLemail.replace("%data%", bio.contacts.email);
 var formGithub =
-	HTMLgithub.replace("%data%", myInfo.contactInfo.myGithub);
-var formLinkedin =
-	HTMLlinkedin.replace("%data%", myInfo.contactInfo.myLinkedin);
+	HTMLgithub.replace("%data%", bio.contacts.github);
 var formLocation =
-	HTMLlocation.replace("%data%", myInfo.myLocation);
+	HTMLlocation.replace("%data%", bio.contacts.location);
 
 $("#topContacts").append(formMobile);
 $("#topContacts").append(formEmail);
 $("#topContacts").append(formGithub);
-$("#topContacts").append(formLinkedin);
 $("#topContacts").append(formLocation);
 
 /*  Media queries adjusting for screen size in css
@@ -109,9 +108,9 @@ $("#buttonSkills").append(glanceButton);
 
 $("#buttonSkills").prepend('<div id="skills" class="flexRow boldText"></div>');
 
-for (skill in myInfo.mySkills) {
+for (skill in bio.skills) {
 	var formSkills = 
-		HTMLskills.replace("%data%", myInfo.mySkills[skill]);
+		HTMLskills.replace("%data%", bio.skills[skill]);
 		$("#skills").append(formSkills);
 }
 
@@ -127,13 +126,15 @@ function buttonReplace () {
 -> trying to place a 'welcome'*/
 
 var welcomeSelect = 
-	$(".content");
-var welcomeNode = $("<p id='welcomeText class=italic'></p>")
-welcomeSelect.prepend(welcomeNode);
+	$("#bigpigContent");
 
-$("#welcomeText").append("xx");
+var formWelcome = 
+	HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage);
+
+$("#bigpicContent").prepend(formWelcome);
+
 /*var formWelcome = 
-	HTMLwelcomeMsg.replace("%data%", myInfo.myWelcome);
+	HTMLwelcomeMsg.replace("%data%", bio.myWelcome);
 $("#welcomeText").append(formWelcome);
 
 Maybe, some steps back: figure out, how to place a new container
