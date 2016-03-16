@@ -37,7 +37,7 @@ var bio = {
 		"github" : "karinsky",
 		"location" : "Chicago (IL) U.S.A."
 		},
-	"welcomeMessage" : "Welcome!<br><br>I fell for Front End Web Programming because it allows me to unite two long separated sides of my life: my visual sences which love art and design, and my trained analytical brain which equally loves to identify and solve problems systematically.",
+	"welcomeMessage" : "Welcome!<br><br>I fell for Front End Web Development because it allows me to unite two long separated sides of my mind and life: my visual sences which love art and design, and my trained analytical brain which equally loves to systematically identify and solve problems.",
 	"skills" : [
 		"Analysis",
 		"Project Management",
@@ -73,6 +73,22 @@ $("#topContacts").append(formEmail);
 $("#topContacts").append(formGithub);
 $("#topContacts").append(formLocation);
 
+// Add welcome message in one function (I need to understands functions!!)
+
+function message() {
+	var welcomeSelect = $("#bigpicContent");
+	var formWelcome = HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage);
+	return welcomeSelect.prepend(formWelcome);
+}
+$(message);
+
+//Works step by step:
+/*var welcomeSelect = 
+	$("#bigpicContent");
+var formWelcome = 
+	HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage);
+welcomeSelect.prepend(formWelcome);*/
+
 /*  Media queries adjusting for screen size in css
 	(They use the same break points so it seemed more 
 	efficient to add some css to existing media queries)*/
@@ -94,19 +110,13 @@ var skillsNode =
 	$("<div id='buttonSkills'></div>");
 skillsSelect.prepend(skillsNode);
 
-var glanceButton = "<button>Skills at a Glance</button>";
+var glanceButton = "<button>Skills At a Glance</button>";
 $("#buttonSkills").append(glanceButton);
-/* this position best for small screen; 
-   Can I 'move' #buttonSkills (see eg 'insertBefore/After()'') for wide screen
-   with an event listener registering screen width (like in media queries)??
-   Desired for wider screens: append button to '#bigpic' (+ eventually prepend
-   'contactButton# to '#bigpic'*/
 
 // 'action' on button click:
 
-// a) prepend flex-box + skills [needs to get into '.click(function)'-toggle]
-
 $("#buttonSkills").prepend('<div id="skills" class="flexRow boldText"></div>');
+$("#skills").prepend('<span class="capsText">Skills at a Glance</span>');
 
 for (skill in bio.skills) {
 	var formSkills = 
@@ -114,31 +124,9 @@ for (skill in bio.skills) {
 		$("#skills").append(formSkills);
 }
 
-// b) tried to replace string on button -> needs trigger for function
 
-function buttonReplace () {
-	var get2 = $("#skillsButton");
-	var remove2 = get2.replace("Skills at a Glance", "Remove Skills ...");
-	$("#skillsButton") = remove2;
-}
-
-/* Maybe, I can include all functions for bio data in its object...
--> trying to place a 'welcome'*/
-
-var welcomeSelect = 
-	$("#bigpigContent");
-
-var formWelcome = 
-	HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage);
-
-$("#bigpicContent").prepend(formWelcome);
-
-/*var formWelcome = 
-	HTMLwelcomeMsg.replace("%data%", bio.myWelcome);
-$("#welcomeText").append(formWelcome);
-
-Maybe, some steps back: figure out, how to place a new container
-in bigpic...XXX*/
+/* Open challenge: to include all these functions for bio data in
+its object...*/
 
 
 

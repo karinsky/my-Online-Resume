@@ -67,10 +67,6 @@ span {
   color: white;
 }
 
-.inline {
-  display: inline;
-}
-
 /*
 *Preparing for column use (only in section Header)*
 */
@@ -224,7 +220,7 @@ span {
 
 #my-picture {
   display: block; /*inline aligns left, block takes whole width*/
-  margin: 10px auto 0 auto;
+  margin: 0 auto;
   max-height: 300px;
   width: 35%;
   border: 2px solid white;
