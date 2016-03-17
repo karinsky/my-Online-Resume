@@ -53,7 +53,22 @@ var bio = {
 
 // Appending contact infos:
 
-var contactSelect = 
+function contactInfo() {
+	var contactSelect = $("#header");
+	var contactTopnode = $("<div id='contactData'><ul id='topContacts' class='flexRow'></ul></div>");
+	var contact = contactTopnode.find("#topContacts");
+	var formMobile, formEmail, formGithub, formLocation;
+	formMobile = HTMLmobile.replace("%data%", bio.contacts.mobile);
+	formEmail = HTMLemail.replace("%data%", bio.contacts.email);
+	formGithub = HTMLgithub.replace("%data%", bio.contacts.github);
+	formLocation = HTMLlocation.replace("%data%", bio.contacts.location);
+	
+	contactSelect.append(contactTopnode);
+	contact.append(formMobile, formEmail, formGithub, formLocation);
+}
+$(contactInfo);
+
+/*var contactSelect = 
 	$("#header");
 var contactNode = 
 	$("<div id='contactData'><ul id='topContacts' class='flexRow'></ul></div>");
@@ -68,22 +83,19 @@ var formGithub =
 var formLocation =
 	HTMLlocation.replace("%data%", bio.contacts.location);
 
-$("#topContacts").append(formMobile);
-$("#topContacts").append(formEmail);
-$("#topContacts").append(formGithub);
-$("#topContacts").append(formLocation);
+$("#topContacts").append(formMobile, formEmail, formGithub, formLocation);*/
 
 // Add welcome message in one function (I need to understands functions!!)
 
 function message() {
 	var welcomeSelect = $("#bigpicContent");
 	var formWelcome = HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage);
-	return welcomeSelect.prepend(formWelcome);
+	welcomeSelect.prepend(formWelcome);
 }
 $(message);
 
-//Works step by step:
-/*var welcomeSelect = 
+/*Step by step:
+var welcomeSelect = 
 	$("#bigpicContent");
 var formWelcome = 
 	HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage);
