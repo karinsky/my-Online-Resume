@@ -54,17 +54,31 @@ var bio = {
 // Appending contact infos:
 
 function contactInfo() {
-	var contactSelect = $("#header");
-	var contactTopnode = $("<div id='contactData'><ul id='topContacts' class='flexRow'></ul></div>");
-	var contact = contactTopnode.find("#topContacts");
+	var contactHeader = $("#header");
+	var contactFooter = $("#footer");
+
+	var contactTopnode, contactFootertitle, contactFooternode;
+	contactTopnode = $("<div><ul id='topContacts' class='flexRow'></ul></div>");
+	contactFootertitle = $("<h1 class='footerTitle white'>Let's connect!</h1>");
+	contactFooternode = $("<div><ul id='footerContacts' class='flexRow'></ul></div>");
+
+	var contactTop, contactBottom, contactWhite;
+	contactTop = contactTopnode.find("#topContacts");
+	contactBottom = contactFooternode.find("#footerContacts");
+
 	var formMobile, formEmail, formGithub, formLocation;
 	formMobile = HTMLmobile.replace("%data%", bio.contacts.mobile);
 	formEmail = HTMLemail.replace("%data%", bio.contacts.email);
 	formGithub = HTMLgithub.replace("%data%", bio.contacts.github);
 	formLocation = HTMLlocation.replace("%data%", bio.contacts.location);
-	
-	contactSelect.append(contactTopnode);
-	contact.append(formMobile, formEmail, formGithub, formLocation);
+
+	var footerSpans = $("span");
+
+	contactHeader.append(contactTopnode);
+	contactTop.append(formMobile, formEmail, formGithub, formLocation);
+	contactFooter.append(contactFootertitle, contactFooternode);
+	contactBottom.append(formMobile, formEmail, formGithub, formLocation);
+	contactFooter.find("span").addClass("white");
 }
 $(contactInfo);
 
@@ -90,6 +104,7 @@ $("#topContacts").append(formMobile, formEmail, formGithub, formLocation);*/
 function message() {
 	var welcomeSelect = $("#bigpicContent");
 	var formWelcome = HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage);
+	
 	welcomeSelect.prepend(formWelcome);
 }
 $(message);
@@ -127,8 +142,8 @@ $("#buttonSkills").append(glanceButton);
 
 // 'action' on button click:
 
-$("#buttonSkills").prepend('<div id="skills" class="flexRow boldText"></div>');
-$("#skills").prepend('<span class="capsText">Skills at a Glance</span>');
+$("#buttonSkills").prepend('<div id="skills" class="flexRow bold"></div>');
+$("#skills").prepend('<p class="flex-item"><span class="caps">Skills at a Glance:</span></p>');
 
 for (skill in bio.skills) {
 	var formSkills = 

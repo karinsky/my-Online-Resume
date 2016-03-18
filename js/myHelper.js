@@ -1,13 +1,13 @@
 // Preparing to append/prepend information by replacing placeholders (%data%):
 
-var HTMLmobile = '<li class="flex-item"><span class="capsText">Mobile</span><span class="boldText">%data%</span></li>';
-var HTMLemail = '<li class="flex-item"><span class="capsText">Email</span><span class="boldText">%data%</span></li>';
-var HTMLgithub = '<li class="flex-item"><span class="capsText">Github</span><span class="boldText">%data%</span></li>';
-var HTMLlinkedin = '<li class="flex-item"><span class="capsText">Linkedin</span><span class="boldText">%data%</span></li>';
-var HTMLlocation = '<li class="flex-item"><span class="capsText">Location</span><span class="boldText">%data%</span></li>';
+var HTMLmobile = '<li class="flex-item"><span class="caps">Mobile</span><span class="bold">%data%</span></li>';
+var HTMLemail = '<li class="flex-item"><span class="caps">Email</span><span class="bold">%data%</span></li>';
+var HTMLgithub = '<li class="flex-item"><span class="caps">Github</span><span class="bold">%data%</span></li>';
+var HTMLlinkedin = '<li class="flex-item"><span class="caps">Linkedin</span><span class="bold">%data%</span></li>';
+var HTMLlocation = '<li class="flex-item"><span class="caps">Location</span><span class="bold>%data%</span></li>';
 
 var HTMLbioPic = '<img src="%data%" class="biopic">';
-var HTMLwelcomeMsg = '<p id="welcome" class="quote-white">%data%</p>';
+var HTMLwelcomeMsg = '<p id="welcome" class="quote white">%data%</p>';
 
-var HTMLskills = '<li class="flex-item"><span class="boldText">%data%</span></li>';
+var HTMLskills = '<li class="flex-item"><span class="bold">%data%</span></li>';
 
