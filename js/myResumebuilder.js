@@ -35,7 +35,7 @@ var bio = {
 		"mobile" : "(1) 312 914 8834",
 		"email" : "k.s.korth@gmail.com",
 		"github" : "karinsky",
-		"location" : "Chicago (IL) U.S.A."
+		"located" : "Chicago (IL) U.S.A."
 		},
 	"welcomeMessage" : "Welcome!<br><br>I fell for Front End Web Development because it allows me to unite two long separated sides of my mind and life: my visual sences which love art and design, and my trained analytical brain which equally loves to systematically identify and solve problems.",
 	"skills" : [
@@ -70,7 +70,7 @@ function contactInfo() {
 	formMobile = HTMLmobile.replace("%data%", bio.contacts.mobile);
 	formEmail = HTMLemail.replace("%data%", bio.contacts.email);
 	formGithub = HTMLgithub.replace("%data%", bio.contacts.github);
-	formLocation = HTMLlocation.replace("%data%", bio.contacts.location);
+	formLocation = HTMLlocation.replace("%data%", bio.contacts.located);
 
 	var footerSpans = $("span");
 
