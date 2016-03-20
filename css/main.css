@@ -219,6 +219,7 @@ span {
   max-width: 100%;
   max-height: 300px;
   margin: 0;
+  padding-top: 2px;
   flex: 0 1 auto;
   }
 
@@ -238,6 +239,7 @@ span {
   max-width: 100%;
   max-height: 300px;
   margin: 0;
+  padding: 2px 5px;
   flex: 0 1 auto;
 }
 
@@ -339,7 +341,7 @@ button {
   background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/375581/200804080143cuted600w.JPG);
   background-size: cover;
   background-origin: border-box;
-  background-position: right top;
+  background-position: right center;
   border-bottom-style: solid;
   border-bottom-color: #bcbbbb;
 }
@@ -361,7 +363,7 @@ button {
   .myname {
     font-size: 36px;
   }
-  .quote-white {
+  .quote {
     font-size: 10px;
   }
 }
@@ -384,8 +386,8 @@ button {
   .flexRow {
     justify-content: space-around;
   }
-  .boldText {
-    font-size: 14px;
+  .bold {
+    font-size: 12px;
   }
   #topContacts {
     padding: 10px 20px;
@@ -408,6 +410,9 @@ button {
     width: 80px;
     padding: 20px;
   }
+  .bold {
+    font-size: 14px;
+  }
 }
 
 @media screen and (min-width: 450px) and (max-width: 489px) {
@@ -423,7 +428,7 @@ button {
   #bigpic {
     padding: 10px;
   }
-  .quote-white {
+  .quote {
     font-size: 12px;
   }
 }
@@ -437,9 +442,13 @@ button {
   }
   #welcome {
     max-width: 40%;
+    padding: 5px;
   }
   #my-picture {
     width: 45%;
+  }
+  #biopic {
+    padding: 0;
   }
 }
 
