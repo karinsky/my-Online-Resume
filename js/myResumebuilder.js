@@ -121,35 +121,29 @@ welcomeSelect.prepend(formWelcome);*/
 	efficient to add some css to existing media queries)*/
 
 
-// Add 'skills at a glance' on button click
+// Add 'skills at a glance'
 
-/* Note on P2 requirements:
-I include 'skills' in the bio-object as required, but I
-(try to) build a modular function(object?) to actually
-add skills (on a button click) in a differents section
-of my html. [I am still not sure whr to include the code]*/
+function skillsGlance() {
+	var skillsSelect, skillsNode;
+	skillsSelect = $("#featured");
+	skillsNode = $('<div id="skills" class="flexRow bold"></div>');
 
-// 1) add html node for both + button
+	skillsSelect.prepend(skillsNode);
 
-var skillsSelect = 
-	$("#featured");
-var skillsNode = 
-	$("<div id='buttonSkills'></div>");
-skillsSelect.prepend(skillsNode);
+	for (skill in bio.skills) {
+		var selectSkills, formSkills;
+		selectSkills = $("#skills");
+		formSkills = HTMLskills.replace("%data%", bio.skills[skill]);
+		selectSkills.append(formSkills);
+	}
 
-var glanceButton = "<button>Skills At a Glance</button>";
-$("#buttonSkills").append(glanceButton);
+	var glanceSelect, glanceText;
+	glanceSelect = $("#skills");
+	glanceText = $("<p class='flex-item'><span class='caps'>Skills at a Glance:</span></p>");
 
-// 'action' on button click:
-
-$("#buttonSkills").prepend('<div id="skills" class="flexRow bold"></div>');
-$("#skills").prepend('<p class="flex-item"><span class="caps">Skills at a Glance:</span></p>');
-
-for (skill in bio.skills) {
-	var formSkills = 
-		HTMLskills.replace("%data%", bio.skills[skill]);
-		$("#skills").append(formSkills);
+	glanceSelect.prepend(glanceText);
 }
+$(skillsGlance);
 
 
 /* Open challenge: to include all these functions for bio data in
