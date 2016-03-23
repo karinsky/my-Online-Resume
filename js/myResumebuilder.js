@@ -24,15 +24,27 @@ function hoover() {
 }
 $(hoover);
 
-//(1) The 'bio-section' (header + footer)
+/*(1) The 'bio object' (adding to the 'bigpic', 'featured' and
+      'footer' sections*/
 
-// Preparing 'bio' object:
+/*The project specifications demand that we need to build four
+JSON objects and that each one needs to follow the provides schemas
+exactly. My objects comply -- but the specifications do not demand
+to actually use ALL object elements [properties?] in the display
+function.
+My project is based on the assumption that the header section and
+the core of the 'bigpic' section stay the same while other content
+can be swapt in js. On this line, it seemed forced and artificial
+to build in js which would 'swap in' my name, role, and biopic.
+In the same time, I believe, my project makes up for such 'chores'
+in the 'bio' display function by adding more functionality the main
+resume parts, here in the 'featured' section.*/
 
 var bio = {
 	"name": "Karin S Korth",
 	"role": "Front End Web Developer & Sociologist",
 	"contacts": {
-		"mobile" : "(1) 312 914 8834",
+		"mobile" : "(1) xxx 914 8834",
 		"email" : "k.s.korth@gmail.com",
 		"github" : "karinsky",
 		"located" : "Chicago (IL) U.S.A."
@@ -45,11 +57,32 @@ var bio = {
 		"Team Player",
 		"User Oriented"
 		],
-	"biopic" : "xx" // comma when the function follows
-//	"display" : function {}
-}
+	"biopic" : 'src="images/DSC0007cutedsw300w.JPG" alt="My picture"',
+	"display" : function() {
+		var welcomeSelect, formWelcome;
+		welcomeSelect = $("#bigpicContent");
+		formWelcome = HTMLwelcomeMsg.replace("%data%", this.welcomeMessage);
+	
+		welcomeSelect.prepend(formWelcome);
+		}
+};
+bio.display();
 
-// Still missing: pre/append name + role + biopic
+/*bio.display = function() {
+	var welcomeSelect, formWelcome;
+	welcomeSelect = $("#bigpicContent");
+	formWelcome = HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage);
+	
+	welcomeSelect.prepend(formWelcome);
+}
+bio.display();*/
+
+/*function welcomeMessage() {
+	var welcomeSelect = $("#bigpicContent");
+	var formWelcome = HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage);
+	welcomeSelect.prepend(formWelcome);
+}
+$(welcomeMessage);*/
 
 // Appending contact infos:
 
@@ -82,39 +115,6 @@ function contactInfo() {
 }
 $(contactInfo);
 
-/*var contactSelect = 
-	$("#header");
-var contactNode = 
-	$("<div id='contactData'><ul id='topContacts' class='flexRow'></ul></div>");
-contactSelect.append(contactNode);
-
-var formMobile = 
-	HTMLmobile.replace("%data%", bio.contacts.mobile);
-var formEmail =
-	HTMLemail.replace("%data%", bio.contacts.email);
-var formGithub =
-	HTMLgithub.replace("%data%", bio.contacts.github);
-var formLocation =
-	HTMLlocation.replace("%data%", bio.contacts.location);
-
-$("#topContacts").append(formMobile, formEmail, formGithub, formLocation);*/
-
-// Add welcome message in one function (I need to understands functions!!)
-
-function message() {
-	var welcomeSelect = $("#bigpicContent");
-	var formWelcome = HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage);
-	
-	welcomeSelect.prepend(formWelcome);
-}
-$(message);
-
-/*Step by step:
-var welcomeSelect = 
-	$("#bigpicContent");
-var formWelcome = 
-	HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage);
-welcomeSelect.prepend(formWelcome);*/
 
 /*  Media queries adjusting for screen size in css
 	(They use the same break points so it seemed more 
@@ -130,13 +130,15 @@ function skillsGlance() {
 
 	skillsSelect.prepend(skillsNode);
 
-	for (skill in bio.skills) {
-		var selectSkills, formSkills;
-		selectSkills = $("#skills");
-		formSkills = HTMLskills.replace("%data%", bio.skills[skill]);
-		selectSkills.append(formSkills);
+	if (bio.skills.length >= 1) {
+		for (var skill in bio.skills) {
+			var selectSkills, formSkills;
+			selectSkills = $("#skills");
+			formSkills = HTMLskills.replace("%data%", bio.skills[skill]);
+			selectSkills.append(formSkills);
+		}
 	}
-
+	
 	var glanceSelect, glanceText;
 	glanceSelect = $("#skills");
 	glanceText = $("<p class='flex-item'><span class='caps'>Skills at a Glance:</span></p>");
@@ -144,10 +146,6 @@ function skillsGlance() {
 	glanceSelect.prepend(glanceText);
 }
 $(skillsGlance);
-
-
-/* Open challenge: to include all these functions for bio data in
-its object...*/
 
 
 
