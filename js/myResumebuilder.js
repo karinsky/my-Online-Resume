@@ -59,93 +59,62 @@ var bio = {
 		],
 	"biopic" : 'src="images/DSC0007cutedsw300w.JPG" alt="My picture"',
 	"display" : function() {
+		var contactHeader = $("#header");
+		var contactFooter = $("#footer");
+
+		var contactTopnode, contactFootertitle, contactFooternode;
+		contactTopnode = $("<div><ul id='topContacts' class='flexRow'></ul></div>");
+		contactFootertitle = $("<h1 class='footerTitle white'>Let's connect!</h1>");
+		contactFooternode = $("<div><ul id='footerContacts' class='flexRow'></ul></div>");
+
+		var contactTop, contactBottom;
+		contactTop = contactTopnode.find("#topContacts");
+		contactBottom = contactFooternode.find("#footerContacts");
+
+		var formMobile, formEmail, formGithub, formLocation;
+		formMobile = HTMLmobile.replace("%data%", bio.contacts.mobile);
+		formEmail = HTMLemail.replace("%data%", bio.contacts.email);
+		formGithub = HTMLgithub.replace("%data%", bio.contacts.github);
+		formLocation = HTMLlocation.replace("%data%", bio.contacts.located);
+
+		contactHeader.append(contactTopnode);
+		contactTop.append(formMobile, formEmail, formGithub, formLocation);
+		contactFooter.append(contactFootertitle, contactFooternode);
+		contactBottom.append(formMobile, formEmail, formGithub, formLocation);
+		contactFooter.find("span").addClass("white");
+
 		var welcomeSelect, formWelcome;
 		welcomeSelect = $("#bigpicContent");
 		formWelcome = HTMLwelcomeMsg.replace("%data%", this.welcomeMessage);
 	
 		welcomeSelect.prepend(formWelcome);
+
+		var skillsSelect, skillsNode;
+		skillsSelect = $("#featured");
+		skillsNode = $('<div id="skills" class="flexRow bold"></div>');
+
+		skillsSelect.prepend(skillsNode);
+		if (bio.skills.length >= 1) {
+			for (var skill in bio.skills) {
+				var selectSkills, formSkills;
+				selectSkills = $("#skills");
+				formSkills = HTMLskills.replace("%data%", bio.skills[skill]);
+				selectSkills.append(formSkills);
+			}
 		}
+	
+		var glanceSelect, glanceText;
+		glanceSelect = $("#skills");
+		glanceText = $("<p class='flex-item'><span class='caps'>Skills at a Glance:</span></p>");
+
+		glanceSelect.prepend(glanceText);
+	}
 };
 bio.display();
 
-/*bio.display = function() {
-	var welcomeSelect, formWelcome;
-	welcomeSelect = $("#bigpicContent");
-	formWelcome = HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage);
-	
-	welcomeSelect.prepend(formWelcome);
-}
-bio.display();*/
-
-/*function welcomeMessage() {
-	var welcomeSelect = $("#bigpicContent");
-	var formWelcome = HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage);
-	welcomeSelect.prepend(formWelcome);
-}
-$(welcomeMessage);*/
-
-// Appending contact infos:
-
-function contactInfo() {
-	var contactHeader = $("#header");
-	var contactFooter = $("#footer");
-
-	var contactTopnode, contactFootertitle, contactFooternode;
-	contactTopnode = $("<div><ul id='topContacts' class='flexRow'></ul></div>");
-	contactFootertitle = $("<h1 class='footerTitle white'>Let's connect!</h1>");
-	contactFooternode = $("<div><ul id='footerContacts' class='flexRow'></ul></div>");
-
-	var contactTop, contactBottom, contactWhite;
-	contactTop = contactTopnode.find("#topContacts");
-	contactBottom = contactFooternode.find("#footerContacts");
-
-	var formMobile, formEmail, formGithub, formLocation;
-	formMobile = HTMLmobile.replace("%data%", bio.contacts.mobile);
-	formEmail = HTMLemail.replace("%data%", bio.contacts.email);
-	formGithub = HTMLgithub.replace("%data%", bio.contacts.github);
-	formLocation = HTMLlocation.replace("%data%", bio.contacts.located);
-
-	var footerSpans = $("span");
-
-	contactHeader.append(contactTopnode);
-	contactTop.append(formMobile, formEmail, formGithub, formLocation);
-	contactFooter.append(contactFootertitle, contactFooternode);
-	contactBottom.append(formMobile, formEmail, formGithub, formLocation);
-	contactFooter.find("span").addClass("white");
-}
-$(contactInfo);
-
-
-/*  Media queries adjusting for screen size in css
-	(They use the same break points so it seemed more 
-	efficient to add some css to existing media queries)*/
-
-
-// Add 'skills at a glance'
-
-function skillsGlance() {
-	var skillsSelect, skillsNode;
-	skillsSelect = $("#featured");
-	skillsNode = $('<div id="skills" class="flexRow bold"></div>');
-
-	skillsSelect.prepend(skillsNode);
-
-	if (bio.skills.length >= 1) {
-		for (var skill in bio.skills) {
-			var selectSkills, formSkills;
-			selectSkills = $("#skills");
-			formSkills = HTMLskills.replace("%data%", bio.skills[skill]);
-			selectSkills.append(formSkills);
-		}
-	}
-	
-	var glanceSelect, glanceText;
-	glanceSelect = $("#skills");
-	glanceText = $("<p class='flex-item'><span class='caps'>Skills at a Glance:</span></p>");
-
-	glanceSelect.prepend(glanceText);
-}
-$(skillsGlance);
+/*  Media queries adjusting for screen size in css.
+	(They use the same break points; thus it seemed more 
+	efficient to add some css to existing media queries.)
 
 
 
