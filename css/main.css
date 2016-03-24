@@ -23,8 +23,8 @@ h3,
 h4,
 h5,
 h6 {
-  padding:0;
-  margin:0;
+  padding: 0;
+  margin: 0;
   font-family: Verdana, Geneva, sans-serif;
   font-size: 14px;
   font-weight: normal;
@@ -32,7 +32,7 @@ h6 {
 }
 
 h1 {
-  font-size: 16px;
+  font-size: 18px;
   text-align: center;
   padding: 15px 0;
   /*18px with min-width: 400px*/
@@ -43,9 +43,8 @@ h1 {
 
 h2 {
   font-variant: small-caps;
-  font-size: 18px;
-  font-weight: normal;
-  letter-spacing: 2px;
+  font-size: 16px;
+  letter-spacing: 1px;
   margin: 0 auto;
 }
 
@@ -259,35 +258,17 @@ span {
   padding-bottom: 10px;
 }
 
-#buttonSkills {
-  text-align: left;
-}
-
 #skills {
   border-bottom-style: solid;
   border-bottom-color: #bcbbbb;
 }
 
-button {
-  font-family: "Arial Black";
-  font-variant: small-caps;
-  text-shadow: 1px 1px #bcbbbb;
-  font-size: 14px;
-  font-weight: bold;
-  color: #777474;
-  background-color: #97F9F1;
-}
-
 .title-box {
   margin: auto;
-  padding: 10px;
+  padding: 15px 10px;
 }
 
-#resume {
-  text-align: center;
-}
-
-.works {
+.featuredItems {
   width: 100%;
   display: flex;
   display: -webkit-flex;
@@ -296,9 +277,9 @@ button {
 }
 
 .work-box {
-  width: 100%;
-  padding: 10px 5px 10px 5px;
-  margin: 5px 20px;
+  width: 75%;
+  padding: 10px 5px;
+  margin: 5px auto;
   border: 1px solid;
   border-color: #777474;
   background-color: white;
@@ -308,7 +289,7 @@ button {
   max-height: 100%;
   width: 65vw;
   margin: 0 auto;
-  padding: 10px;
+  padding: 10px 10px 5px 10px;
 }
 
 .picture {
@@ -318,17 +299,10 @@ button {
 }
 
 .work-name {
-  margin: 0 auto;
+  margin: 0 25px;
   padding-top: 2px;
 }
 
-.link {
-  font-size: 12px;
-  font-weight: bold;
-  color: #bcbbbb;
-  margin: 0 auto;
-  padding: 5px;
-}
 /*
 *
 *Footer Section: Introdced for P2 'Let's connect'*
@@ -488,25 +462,14 @@ button {
 
 @media screen and (min-width: 416px) and (max-width: 549px) {
   .work-box {
-    margin: 5px 50px;
+    width: 60%;
+  }
+  .work-pic {
+    width: 50vw;
   }
 }
 
-@media screen and (min-width: 550px) and (max-width: 1099px) {
-  .work-box {
-    width: 45%;
-    margin: 5px 10px;
-  }
-}
-
-@media screen and (min-width: 1100px) {
-  .work-box {
-    width: 20%;
-    margin: 5px 12px;
-  }
-}
-
-@media screen and (min-width: 416px) and (max-width: 899px) {
+@media screen and (min-width: 550px) and (max-width: 899px) {
   .work-pic {
     width: 40vw;
   }
@@ -518,8 +481,24 @@ button {
   }
 }
 
+@media screen and (min-width: 550px) and (max-width: 1099px) {
+  .title-box {
+    padding-top: 20px;
+  }
+  .work-box {
+    width: 45%;
+    margin: 10px auto;
+  }
+}
+
 @media screen and (min-width: 1100px) {
+  .title-box {
+    padding-top: 20px;
+  }
+  .work-box {
+    width: 20%;
+  }
   .work-pic {
-    width: 100%;
+    width: 90%;
   }
 }

@@ -1,5 +1,6 @@
 
-// Mouseover identifying logos:
+/* To header section;
+mouseover identifies logos:*/
 
 function hoover() {
 	var getLogo1, getLogo2, getLogo3;
@@ -24,21 +25,21 @@ function hoover() {
 }
 $(hoover);
 
-/*(1) The 'bio object' (adding to the 'bigpic', 'featured' and
-      'footer' sections*/
+/* The 'bio object' (1)
+(adding to the 'bigpic', 'featured', and 'footer' sections)*/
 
 /*The project specifications demand that we need to build four
 JSON objects and that each one needs to follow the provides schemas
 exactly. My objects comply -- but the specifications do not demand
-to actually use ALL object elements [properties?] in the display
+to actually use all object elements [properties?] in the display
 function.
 My project is based on the assumption that the header section and
 the core of the 'bigpic' section stay the same while other content
 can be swapt in js. On this line, it seemed forced and artificial
-to build in js which would 'swap in' my name, role, and biopic.
+to write code which would 'swap in' my name, role, and biopic.
 In the same time, I believe, my project makes up for such 'chores'
-in the 'bio' display function by adding more functionality the main
-resume parts, here in the 'featured' section.*/
+by adding more functionality to the main resume parts which, in
+my project, are added to the 'featured' section.*/
 
 var bio = {
 	"name": "Karin S Korth",
