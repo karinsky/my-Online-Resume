@@ -11,3 +11,4 @@ var HTMLwelcomeMsg = '<p id="welcome" class="quote white">%data%</p>';
 
 var HTMLskills = '<li class="flex-item"><span class="bold">%data%</span></li>';
 
+var HTMLschoolStart = '<div class="item-entry"></div>';
