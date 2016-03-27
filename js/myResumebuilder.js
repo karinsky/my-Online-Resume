@@ -1,3 +1,11 @@
+/* Turn off loader */
+
+$(document).ready(function() {
+	var myLoader;
+	myLoader = $("#loader");
+
+	myLoader.hide("slow");
+});
 
 /* To header section;
 mouseover identifies logos:*/
