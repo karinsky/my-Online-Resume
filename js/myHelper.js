@@ -6,9 +6,17 @@ var HTMLgithub = '<li class="flex-item"><span class="caps">Github</span><span cl
 var HTMLlinkedin = '<li class="flex-item"><span class="caps">Linkedin</span><span class="bold">%data%</span></li>';
 var HTMLlocation = '<li class="flex-item"><span class="caps">Location</span><span class="bold">%data%</span></li>';
 
-var HTMLbioPic = '<img src="%data%" class="biopic">';
+//var HTMLbioPic = '<img src="%data%" class="biopic">';
 var HTMLwelcomeMsg = '<p id="welcome" class="quote white">%data%</p>';
 
 var HTMLskills = '<li class="flex-item"><span class="bold">%data%</span></li>';
 
-var HTMLschoolStart = '<div class="item-entry"></div>';
+var HTMLentryStart = '<div class="item-entry"></div>';
+var HTMLformalInfo = '<div class="formalInfo"></div>';
+
+var HTMLworkEmployer = '<h3>%data%</h3>';
+var HTMLworkTitle = '<h3>%data%</h3>';
+var HTMLworkDates = '<span class="quote floatRight">%data%</span>';
+var HTMLworkLocation = '<span class="quote floatLeft">%data%</span>';
+var HTMLworkDescription = '<p><br>%data%</p>';
+

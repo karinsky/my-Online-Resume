@@ -8,7 +8,7 @@ $(document).ready(function() {
 });
 
 /* To header section;
-mouseover identifies logos:*/
+mouseover identifying logos:*/
 
 function hoover() {
 	var getLogo1, getLogo2, getLogo3;
@@ -39,15 +39,15 @@ $(hoover);
 /*The project specifications demand that we need to build four
 JSON objects and that each one needs to follow the provides schemas
 exactly. My objects comply -- but the specifications do not demand
-to actually use all object elements [properties?] in the display
-function.
+to actually use all object's elements in the display function.
 My project is based on the assumption that the header section and
 the core of the 'bigpic' section stay the same while other content
 can be swapt in js. On this line, it seemed forced and artificial
 to write code which would 'swap in' my name, role, and biopic.
-In the same time, I believe, my project makes up for such 'chores'
-by adding more functionality to the main resume parts which, in
-my project, are added to the 'featured' section.*/
+In the same time, I believe, my project makes up for missing such,
+in the provided framework, rather plain 'chores' by adding some
+interactivity to the main resume parts which, in my project, are
+added to the 'featured' section.*/
 
 var bio = {
 	"name": "Karin S Korth",
@@ -126,14 +126,101 @@ bio.display();
 	efficient to add some css to existing media queries.)
 
 
+/* Section 'featured' -- prepared for diff. use, 
+   here: Online Resume;
+   section 'featured' hosts the other required 'P3 sections'
+   of 'work experience', 'education', 'projects' as well as
+   the map*/
 
-// Section 'featured'
-/* prepared for diff. use, here: Online Resume;
-section 'featured' hosts the other required 'P3 sections'
-of 'work experience', 'education', 'projects' as well as
-the map*/
 
-/*the education object (to 'id item1' ?):
+// The work object
+
+var work = {
+	"jobs" : [
+		{
+			"employer" : "Family Time",
+			"title" : "Health Care and Estate Management", 
+			"location" : "Chicago, IL",
+			"dates" : "2013 - current",
+			"description" : "Caring for my husband and his estate after he was diagnosed with stage 3 cancer and, later, died."
+		},
+		{
+			"employer" : "University of Chicago, Division of the Humanities",
+			"title" : "Associate Dean of Students, Budget, and Planning",
+			"location" : "Chicago, IL",
+			"dates" : "2011 - 2013",
+			"description" : "Main responsibility for monitoring and projecting a student tuition budget of about $30 Mio."
+		},
+		{
+			"employer" : "Distance University Hagen, Faculty of Cultural and Social Sciences",
+			"title" : "Online Mentor in the BA program 'Methods of Cultural Studies'",
+			"location" : "Hagen, Germany",
+			"dates" : "2005 - 2009",
+			"description" : "Lectured and counseled in courses on social science methods in early e-learning environments; developed the tracking and analysis of test scores."
+		},
+		{
+			"employer" : "J W Goethe University, Department of Social Sciences",
+			"title" : "Research Associate and Lecturer",
+			"location" : "Frankfurt (Main), Germany",
+			"dates" : "1995 - 2004",
+			"description" : "Taught methods of social sciences; managed research projects and grants; published and edited publications; organized conferences."
+		},
+		{
+			"employer" : "J W Goethe University, Department of Social Sciences",
+			"title" : "Office and Project Assistant",
+			"location" : "Frankfurt (Main), Germany",
+			"dates" : "1989 - 1995",
+			"description" : "Managed an office, a team, a publication series, and grants."
+		},
+		{
+			"employer" : "Ruhr University Bochum, Psychological Institute and Faculty of Social Science",
+			"title" : "Academic Assistant",
+			"location" : "Bochum, Germany",
+			"dates" : "1980-1988",
+			"description" : "Supportive work for for a full professor."
+		},
+		{
+			"employer" : "Berlitz Corporation",
+			"title" : "Teacher for German as a 2nd language",
+			"location" : "Hagen, Germany",
+			"dates" : "1976 - 1979",
+			"description" : "Invaluable first teaching experiences."
+		}
+	]
+}
+// JSONLint: valid JSON (without function)
+
+/*$("#work").append(HTMLentryStart);
+var formEmployer = HTMLworkEmployer.replace("%data%", work.jobs[0].employer);
+$(".item-entry:last").append(formEmployer);*/
+
+function displayWork() {
+	for (i = 0; i < work.jobs.length; i++) {
+	$("#work").append(HTMLentryStart);
+	var formEmployer =
+		HTMLworkEmployer.replace("%data%", work.jobs[i].employer);
+	$(".item-entry:last").append(formEmployer);
+	var formTitle =
+		HTMLworkTitle.replace("%data%", work.jobs[i].title);
+	$(".item-entry:last").append(formTitle);
+	var formLocation =
+		HTMLworkLocation.replace("%data%", work.jobs[i].location);
+	var formDates =
+		HTMLworkDates.replace("%data%", work.jobs[i].dates);
+	$(".item-entry:last").append(HTMLformalInfo).append(formLocation + " " + formDates);
+	var formDescription =
+		HTMLworkDescription.replace("%data%", work.jobs[i].descrption);
+	$(".item-entry:last").append(formDescription);
+	}
+};
+displayWork();
+
+
+
+
+
+/*The education object (to 'id item1' ?):
+
 Preface on my German education:
 a) The structure and degrees in the German educational system
    are not directly comparable to the American system, i.e.
@@ -153,7 +240,8 @@ b) A PhD in Germany did not require attending a program, and
 A last remark: Young people may still include days in the
 'dates' of their resumes. Later on, no one cares on which day
 exactly someone started or finished schools or jobs 20 years
-ago. Thus, 'month/year' is a common resume formate for 'dates'.*/
+ago. Thus, 'month/year' as used here is a common resume formate
+for 'dates'.*/
 
 
 var education = {
@@ -218,67 +306,9 @@ var education = {
 		}
 	]
 }
-// JSON: valid (without function)
+// JSONLint: valid JSON (without function)
 
 
 
 
-
-
-// work object -> (1) abgleichen!!
-
-var workRecent = {
-	"recent" : {
-		"employer" : "Family Time",
-		"city" : "Chicago, IL",
-		"position" : "Health Care and Estate Management", 
-		"years" : "2013 - current",
-		"note" : "Caring for my husband and his estate after he was diagnosed with stage 3 cancer and, later, died."
-	},
-	"uoc" : {
-		"employer" : "University of Chicago, Division of the Humanities",
-		"city" : "Chicago, IL",
-		"position" : "Associate Dean of Students, Budget, and Planning",
-		"years" : "2011 - 2013",
-		"note" : "Main responsibility for monitoring and projecting a student tuition budget of about $30 Mio."
-	},
-	"hagen2" : {
-		"employer" : "Distance University Hagen, Faculty of Cultural and Social Sciences",
-		"city" : "Hagen, Germany",
-		"position" : "Online Mentor in the BA program 'Methods of Cultural Studies'",
-		"years" : "2005 - 2009",
-		"note" : "Lectured and counseled in courses on social science methods in early e-learning environments; developed the tracking and analysis of test scores."
-	},
-	"ffm2" : {
-		"employer" : "J W Goethe University, Department of Social Sciences",
-		"city" : "Frankfurt (Main), Germany",
-		"position" : "Research Associate and Lecturer",
-		"years" : "1995 - 2004",
-		"note" : "Taught methods of social sciences; managed research projects and grants; published and edited publications; organized conferences."
-	}
-};
-
-var workDistant = {
-	"ffm1" : {
-		"employer" : "J W Goethe University, Department of Social Sciences",
-		"city" : "Frankfurt (Main), Germany",
-		"position" : "Office and Project Assistant",
-		"years" : "1989 - 1995",
-		"note" : "Managed an office, a team, a publication series, and grants."
-	},
-	"bochum" : {
-		"employer" : "Ruhr University Bochum, Psychological Institute and Faculty of Social Science",
-		"city" : "Bochum, Germany",
-		"position" : "Academic Assistant",
-		"years" : "1980-1988",
-		"note" : "Supportive work for for a full professor."
-	},
-	"hagen1" : {
-		"employer" : "Berlitz Corporation",
-		"city" : "Hagen, Germany",
-		"position" : "Teacher for German as a 2nd language",
-		"years" : "1976 - 1979",
-		"note" : "Invaluable first teaching experiences."
-	}
-};
 
