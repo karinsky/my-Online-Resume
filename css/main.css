@@ -85,6 +85,7 @@ h2 {
 h3 {
   font-size: 14px;
   font-weight: bold;
+  margin: 0 auto;
 }
 
 p {
@@ -101,7 +102,7 @@ span {
 }
 
 .quote {
-  font-size: 8px;
+  font-size: 11px;
   font-style: italic;
 }
 
@@ -352,19 +353,27 @@ span {
 }
 
 .itemsDisplay {
-  max-width: 80%;
-  height: 200px;
-  margin: 5px auto;
+  max-width: 100%;
+  height: 300px;
+  margin: 10px auto;
   overflow: auto;
 }
 .display-box {
-  padding: 0 20px 10px 20px;
+  padding: 10px 20px;
   border: 1px solid;
   border-color: #777474;
   background-color: white;
 }
 
+.h3Resumedisplay {
+  padding: 4px 0 0 5px;
+}
 
+.pResumedisplay {
+  font-size: 14px;
+  clear: both;
+  padding-bottom: 20px;
+}
 
 
 /*
@@ -400,9 +409,6 @@ span {
   }
   .myname {
     font-size: 36px;
-  }
-  .quote {
-    font-size: 10px;
   }
 }
 /*
@@ -533,6 +539,18 @@ span {
   }
 }
 
+@media screen and (min-width: 550px) {
+  .h3Resumedisplay {
+    padding-left: 10px;
+  }
+  span {
+    padding-left: 10px;
+  }
+  .pResumedisplay {
+    padding-left: 10px;
+  }
+}
+
 @media screen and (min-width: 550px) and (max-width: 899px) {
   .item-pic {
     width: 40vw;
@@ -553,6 +571,11 @@ span {
     width: 45%;
     margin: 10px;
   }
+  .itemsDisplay {
+  max-width: 90%;
+  height: 350px;
+  margin: 15px auto;
+  }
 }
 
 @media screen and (min-width: 1100px) {
@@ -564,5 +587,10 @@ span {
   }
   .item-pic {
     width: 90%;
+  }
+  .itemsDisplay {
+  max-width: 80%;
+  height: 400px;
+  margin: 20px auto;
   }
 }

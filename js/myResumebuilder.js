@@ -140,44 +140,51 @@ var work = {
 		{
 			"employer" : "Family Time",
 			"title" : "Health Care and Estate Management", 
-			"location" : "Chicago, IL",
+			"location" : "Chicago, IL, U.S.A.",
 			"dates" : "2013 - current",
-			"description" : "Caring for my husband and his estate after he was diagnosed with stage 3 cancer and, later, died."
+			"description" : "Caring for my husband after he was diagnosed with stage 3 cancer and, after he passed, for his estate."
 		},
 		{
 			"employer" : "University of Chicago, Division of the Humanities",
 			"title" : "Associate Dean of Students, Budget, and Planning",
-			"location" : "Chicago, IL",
+			"location" : "Chicago, IL, U.S.A.",
 			"dates" : "2011 - 2013",
 			"description" : "Main responsibility for monitoring and projecting a student tuition budget of about $30 Mio."
 		},
 		{
+			"employer" : "Family Time",
+			"title" : "Health Care Management and Migrating", 
+			"location" : "Schwelm/Frankfurt, Germany; Chicago, IL, U.S.A.",
+			"dates" : "2009 - 2011",
+			"description" : "Supporting my mother in caring for my father, and immigrating to the U.S.A. after he passed away."
+		},
+		{
 			"employer" : "Distance University Hagen, Faculty of Cultural and Social Sciences",
-			"title" : "Online Mentor in the BA program 'Methods of Cultural Studies'",
+			"title" : "Online Mentor in the BA Program 'Methods of Cultural Studies'",
 			"location" : "Hagen, Germany",
 			"dates" : "2005 - 2009",
-			"description" : "Lectured and counseled in courses on social science methods in early e-learning environments; developed the tracking and analysis of test scores."
+			"description" : "I lectured and counseled in courses on social science methods in early e-learning environments; and I developed the tracking and analysis of test scores."
 		},
 		{
-			"employer" : "J W Goethe University, Department of Social Sciences",
+			"employer" : "J. W. Goethe University, Department of Social Sciences",
 			"title" : "Research Associate and Lecturer",
-			"location" : "Frankfurt (Main), Germany",
+			"location" : "Frankfurt, Germany",
 			"dates" : "1995 - 2004",
-			"description" : "Taught methods of social sciences; managed research projects and grants; published and edited publications; organized conferences."
+			"description" : "I taught methods of social sciences, managed research projects and grants, published and edited publications, and organized conferences."
 		},
 		{
-			"employer" : "J W Goethe University, Department of Social Sciences",
+			"employer" : "J. W. Goethe University, Department of Social Sciences",
 			"title" : "Office and Project Assistant",
-			"location" : "Frankfurt (Main), Germany",
+			"location" : "Frankfurt, Germany",
 			"dates" : "1989 - 1995",
-			"description" : "Managed an office, a team, a publication series, and grants."
+			"description" : "I managed an office, a team, a publication series, and grants."
 		},
 		{
 			"employer" : "Ruhr University Bochum, Psychological Institute and Faculty of Social Science",
 			"title" : "Academic Assistant",
 			"location" : "Bochum, Germany",
-			"dates" : "1980-1988",
-			"description" : "Supportive work for for a full professor."
+			"dates" : "1980 - 1988",
+			"description" : "Supportive work for a full professor."
 		},
 		{
 			"employer" : "Berlitz Corporation",
@@ -209,7 +216,7 @@ function displayWork() {
 		HTMLworkDates.replace("%data%", work.jobs[i].dates);
 	$(".item-entry:last").append(HTMLformalInfo).append(formLocation + " " + formDates);
 	var formDescription =
-		HTMLworkDescription.replace("%data%", work.jobs[i].descrption);
+		HTMLworkDescription.replace("%data%", work.jobs[i].description);
 	$(".item-entry:last").append(formDescription);
 	}
 };

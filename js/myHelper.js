@@ -14,9 +14,9 @@ var HTMLskills = '<li class="flex-item"><span class="bold">%data%</span></li>';
 var HTMLentryStart = '<div class="item-entry"></div>';
 var HTMLformalInfo = '<div class="formalInfo"></div>';
 
-var HTMLworkEmployer = '<h3>%data%</h3>';
-var HTMLworkTitle = '<h3>%data%</h3>';
+var HTMLworkEmployer = '<h2 class="caps">%data%</h2>';
+var HTMLworkTitle = '<h3 class="h3Resumedisplay">%data%</h3>';
 var HTMLworkDates = '<span class="quote floatRight">%data%</span>';
 var HTMLworkLocation = '<span class="quote floatLeft">%data%</span>';
-var HTMLworkDescription = '<p><br>%data%</p>';
+var HTMLworkDescription = '<p class="pResumedisplay">%data%</p>';
 
