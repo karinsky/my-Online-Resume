@@ -13,8 +13,11 @@ var HTMLskills = '<li class="flex-item"><span class="bold">%data%</span></li>';
 
 var HTMLentryStart = '<div class="item-entry"></div>';
 var HTMLformalInfo = '<div class="formalInfo"></div>';
+var HTMLdivMoreless = '<div class="readMoreless"></div>';
+var HTMLreadMore = '<a href class="link floatRight"><br>Read More...</a href>';
+var HTMLreadLess = '<a href class="link floatLeft"><br>Read Less...</a href>';
 
-var HTMLworkEmployer = '<h2 class="caps">%data%</h2>';
+var HTMLworkEmployer = '<h2 class="h2Resumedisplay caps">%data%</h2>';
 var HTMLworkTitle = '<h3 class="h3Resumedisplay">%data%</h3>';
 var HTMLworkDates = '<span class="quote floatRight">%data%</span>';
 var HTMLworkLocation = '<span class="quote floatLeft">%data%</span>';

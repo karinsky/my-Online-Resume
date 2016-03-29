@@ -163,14 +163,14 @@ var work = {
 			"title" : "Online Mentor in the BA Program 'Methods of Cultural Studies'",
 			"location" : "Hagen, Germany",
 			"dates" : "2005 - 2009",
-			"description" : "I lectured and counseled in courses on social science methods in early e-learning environments; and I developed the tracking and analysis of test scores."
+			"description" : "Lecturing and counseling in courses on social science methods in early e-learning environments; and developing the tracking and analysis of test scores."
 		},
 		{
 			"employer" : "J. W. Goethe University, Department of Social Sciences",
 			"title" : "Research Associate and Lecturer",
 			"location" : "Frankfurt, Germany",
 			"dates" : "1995 - 2004",
-			"description" : "I taught methods of social sciences, managed research projects and grants, published and edited publications, and organized conferences."
+			"description" : "Teaching methods of social sciences, managing research projects and grants, editing publications, and organising conferences."
 		},
 		{
 			"employer" : "J. W. Goethe University, Department of Social Sciences",
@@ -202,7 +202,34 @@ var formEmployer = HTMLworkEmployer.replace("%data%", work.jobs[0].employer);
 $(".item-entry:last").append(formEmployer);*/
 
 function displayWork() {
-	for (i = 0; i < work.jobs.length; i++) {
+	for (i = 0; i < 5; i++) {
+		var myWork = $("#work");
+		myWork.append(HTMLentryStart);
+		var lastWork = myWork.children(".item-entry:last");
+
+		var formEmployer, formTitle, formLocation, formDates, formDescription;
+		formEmployer = HTMLworkEmployer.replace("%data%", work.jobs[i].employer);
+		formTitle = HTMLworkTitle.replace("%data%", work.jobs[i].title);
+		formLocation = HTMLworkLocation.replace("%data%", work.jobs[i].location);
+		formDates = HTMLworkDates.replace("%data%", work.jobs[i].dates);
+		formDescription = HTMLworkDescription.replace("%data%", work.jobs[i].description);
+
+		lastWork.append(formEmployer);
+		lastWork.append(formTitle);
+		lastWork.append(HTMLformalInfo).append(formLocation + " " + formDates);
+		lastWork.append(formDescription);
+	}
+	var selectMoreless = $("#featured");
+	selectMoreless.append(HTMLdivMoreless);
+	var readMoreless = selectMoreless.find(".readMoreless");
+	readMoreless.append(HTMLreadLess + " " + HTMLreadMore);
+};
+displayWork();
+
+
+
+function displayMore() {
+	for (i = 5; i < work.jobs.length; i++) {
 	$("#work").append(HTMLentryStart);
 	var formEmployer =
 		HTMLworkEmployer.replace("%data%", work.jobs[i].employer);
@@ -220,8 +247,7 @@ function displayWork() {
 	$(".item-entry:last").append(formDescription);
 	}
 };
-displayWork();
-
+//displayMore();
 
 
 
