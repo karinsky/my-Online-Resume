@@ -202,6 +202,10 @@ var formEmployer = HTMLworkEmployer.replace("%data%", work.jobs[0].employer);
 $(".item-entry:last").append(formEmployer);*/
 
 function displayWork() {
+	var basicSelect, workDisplay;
+	basicSelect = $("#itemsDisplay");
+	workDisplay = basicSelect.append(HTMLdisplayWork);
+
 	for (i = 0; i < 5; i++) {
 		var myWork = $("#work");
 		myWork.append(HTMLentryStart);
@@ -219,35 +223,51 @@ function displayWork() {
 		lastWork.append(HTMLformalInfo).append(formLocation + " " + formDates);
 		lastWork.append(formDescription);
 	}
-	var selectMoreless = $("#featured");
-	selectMoreless.append(HTMLdivMoreless);
-	var readMoreless = selectMoreless.find(".readMoreless");
-	readMoreless.append(HTMLreadLess + " " + HTMLreadMore);
-};
+}
 displayWork();
 
+	var selectMoreless = $("#work");
+	selectMoreless.append(HTMLdivMoreless);
+	var readMoreless = selectMoreless.find(".readMoreless");
+	readMoreless.append(HTMLclosePage + " " + HTMLreadMore);
 
+/*	var selectClose1;
+	selectClose1 = selectMoreless.find("#close1");
+//	console.log(selectClose1);
+
+	selectClose1.click(function() {
+	$("#work").slideUp("slow");
+	});*/
+
+$("#close1").click(function() {
+	$("#work").slideUp();
+});
+
+/* The following function worked some time ago in adding the 2nd batch of Work Experiences
+to be displayed. My idea is to display this 2nd batch 'on click (-> Read more)',
+but I got stuck and stumped with the 1st alternative (to just close views into 'Work
+Experience').
 
 function displayMore() {
 	for (i = 5; i < work.jobs.length; i++) {
-	$("#work").append(HTMLentryStart);
-	var formEmployer =
-		HTMLworkEmployer.replace("%data%", work.jobs[i].employer);
-	$(".item-entry:last").append(formEmployer);
-	var formTitle =
-		HTMLworkTitle.replace("%data%", work.jobs[i].title);
-	$(".item-entry:last").append(formTitle);
-	var formLocation =
-		HTMLworkLocation.replace("%data%", work.jobs[i].location);
-	var formDates =
-		HTMLworkDates.replace("%data%", work.jobs[i].dates);
-	$(".item-entry:last").append(HTMLformalInfo).append(formLocation + " " + formDates);
-	var formDescription =
-		HTMLworkDescription.replace("%data%", work.jobs[i].description);
-	$(".item-entry:last").append(formDescription);
+		var myWork = $("#work");
+		myWork.append(HTMLentryStart);
+		var lastWork = myWork.children(".item-entry:last");
+
+		var formEmployer, formTitle, formLocation, formDates, formDescription;
+		formEmployer = HTMLworkEmployer.replace("%data%", work.jobs[i].employer);
+		formTitle = HTMLworkTitle.replace("%data%", work.jobs[i].title);
+		formLocation = HTMLworkLocation.replace("%data%", work.jobs[i].location);
+		formDates = HTMLworkDates.replace("%data%", work.jobs[i].dates);
+		formDescription = HTMLworkDescription.replace("%data%", work.jobs[i].description);
+
+		lastWork.append(formEmployer);
+		lastWork.append(formTitle);
+		lastWork.append(HTMLformalInfo).append(formLocation + " " + formDates);
+		lastWork.append(formDescription);
 	}
 };
-//displayMore();
+displayMore();*/
 
 
 
