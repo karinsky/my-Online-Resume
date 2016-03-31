@@ -223,25 +223,29 @@ function displayWork() {
 		lastWork.append(HTMLformalInfo).append(formLocation + " " + formDates);
 		lastWork.append(formDescription);
 	}
-}
-displayWork();
 
 	var selectMoreless = $("#work");
 	selectMoreless.append(HTMLdivMoreless);
 	var readMoreless = selectMoreless.find(".readMoreless");
 	readMoreless.append(HTMLclosePage + " " + HTMLreadMore);
 
-/*	var selectClose1;
-	selectClose1 = selectMoreless.find("#close1");
-//	console.log(selectClose1);
 
-	selectClose1.click(function() {
-	$("#work").slideUp("slow");
-	});*/
+}
+displayWork();
 
-$("#close1").click(function() {
-	$("#work").slideUp();
-});
+function closeDisplay() {
+	var selectClose;
+	selectClose = $("#itemsDisplay").find("#close");
+
+	selectClose.click(function() {
+		var displayClose;
+		displayClose = $("#itemsDisplay");
+
+		displayClose.slideUp();
+	});
+}
+$(closeDisplay);
+
 
 /* The following function worked some time ago in adding the 2nd batch of Work Experiences
 to be displayed. My idea is to display this 2nd batch 'on click (-> Read more)',

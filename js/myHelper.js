@@ -15,10 +15,9 @@ var HTMLdisplayWork = '<div id="work" class="display-box"><h1 class="title-box">
 var HTMLentryStart = '<div class="item-entry"></div>';
 var HTMLformalInfo = '<div class="formalInfo"></div>';
 var HTMLdivMoreless = '<div class="readMoreless"></div>';
-var HTMLclosePage = '<a href id="close1" class="link floatLeft"><br>Close...</a href>';
-var HTMLclosePages = '<a href id="close2" class="link floatLeft"><br>Close...</a href>';
-var HTMLreadMore = '<a href id="More" class="link floatRight"><br>Read More...</a href>';
-var HTMLreadLess = '<a href id="Less" class="link floatRight"><br>Read Less...</a href>';
+var HTMLclosePage = '<span id="close" class="link asLink floatLeft"><br>Close...</span>';
+var HTMLreadMore = '<span id="More" class="link asLink floatRight"><br>Read More...</span>';
+var HTMLreadLess = '<span id="Less" class="link asLink floatRight"><br>Read Less...</span>';
 
 var HTMLworkEmployer = '<h2 class="h2Resumedisplay caps">%data%</h2>';
 var HTMLworkTitle = '<h3 class="h3Resumedisplay">%data%</h3>';

@@ -104,7 +104,7 @@ a:link {
 }
 
 a:visited {
-  color: blue;
+  color: #6C6CF5;
 }
 
 ul {
@@ -147,6 +147,14 @@ span {
   min-width: 60px;
   min-height: 48px;
 }
+
+.asLink {
+  font-size: 12px;
+  font-style: italic;
+  color: blue;
+  text-decoration: underline;
+}
+
 
 /*
 *Preparing for column use (only in section Header)*
