@@ -156,7 +156,7 @@ var work = {
 			"title" : "Health Care Management and Migrating", 
 			"location" : "Schwelm/Frankfurt, Germany; Chicago, IL, U.S.A.",
 			"dates" : "2009 - 2011",
-			"description" : "Supporting my mother in caring for my father, and immigrating to the U.S.A. after he passed away."
+			"description" : "Caring for my father and, after he passed away, immigrating to the U.S.A. to marry my late husband."
 		},
 		{
 			"employer" : "Distance University Hagen, Faculty of Cultural and Social Sciences",
@@ -228,10 +228,13 @@ function displayWork() {
 	selectMoreless.append(HTMLdivMoreless);
 	var readMoreless = selectMoreless.find(".readMoreless");
 	readMoreless.append(HTMLclosePage + " " + HTMLreadMore);
-
-
 }
 displayWork();
+
+// The following function closes the display box (sliding up) 'on click'.
+/* function works but is currently 'uncommented' for experimenting with
+   the 2nd 'on click' offer to close the 'work experiences' display after
+   the 2nd batch of older work experiences (see below).
 
 function closeDisplay() {
 	var selectClose;
@@ -244,34 +247,74 @@ function closeDisplay() {
 		displayClose.slideUp();
 	});
 }
-$(closeDisplay);
+$(closeDisplay);*/
 
 
-/* The following function worked some time ago in adding the 2nd batch of Work Experiences
-to be displayed. My idea is to display this 2nd batch 'on click (-> Read more)',
-but I got stuck and stumped with the 1st alternative (to just close views into 'Work
-Experience').
+/* The following function adds a 2nd batch of older work experiences
+   'on click'*/
 
 function displayMore() {
-	for (i = 5; i < work.jobs.length; i++) {
-		var myWork = $("#work");
-		myWork.append(HTMLentryStart);
-		var lastWork = myWork.children(".item-entry:last");
+	var selectMore;
+	selectMore = $("#itemsDisplay").find("#more");
 
-		var formEmployer, formTitle, formLocation, formDates, formDescription;
-		formEmployer = HTMLworkEmployer.replace("%data%", work.jobs[i].employer);
-		formTitle = HTMLworkTitle.replace("%data%", work.jobs[i].title);
-		formLocation = HTMLworkLocation.replace("%data%", work.jobs[i].location);
-		formDates = HTMLworkDates.replace("%data%", work.jobs[i].dates);
-		formDescription = HTMLworkDescription.replace("%data%", work.jobs[i].description);
+	selectMore.click(function() {
+		for (i = 5; i < work.jobs.length; i++) {
+			var myWork = $("#work");
+			myWork.append(HTMLentryStart);
+			var lastWork = myWork.children(".item-entry:last");
 
-		lastWork.append(formEmployer);
-		lastWork.append(formTitle);
-		lastWork.append(HTMLformalInfo).append(formLocation + " " + formDates);
-		lastWork.append(formDescription);
-	}
+			var formEmployer, formTitle, formLocation, formDates, formDescription;
+			formEmployer = HTMLworkEmployer.replace("%data%", work.jobs[i].employer);
+			formTitle = HTMLworkTitle.replace("%data%", work.jobs[i].title);
+			formLocation = HTMLworkLocation.replace("%data%", work.jobs[i].location);
+			formDates = HTMLworkDates.replace("%data%", work.jobs[i].dates);
+			formDescription = HTMLworkDescription.replace("%data%", work.jobs[i].description);
+
+			lastWork.append(formEmployer);
+			lastWork.append(formTitle);
+			lastWork.append(HTMLformalInfo).append(formLocation + " " + formDates);
+			lastWork.append(formDescription);
+		}
+	var selectCloseless = $("#work");
+	selectCloseless.append(HTMLdivCloseless);
+	var closeReadless = selectCloseless.find(".closeReadless");
+	closeReadless.append(HTMLclosePages + " " + HTMLreadLess);
+	});
+
 };
-displayMore();*/
+displayMore();
+
+/* The following function is essentially a renamed copy of the working
+   function above which closes the the display box (sliding up) 'on click':
+   What I can'T understand: it works for "#close" as above, but it does
+   not work for "#close2"...*/
+
+function closeFinal() {
+	var selectClose;
+	selectClose = $("#itemsDisplay").find("#close");
+
+	selectClose.click(function() {
+		var displayClose;
+		displayClose = $("#itemsDisplay");
+
+		displayClose.slideUp();
+	});
+}
+$(closeFinal);
+
+/*	Fragments of working on the 'read less on click' function
+    which I did not get to work. Thus I tried the 2nd 'close
+    display box' above along a model which worked before...
+
+var selectLess;
+	selectLess = $("#itemsDisplay").find("#less");
+
+	selectLess.click(function() {
+		var displayLess;
+		displayLess = $("#itemsDisplay").find(".item-entry: last");
+
+		displayLess.slideUp();
+	});*/
 
 
 

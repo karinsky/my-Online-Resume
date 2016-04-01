@@ -414,6 +414,12 @@ span {
   margin: 10px auto;
 }
 
+.closeReadless {
+  max-width: 95%;
+  height: 50px;
+  margin: 10px auto;
+}
+
 
 /*
 *
@@ -639,6 +645,9 @@ span {
   margin: 20px auto;
   }
   .readMoreless {
-    max-width: 75%;
+    max-width: 100%;
+  }
+  .closeReadless {
+    max-width: 100%;
   }
 }
