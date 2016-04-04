@@ -11,7 +11,6 @@ var HTMLwelcomeMsg = '<p id="welcome" class="quote white">%data%</p>';
 
 var HTMLskills = '<li class="flex-item"><span class="bold">%data%</span></li>';
 
-var HTMLdisplayWork = '<div id="work" class="display-box"><h1 class="title-box">Work Experience</h1></div>';
 var HTMLentryStart = '<div class="item-entry"></div>';
 var HTMLformalInfo = '<div class="formalInfo"></div>';
 var HTMLdivMoreless = '<div class="readMoreless"></div>';
@@ -21,9 +20,11 @@ var HTMLclosePages = '<span id="close2" class="link asLink floatLeft"><br>Close.
 var HTMLreadMore = '<span id="more" class="link asLink floatRight"><br>Read more (below)...</span>';
 var HTMLreadLess = '<span id="less" class="link asLink floatRight"><br>Read Less...</span>';
 
+var HTMLdisplayWork = '<div id="work" class="display-box"><h1 class="title-box">Work Experience</h1></div>';
 var HTMLworkEmployer = '<h2 class="h2Resumedisplay caps">%data%</h2>';
 var HTMLworkTitle = '<h3 class="h3Resumedisplay">%data%</h3>';
 var HTMLworkDates = '<span class="quote floatRight">%data%</span>';
 var HTMLworkLocation = '<span class="quote floatLeft">%data%</span>';
 var HTMLworkDescription = '<p class="pResumedisplay">%data%</p>';
 
+var HTMLdisplayEdu = '<div id="edu" class="display-box"><h1 class="title-box">Education</h1></div>';

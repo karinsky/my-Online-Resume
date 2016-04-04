@@ -128,10 +128,17 @@ bio.display();
 
 /* Section 'featured' -- prepared for diff. use, 
    here: Online Resume;
-   section 'featured' hosts the other required 'P3 sections'
+   section 'featured' hosts the other required P3 objects
    of 'work experience', 'education', 'projects' as well as
    the map*/
 
+function replaceTitle() {
+	var selectTitle;
+	selectTitle = $("#featured").children("h1").first();
+
+	selectTitle.replaceWith('<h1 class="title-box">Resumé</h1>');
+}
+$(replaceTitle);
 
 // The work object
 
@@ -234,7 +241,7 @@ displayWork();
 // The following function closes the display box (sliding up) 'on click'.
 /* function works but is currently 'uncommented' for experimenting with
    the 2nd 'on click' offer to close the 'work experiences' display after
-   the 2nd batch of older work experiences (see below).
+   the 2nd batch of older work experiences (see below).*/
 
 function closeDisplay() {
 	var selectClose;
@@ -247,7 +254,7 @@ function closeDisplay() {
 		displayClose.slideUp();
 	});
 }
-$(closeDisplay);*/
+$(closeDisplay);
 
 
 /* The following function adds a 2nd batch of older work experiences
@@ -275,12 +282,45 @@ function displayMore() {
 			lastWork.append(HTMLformalInfo).append(formLocation + " " + formDates);
 			lastWork.append(formDescription);
 		}
+
 	var selectCloseless = $("#work");
 	selectCloseless.append(HTMLdivCloseless);
 	var closeReadless = selectCloseless.find(".closeReadless");
 	closeReadless.append(HTMLclosePages + " " + HTMLreadLess);
-	});
 
+	function closeFinal() {
+		var selectClose;
+		selectClose = $("#itemsDisplay").find("#close2");
+
+		selectClose.click(function() {
+			var displayClose;
+			displayClose = $("#itemsDisplay");
+
+			displayClose.slideUp();
+		});
+	}
+	$(closeFinal);
+
+	function closeLess() {
+		var selectLess;
+		selectLess = $("#itemsDisplay").find("#less");
+
+		selectLess.click(function() {
+			var displayLess5, displayLess6, displayLess7, displayLesslast
+			displayLess5 = $("#itemsDisplay").find(".item-entry:eq(5)");
+			displayLess6 = $("#itemsDisplay").find(".item-entry:eq(6)");
+			displayLess7 = $("#itemsDisplay").find(".item-entry:eq(7)");
+			displayLesslast = $("#itemsDisplay").find(".closeReadless");
+
+			displayLess5.slideUp();
+			displayLess6.slideUp();
+			displayLess7.slideUp();
+			displayLesslast.slideUp();
+		});
+	}
+	$(closeLess);
+
+	});
 };
 displayMore();
 
@@ -288,34 +328,6 @@ displayMore();
    function above which closes the the display box (sliding up) 'on click':
    What I can'T understand: it works for "#close" as above, but it does
    not work for "#close2"...*/
-
-function closeFinal() {
-	var selectClose;
-	selectClose = $("#itemsDisplay").find("#close");
-
-	selectClose.click(function() {
-		var displayClose;
-		displayClose = $("#itemsDisplay");
-
-		displayClose.slideUp();
-	});
-}
-$(closeFinal);
-
-/*	Fragments of working on the 'read less on click' function
-    which I did not get to work. Thus I tried the 2nd 'close
-    display box' above along a model which worked before...
-
-var selectLess;
-	selectLess = $("#itemsDisplay").find("#less");
-
-	selectLess.click(function() {
-		var displayLess;
-		displayLess = $("#itemsDisplay").find(".item-entry: last");
-
-		displayLess.slideUp();
-	});*/
-
 
 
 
@@ -408,7 +420,17 @@ var education = {
 }
 // JSONLint: valid JSON (without function)
 
+function displayEdu() {
+	var selectItembox2;
+	selectItembox2 = $(".item-box:eq(1)");
 
+	selectItembox2.click(function() {
+	var basicSelect, eduDisplay;
+	basicSelect = $("#itemsDisplay");
+	eduDisplay = basicSelect.append(HTMLdisplayEdu);
 
-
+//# display-box provided 'on click'--next: appending loop...	
+	});
+}
+$(displayEdu);
 
