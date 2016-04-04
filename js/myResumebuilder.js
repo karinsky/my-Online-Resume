@@ -170,7 +170,7 @@ var work = {
 			"title" : "Online Mentor in the BA Program 'Methods of Cultural Studies'",
 			"location" : "Hagen, Germany",
 			"dates" : "2005 - 2009",
-			"description" : "Lecturing and counseling in courses on social science methods in early e-learning environments; and developing the tracking and analysis of test scores."
+			"description" : "Lecturing and counseling in courses on social science methods in early e-learning environments; developing the tracking and analysis of test scores."
 		},
 		{
 			"employer" : "J. W. Goethe University, Department of Social Sciences",
@@ -209,12 +209,14 @@ var formEmployer = HTMLworkEmployer.replace("%data%", work.jobs[0].employer);
 $(".item-entry:last").append(formEmployer);*/
 
 function displayWork() {
-	var basicSelect, workDisplay;
+	var basicSelect, addCanvas, selectItem1, item1Display;
 	basicSelect = $("#itemsDisplay");
-	workDisplay = basicSelect.append(HTMLdisplayWork);
+	addCanvas = basicSelect.append(HTMLfeaturedDisplay1);
+	selectItem1 = basicSelect.children("#displayItem1");
+	item1Display = selectItem1.append(HTMLdisplayWork);
 
 	for (i = 0; i < 5; i++) {
-		var myWork = $("#work");
+		var myWork = $("#itemsDisplay").find("#work");
 		myWork.append(HTMLentryStart);
 		var lastWork = myWork.children(".item-entry:last");
 
@@ -231,7 +233,7 @@ function displayWork() {
 		lastWork.append(formDescription);
 	}
 
-	var selectMoreless = $("#work");
+	var selectMoreless = $("#itemsDisplay").find("#work");
 	selectMoreless.append(HTMLdivMoreless);
 	var readMoreless = selectMoreless.find(".readMoreless");
 	readMoreless.append(HTMLclosePage + " " + HTMLreadMore);
@@ -249,7 +251,7 @@ function closeDisplay() {
 
 	selectClose.click(function() {
 		var displayClose;
-		displayClose = $("#itemsDisplay");
+		displayClose = $("#itemsDisplay").find("#displayItem1");
 
 		displayClose.slideUp();
 	});
@@ -266,9 +268,9 @@ function displayMore() {
 
 	selectMore.click(function() {
 		for (i = 5; i < work.jobs.length; i++) {
-			var myWork = $("#work");
-			myWork.append(HTMLentryStart);
-			var lastWork = myWork.children(".item-entry:last");
+			var moreWork = $("#work");
+			moreWork.append(HTMLentryStart);
+			var lastWork = moreWork.children(".item-entry:last");
 
 			var formEmployer, formTitle, formLocation, formDates, formDescription;
 			formEmployer = HTMLworkEmployer.replace("%data%", work.jobs[i].employer);
@@ -294,7 +296,7 @@ function displayMore() {
 
 		selectClose.click(function() {
 			var displayClose;
-			displayClose = $("#itemsDisplay");
+			displayClose = $("#itemsDisplay").find("#displayItem1");
 
 			displayClose.slideUp();
 		});
@@ -306,11 +308,12 @@ function displayMore() {
 		selectLess = $("#itemsDisplay").find("#less");
 
 		selectLess.click(function() {
-			var displayLess5, displayLess6, displayLess7, displayLesslast
-			displayLess5 = $("#itemsDisplay").find(".item-entry:eq(5)");
-			displayLess6 = $("#itemsDisplay").find(".item-entry:eq(6)");
-			displayLess7 = $("#itemsDisplay").find(".item-entry:eq(7)");
-			displayLesslast = $("#itemsDisplay").find(".closeReadless");
+			var selectLess, displayLess5, displayLess6, displayLess7, displayLesslast
+			selectLess = $("#itemsDisplay").children("#displayItem1");
+			displayLess5 = selectLess.find(".item-entry:eq(5)");
+			displayLess6 = selectLess.find(".item-entry:eq(6)");
+			displayLess7 = selectLess.find(".item-entry:eq(7)");
+			displayLesslast = selectLess.find(".closeReadless");
 
 			displayLess5.slideUp();
 			displayLess6.slideUp();

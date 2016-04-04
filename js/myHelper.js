@@ -11,6 +11,11 @@ var HTMLwelcomeMsg = '<p id="welcome" class="quote white">%data%</p>';
 
 var HTMLskills = '<li class="flex-item"><span class="bold">%data%</span></li>';
 
+var HTMLfeaturedDisplay1 = '<div id="displayItem1" class="displayCanvas"></div>';
+var HTMLfeaturedDisplay2 = '<div id="displayItem2" class="displayCanvas"></div>';
+var HTMLfeaturedDisplay3 = '<div id="displayItem3" class="displayCanvas"></div>';
+var HTMLfeaturedDisplay4 = '<div id="displayItem4" class="displayCanvas"></div>';
+
 var HTMLentryStart = '<div class="item-entry"></div>';
 var HTMLformalInfo = '<div class="formalInfo"></div>';
 var HTMLdivMoreless = '<div class="readMoreless"></div>';
