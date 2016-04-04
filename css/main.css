@@ -320,8 +320,10 @@ span {
 
 /*
 *
-*Main Section: Featured Items*
-*(2 main breakpoints adjust to 2-row and 4-row display)*
+* Main Section: Featured*
+* (2 main breakpoints adjust to 2-row and 4-row display for the*
+* main <div id="featuredItems"> (see below))*
+*
 */
 
 #featured {
@@ -334,15 +336,25 @@ span {
   padding-bottom: 20px;
 }
 
+.title-box {
+  margin: auto;
+  padding: 15px 10px;
+}
+
+/*
+* 1) in current use: skills*
+*/
+
 #skills {
   border-bottom-style: solid;
   border-bottom-color: #bcbbbb;
 }
 
-.title-box {
-  margin: auto;
-  padding: 15px 10px;
-}
+
+
+/*
+* 2) in current use: Featured Items*
+*/
 
 #featuredItems {
   width: 100%;
@@ -380,6 +392,10 @@ span {
   padding-top: 2px;
 }
 
+/*
+* 3) in current use: Items Display*
+*/
+
 #itemsDisplay {
   max-width: 100%;
   height: 400px;
@@ -387,6 +403,7 @@ span {
   border: 1px solid;
   overflow: auto;
 }
+
 .display-box {
   padding: 10px 20px;
   border: 1px solid;
@@ -572,7 +589,7 @@ span {
 }
 
 /*
-*@ Section Featured Items
+*@ Section Featured
 */
 
 @media screen and (min-width: 416px) and (max-width: 549px) {
