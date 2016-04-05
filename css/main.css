@@ -639,7 +639,7 @@ span {
     width: 45%;
     margin: 10px;
   }
-  #itemsDisplay {
+  #displayCanvas {
   max-width: 90%;
   height: 450px;
   margin: 15px auto;
@@ -656,7 +656,7 @@ span {
   .item-pic {
     width: 90%;
   }
-  #itemsDisplay {
+  #displayCanvas {
   max-width: 80%;
   height: 500px;
   margin: 20px auto;

@@ -126,11 +126,24 @@ bio.display();
 	efficient to add some css to existing media queries.)
 
 
-/* Section 'featured' -- prepared for diff. use, 
-   here: Online Resume;
-   section 'featured' hosts the other required P3 objects
-   of 'work experience', 'education', 'projects' as well as
-   the map*/
+/*	Section 'featured'
+	prepared for diff. use, here: Online Resume;
+
+1)	The 1st main <div id='skills'> is appended in 'bio.display()'.
+2)	The 2nd main <div id='featuredItems'> contains 4 'tiles' (with
+	images) set up as event handlers to provide the other required
+	P3 objects (work experience, education, projects) plus, 4th,
+	the map 'on click'
+3)	The 3rd main <div id='itemsDisplay' provides the 'anchor' to
+	append, in js, further 'boxes' and their display content.
+
+	The main 'display functions' for the 4 types of content have
+	the same basic structure:
+1)	Display content with event handlers at the end which allow to
+	either close or, with more extended content:
+2)	append more content, again with event handlers at the end which
+	allow to 'close' all or 'read less'.
+*/
 
 function replaceTitle() {
 	var selectTitle;
@@ -163,14 +176,14 @@ var work = {
 			"title" : "Health Care Management and Migrating", 
 			"location" : "Schwelm/Frankfurt, Germany; Chicago, IL, U.S.A.",
 			"dates" : "2009 - 2011",
-			"description" : "Caring for my father and, after he passed away, immigrating to the U.S.A. to marry my late husband."
+			"description" : "Caring for my father and, after he passed away, immigrating to the U.S.A. to live with my late husband."
 		},
 		{
 			"employer" : "Distance University Hagen, Faculty of Cultural and Social Sciences",
 			"title" : "Online Mentor in the BA Program 'Methods of Cultural Studies'",
 			"location" : "Hagen, Germany",
 			"dates" : "2005 - 2009",
-			"description" : "Lecturing and counseling in courses on social science methods in early e-learning environments; developing the tracking and analysis of test scores."
+			"description" : "Lecturing and counseling in courses on social science methods in early online learning environments; developing the tracking and analysis of test scores."
 		},
 		{
 			"employer" : "J. W. Goethe University, Department of Social Sciences",
@@ -209,68 +222,20 @@ var formEmployer = HTMLworkEmployer.replace("%data%", work.jobs[0].employer);
 $(".item-entry:last").append(formEmployer);*/
 
 function displayWork() {
-	var basicSelect, addCanvas, selectItem1, item1Display;
-	basicSelect = $("#itemsDisplay");
-	addCanvas = basicSelect.append(HTMLfeaturedDisplay1);
-	selectItem1 = basicSelect.children("#displayItem1");
-	item1Display = selectItem1.append(HTMLdisplayWork);
+	var selectItembox1;
+	selectItembox1 = $(".item-box:eq(0)");
 
-	for (i = 0; i < 5; i++) {
-		var myWork = $("#itemsDisplay").find("#work");
-		myWork.append(HTMLentryStart);
-		var lastWork = myWork.children(".item-entry:last");
+	selectItembox1.click(function() {
+		var basicSelect, addCanvas, selectItem1, item1Display;
+		basicSelect = $("#itemsDisplay");
+		addCanvas = basicSelect.append(HTMLfeaturedDisplay1);
+		selectItem1 = basicSelect.children("#displayItem1");
+		item1Display = selectItem1.append(HTMLdisplayWork);
 
-		var formEmployer, formTitle, formLocation, formDates, formDescription;
-		formEmployer = HTMLworkEmployer.replace("%data%", work.jobs[i].employer);
-		formTitle = HTMLworkTitle.replace("%data%", work.jobs[i].title);
-		formLocation = HTMLworkLocation.replace("%data%", work.jobs[i].location);
-		formDates = HTMLworkDates.replace("%data%", work.jobs[i].dates);
-		formDescription = HTMLworkDescription.replace("%data%", work.jobs[i].description);
-
-		lastWork.append(formEmployer);
-		lastWork.append(formTitle);
-		lastWork.append(HTMLformalInfo).append(formLocation + " " + formDates);
-		lastWork.append(formDescription);
-	}
-
-	var selectMoreless = $("#itemsDisplay").find("#work");
-	selectMoreless.append(HTMLdivMoreless);
-	var readMoreless = selectMoreless.find(".readMoreless");
-	readMoreless.append(HTMLclosePage + " " + HTMLreadMore);
-}
-displayWork();
-
-// The following function closes the display box (sliding up) 'on click'.
-/* function works but is currently 'uncommented' for experimenting with
-   the 2nd 'on click' offer to close the 'work experiences' display after
-   the 2nd batch of older work experiences (see below).*/
-
-function closeDisplay() {
-	var selectClose;
-	selectClose = $("#itemsDisplay").find("#close");
-
-	selectClose.click(function() {
-		var displayClose;
-		displayClose = $("#itemsDisplay").find("#displayItem1");
-
-		displayClose.slideUp();
-	});
-}
-$(closeDisplay);
-
-
-/* The following function adds a 2nd batch of older work experiences
-   'on click'*/
-
-function displayMore() {
-	var selectMore;
-	selectMore = $("#itemsDisplay").find("#more");
-
-	selectMore.click(function() {
-		for (i = 5; i < work.jobs.length; i++) {
-			var moreWork = $("#work");
-			moreWork.append(HTMLentryStart);
-			var lastWork = moreWork.children(".item-entry:last");
+		for (i = 0; i < 5; i++) {
+			var myWork = $("#itemsDisplay").find("#work");
+			myWork.append(HTMLentryStart);
+			var lastWork = myWork.children(".item-entry:last");
 
 			var formEmployer, formTitle, formLocation, formDates, formDescription;
 			formEmployer = HTMLworkEmployer.replace("%data%", work.jobs[i].employer);
@@ -284,15 +249,14 @@ function displayMore() {
 			lastWork.append(HTMLformalInfo).append(formLocation + " " + formDates);
 			lastWork.append(formDescription);
 		}
+		var selectMoreless = $("#itemsDisplay").find("#work");
+		selectMoreless.append(HTMLdivMoreless);
+		var readMoreless = selectMoreless.find(".readMoreless");
+		readMoreless.append(HTMLclosePage + " " + HTMLreadMore);
 
-	var selectCloseless = $("#work");
-	selectCloseless.append(HTMLdivCloseless);
-	var closeReadless = selectCloseless.find(".closeReadless");
-	closeReadless.append(HTMLclosePages + " " + HTMLreadLess);
-
-	function closeFinal() {
+	function closeDisplay() {
 		var selectClose;
-		selectClose = $("#itemsDisplay").find("#close2");
+		selectClose = $("#itemsDisplay").find("#close");
 
 		selectClose.click(function() {
 			var displayClose;
@@ -301,31 +265,83 @@ function displayMore() {
 			displayClose.slideUp();
 		});
 	}
-	$(closeFinal);
+	closeDisplay();
 
-	function closeLess() {
-		var selectLess;
-		selectLess = $("#itemsDisplay").find("#less");
+	function displayMore() {
+		var selectMore;
+		selectMore = $("#itemsDisplay").find("#more");
 
-		selectLess.click(function() {
-			var selectLess, displayLess5, displayLess6, displayLess7, displayLesslast
-			selectLess = $("#itemsDisplay").children("#displayItem1");
-			displayLess5 = selectLess.find(".item-entry:eq(5)");
-			displayLess6 = selectLess.find(".item-entry:eq(6)");
-			displayLess7 = selectLess.find(".item-entry:eq(7)");
-			displayLesslast = selectLess.find(".closeReadless");
+		selectMore.one("click", function() {
+			for (i = 5; i < work.jobs.length; i++) {
+				var moreWork = $("#work");
+				moreWork.append(HTMLentryStart);
+				var lastWork = moreWork.children(".item-entry:last");
 
-			displayLess5.slideUp();
-			displayLess6.slideUp();
-			displayLess7.slideUp();
-			displayLesslast.slideUp();
+				var formEmployer, formTitle, formLocation, formDates, formDescription;
+				formEmployer = HTMLworkEmployer.replace("%data%", work.jobs[i].employer);
+				formTitle = HTMLworkTitle.replace("%data%", work.jobs[i].title);
+				formLocation = HTMLworkLocation.replace("%data%", work.jobs[i].location);
+				formDates = HTMLworkDates.replace("%data%", work.jobs[i].dates);
+				formDescription = HTMLworkDescription.replace("%data%", work.jobs[i].description);
+
+				lastWork.append(formEmployer);
+				lastWork.append(formTitle);
+				lastWork.append(HTMLformalInfo).append(formLocation + " " + formDates);
+				lastWork.append(formDescription);
+			}
+
+		var selectCloseless = $("#work");
+		selectCloseless.append(HTMLdivCloseless);
+		var closeReadless = selectCloseless.find(".closeReadless");
+		closeReadless.append(HTMLclosePages + " " + HTMLreadLess);
+
+		function closeFinal() {
+			var selectClose;
+			selectClose = $("#itemsDisplay").find("#close2");
+
+			selectClose.click(function() {
+				var displayClose;
+				displayClose = $("#itemsDisplay").find("#displayItem1");
+
+				displayClose.slideUp();
+			});
+		}
+		$(closeFinal);
+
+		function closeLess() {
+			var selectLess;
+			selectLess = $("#itemsDisplay").find("#less");
+
+			selectLess.click(function() {
+				var selectLess, displayLess5, displayLess6, displayLess7, displayLesslast;
+				selectLess = $("#itemsDisplay").children("#displayItem1");
+				displayLess5 = selectLess.find(".item-entry:eq(5)");
+				displayLess6 = selectLess.find(".item-entry:eq(6)");
+				displayLess7 = selectLess.find(".item-entry:eq(7)");
+				displayLesslast = selectLess.find(".closeReadless");
+
+				displayLess5.slideUp();
+				displayLess6.slideUp();
+				displayLess7.slideUp();
+				displayLesslast.slideUp();
+			});
+		}
+		$(closeLess);
 		});
 	}
-	$(closeLess);
-
+	displayMore();
 	});
-};
-displayMore();
+}
+displayWork();
+
+// The following function closes the display box (sliding up) 'on click'.
+/* function works but is currently 'uncommented' for experimenting with
+   the 2nd 'on click' offer to close the 'work experiences' display after
+   the 2nd batch of older work experiences (see below).*/
+
+
+/* The following function adds a 2nd batch of older work experiences
+   'on click'*/
 
 /* The following function is essentially a renamed copy of the working
    function above which closes the the display box (sliding up) 'on click':
