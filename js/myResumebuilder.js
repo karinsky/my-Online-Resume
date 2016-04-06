@@ -213,69 +213,22 @@ var work = {
 			"dates" : "1976 - 1979",
 			"description" : "Invaluable first teaching experiences."
 		}
-	]
-}
-// JSONLint: valid JSON (without function)
+	],
+	"display" : function() {
+		var selectItembox1;
+		selectItembox1 = $(".item-box:eq(0)");
 
-/*$("#work").append(HTMLentryStart);
-var formEmployer = HTMLworkEmployer.replace("%data%", work.jobs[0].employer);
-$(".item-entry:last").append(formEmployer);*/
+		selectItembox1.click(function() {
+			var basicSelect, addCanvas, selectItem1, item1Display;
+			basicSelect = $("#itemsDisplay");
+			addCanvas = basicSelect.append(HTMLfeaturedDisplay1);
+			selectItem1 = basicSelect.children("#displayItem1");
+			item1Display = selectItem1.append(HTMLdisplayWork);
 
-function displayWork() {
-	var selectItembox1;
-	selectItembox1 = $(".item-box:eq(0)");
-
-	selectItembox1.click(function() {
-		var basicSelect, addCanvas, selectItem1, item1Display;
-		basicSelect = $("#itemsDisplay");
-		addCanvas = basicSelect.append(HTMLfeaturedDisplay1);
-		selectItem1 = basicSelect.children("#displayItem1");
-		item1Display = selectItem1.append(HTMLdisplayWork);
-
-		for (i = 0; i < 5; i++) {
-			var myWork = $("#itemsDisplay").find("#work");
-			myWork.append(HTMLentryStart);
-			var lastWork = myWork.children(".item-entry:last");
-
-			var formEmployer, formTitle, formLocation, formDates, formDescription;
-			formEmployer = HTMLworkEmployer.replace("%data%", work.jobs[i].employer);
-			formTitle = HTMLworkTitle.replace("%data%", work.jobs[i].title);
-			formLocation = HTMLworkLocation.replace("%data%", work.jobs[i].location);
-			formDates = HTMLworkDates.replace("%data%", work.jobs[i].dates);
-			formDescription = HTMLworkDescription.replace("%data%", work.jobs[i].description);
-
-			lastWork.append(formEmployer);
-			lastWork.append(formTitle);
-			lastWork.append(HTMLformalInfo).append(formLocation + " " + formDates);
-			lastWork.append(formDescription);
-		}
-		var selectMoreless = $("#itemsDisplay").find("#work");
-		selectMoreless.append(HTMLdivMoreless);
-		var readMoreless = selectMoreless.find(".readMoreless");
-		readMoreless.append(HTMLclosePage + " " + HTMLreadMore);
-
-	function closeDisplay() {
-		var selectClose;
-		selectClose = $("#itemsDisplay").find("#close");
-
-		selectClose.click(function() {
-			var displayClose;
-			displayClose = $("#itemsDisplay").find("#displayItem1");
-
-			displayClose.slideUp();
-		});
-	}
-	closeDisplay();
-
-	function displayMore() {
-		var selectMore;
-		selectMore = $("#itemsDisplay").find("#more");
-
-		selectMore.one("click", function() {
-			for (i = 5; i < work.jobs.length; i++) {
-				var moreWork = $("#work");
-				moreWork.append(HTMLentryStart);
-				var lastWork = moreWork.children(".item-entry:last");
+			for (i = 0; i < 5; i++) {
+				var myWork = $("#itemsDisplay").find("#work");
+				myWork.append(HTMLentryStart);
+				var lastWork = myWork.children(".item-entry:last");
 
 				var formEmployer, formTitle, formLocation, formDates, formDescription;
 				formEmployer = HTMLworkEmployer.replace("%data%", work.jobs[i].employer);
@@ -289,65 +242,104 @@ function displayWork() {
 				lastWork.append(HTMLformalInfo).append(formLocation + " " + formDates);
 				lastWork.append(formDescription);
 			}
+			var selectMoreless = $("#itemsDisplay").find("#work");
+			selectMoreless.append(HTMLdivMoreless);
+			var readMoreless = selectMoreless.find(".readMoreless");
+			readMoreless.append(HTMLclosePage + " " + HTMLreadMore);
 
-		var selectCloseless = $("#work");
-		selectCloseless.append(HTMLdivCloseless);
-		var closeReadless = selectCloseless.find(".closeReadless");
-		closeReadless.append(HTMLclosePages + " " + HTMLreadLess);
+			function closeDisplay() {
+				var selectClose;
+				selectClose = $("#itemsDisplay").find("#close");
 
-		function closeFinal() {
-			var selectClose;
-			selectClose = $("#itemsDisplay").find("#close2");
+				selectClose.click(function() {
+					var displayClose;
+					displayClose = $("#itemsDisplay").find("#displayItem1");
 
-			selectClose.click(function() {
-				var displayClose;
-				displayClose = $("#itemsDisplay").find("#displayItem1");
+					displayClose.slideUp();
+				});
+			}
+			closeDisplay();
 
-				displayClose.slideUp();
-			});
-		}
-		$(closeFinal);
+			function displayMore() {
+				var selectMore;
+				selectMore = $("#itemsDisplay").find("#more").last();
 
-		function closeLess() {
-			var selectLess;
-			selectLess = $("#itemsDisplay").find("#less");
+				selectMore.click(function() {
 
-			selectLess.click(function() {
-				var selectLess, displayLess5, displayLess6, displayLess7, displayLesslast;
-				selectLess = $("#itemsDisplay").children("#displayItem1");
-				displayLess5 = selectLess.find(".item-entry:eq(5)");
-				displayLess6 = selectLess.find(".item-entry:eq(6)");
-				displayLess7 = selectLess.find(".item-entry:eq(7)");
-				displayLesslast = selectLess.find(".closeReadless");
+					var selectClicked;
+					selectClicked = $("#itemsDisplay").find("#more").last();
+					selectClicked.removeClass("asLink").addClass("asClicked");
 
-				displayLess5.slideUp();
-				displayLess6.slideUp();
-				displayLess7.slideUp();
-				displayLesslast.slideUp();
-			});
-		}
-		$(closeLess);
+					for (i = 5; i < work.jobs.length; i++) {
+						var moreWork = $("#work");
+						moreWork.append(HTMLentryStart);
+						var lastWork = moreWork.children(".item-entry:last");
+
+						var formEmployer, formTitle, formLocation, formDates, formDescription;
+						formEmployer = HTMLworkEmployer.replace("%data%", work.jobs[i].employer);
+						formTitle = HTMLworkTitle.replace("%data%", work.jobs[i].title);
+						formLocation = HTMLworkLocation.replace("%data%", work.jobs[i].location);
+						formDates = HTMLworkDates.replace("%data%", work.jobs[i].dates);
+						formDescription = HTMLworkDescription.replace("%data%", work.jobs[i].description);
+
+						lastWork.append(formEmployer);
+						lastWork.append(formTitle);
+						lastWork.append(HTMLformalInfo).append(formLocation + " " + formDates);
+						lastWork.append(formDescription);
+					}
+
+					var selectCloseless = $("#work");
+					selectCloseless.append(HTMLdivCloseless);
+					var closeReadless = selectCloseless.find(".closeReadless").last();
+					closeReadless.append(HTMLclosePages + " " + HTMLreadLess);
+
+					function closeFinal() {
+						var selectClose;
+						selectClose = $("#itemsDisplay").find("#close2").last();
+
+						selectClose.click(function() {
+							var displayClose;
+							displayClose = $("#itemsDisplay").find("#displayItem1");
+
+							displayClose.slideUp();
+						});
+					}
+					closeFinal();
+
+					function closeLess() {
+						var selectLess;
+						selectLess = $("#itemsDisplay").find("#less").last();
+
+						selectLess.click(function() {
+							var selectLess, displayLess5, displayLess6, displayLess7, displayLesslast;
+							selectLess = $("#itemsDisplay").children("#displayItem1");
+							displayLess5 = selectLess.find(".item-entry:nth-last-of-type(5)");
+							displayLess6 = selectLess.find(".item-entry:nth-last-of-type(6)");
+							displayLess7 = selectLess.find(".item-entry:nth-last-of-type(7)");
+							displayLesslast = selectLess.find(".closeReadless").last();
+
+							displayLess5.slideUp();
+							displayLess6.slideUp();
+							displayLess7.slideUp();
+							displayLesslast.slideUp();
+
+							var selectClickless;
+							selectClickless = $("#itemsDisplay").find("#more").last();
+							selectClickless.removeClass("asClicked").addClass("asLink");
+						});
+					}
+					closeLess();
+				});
+			}
+			displayMore();
 		});
 	}
-	displayMore();
-	});
 }
-displayWork();
-
-// The following function closes the display box (sliding up) 'on click'.
-/* function works but is currently 'uncommented' for experimenting with
-   the 2nd 'on click' offer to close the 'work experiences' display after
-   the 2nd batch of older work experiences (see below).*/
-
-
-/* The following function adds a 2nd batch of older work experiences
-   'on click'*/
-
-/* The following function is essentially a renamed copy of the working
-   function above which closes the the display box (sliding up) 'on click':
-   What I can'T understand: it works for "#close" as above, but it does
-   not work for "#close2"...*/
-
+work.display();
+// JSONLint: valid JSON (without function)
+/* After adding the 'display function': It worries me a bit that Sublime
+does not connect the outermost curly braces--but everything works and
+JSHint does not complain paricularly...*/
 
 
 /*The education object (to 'id item1' ?):

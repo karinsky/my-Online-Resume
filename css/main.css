@@ -155,6 +155,13 @@ span {
   text-decoration: underline;
 }
 
+.asClicked {
+  font-size: 12px;
+  font-style: italic;
+  color: #DBDBF9;
+  text-decoration: underline;
+} 
+
 
 /*
 *Preparing for column use (only in section Header)*
@@ -350,8 +357,6 @@ span {
   border-bottom-color: #bcbbbb;
 }
 
-
-
 /*
 * 2) in current use: Featured Items*
 */
@@ -396,7 +401,12 @@ span {
 * 3) in current use: Items Display*
 */
 
-#displayCanvas {
+#itemsDisplay {
+  padding: 0;
+  margin: 0;
+}
+
+.displayCanvas {
   max-width: 100%;
   height: 400px;
   margin: 10px auto;
@@ -639,7 +649,7 @@ span {
     width: 45%;
     margin: 10px;
   }
-  #displayCanvas {
+  .displayCanvas {
   max-width: 90%;
   height: 450px;
   margin: 15px auto;
@@ -656,7 +666,7 @@ span {
   .item-pic {
     width: 90%;
   }
-  #displayCanvas {
+  .displayCanvas {
   max-width: 80%;
   height: 500px;
   margin: 20px auto;
