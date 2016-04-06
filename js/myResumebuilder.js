@@ -317,7 +317,7 @@ var work = {
 							displayLess6 = selectLess.find(".item-entry:nth-last-of-type(6)");
 							displayLess7 = selectLess.find(".item-entry:nth-last-of-type(7)");
 							displayLesslast = selectLess.find(".closeReadless").last();
-
+//does not work either...
 							displayLess5.slideUp();
 							displayLess6.slideUp();
 							displayLess7.slideUp();
