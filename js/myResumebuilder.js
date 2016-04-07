@@ -262,12 +262,12 @@ var work = {
 
 			function displayMore() {
 				var selectMore;
-				selectMore = $("#itemsDisplay").find("#more").last();
+				selectMore = $("#itemsDisplay").find("#more");
 
 				selectMore.click(function() {
 
 					var selectClicked;
-					selectClicked = $("#itemsDisplay").find("#more").last();
+					selectClicked = $("#itemsDisplay").find("#more");
 					selectClicked.removeClass("asLink").addClass("asClicked");
 
 					for (i = 5; i < work.jobs.length; i++) {
@@ -290,12 +290,12 @@ var work = {
 
 					var selectCloseless = $("#work");
 					selectCloseless.append(HTMLdivCloseless);
-					var closeReadless = selectCloseless.find(".closeReadless").last();
+					var closeReadless = selectCloseless.find(".closeReadless");
 					closeReadless.append(HTMLclosePages + " " + HTMLreadLess);
 
 					function closeFinal() {
 						var selectClose;
-						selectClose = $("#itemsDisplay").find("#close2").last();
+						selectClose = $("#itemsDisplay").find("#close2");
 
 						selectClose.click(function() {
 							var displayClose;
@@ -308,23 +308,18 @@ var work = {
 
 					function closeLess() {
 						var selectLess;
-						selectLess = $("#itemsDisplay").find("#less").last();
+						selectLess = $("#itemsDisplay").find("#less");
 
 						selectLess.click(function() {
-							var selectLess, displayLess5, displayLess6, displayLess7, displayLesslast;
+							var selectLess, displayLess, displayLesslast;
 							selectLess = $("#itemsDisplay").children("#displayItem1");
-							displayLess5 = selectLess.find(".item-entry:nth-last-of-type(5)");
-							displayLess6 = selectLess.find(".item-entry:nth-last-of-type(6)");
-							displayLess7 = selectLess.find(".item-entry:nth-last-of-type(7)");
-							displayLesslast = selectLess.find(".closeReadless").last();
-//does not work either...
-							displayLess5.slideUp();
-							displayLess6.slideUp();
-							displayLess7.slideUp();
+							displayLess = selectLess.find(".item-entry:gt(4)");
+							displayLesslast = selectLess.find(".closeReadless");
 							displayLesslast.slideUp();
+							displayLess.slideUp();
 
 							var selectClickless;
-							selectClickless = $("#itemsDisplay").find("#more").last();
+							selectClickless = $("#itemsDisplay").find("#more");
 							selectClickless.removeClass("asClicked").addClass("asLink");
 						});
 					}
