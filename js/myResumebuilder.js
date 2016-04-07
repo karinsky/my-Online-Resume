@@ -31,7 +31,7 @@ function hoover() {
 		getLogo3.innerHTML(textLogo3);
 	}
 }
-$(hoover);
+hoover();
 
 /* The 'bio object' (1)
 (adding to the 'bigpic', 'featured', and 'footer' sections)*/
@@ -151,7 +151,7 @@ function replaceTitle() {
 
 	selectTitle.replaceWith('<h1 class="title-box">Resumé</h1>');
 }
-$(replaceTitle);
+replaceTitle();
 
 // The work object
 
@@ -215,6 +215,148 @@ var work = {
 		}
 	],
 	"display" : function() {
+		var basicSelect, addCanvas, selectItem1, item1Display;
+		basicSelect = $("#itemsDisplay");
+		addCanvas = basicSelect.append(HTMLfeaturedDisplay1);
+		selectItem1 = basicSelect.children("#displayItem1");
+		item1Display = selectItem1.append(HTMLdisplayWork);
+
+		for (i = 0; i < 5; i++) {
+			var myWork = $("#itemsDisplay").find("#work");
+			myWork.append(HTMLentryStart);
+			var lastWork = myWork.children(".item-entry:last");
+
+			var formEmployer, formTitle, formLocation, formDates, formDescription;
+			formEmployer = HTMLworkEmployer.replace("%data%", work.jobs[i].employer);
+			formTitle = HTMLworkTitle.replace("%data%", work.jobs[i].title);
+			formLocation = HTMLworkLocation.replace("%data%", work.jobs[i].location);
+			formDates = HTMLworkDates.replace("%data%", work.jobs[i].dates);
+			formDescription = HTMLworkDescription.replace("%data%", work.jobs[i].description);
+
+			lastWork.append(formEmployer);
+			lastWork.append(formTitle);
+			lastWork.append(HTMLformalInfo).append(formLocation + " " + formDates);
+			lastWork.append(formDescription);
+		}
+
+		var selectMoreless = $("#itemsDisplay").find("#work");
+		selectMoreless.append(HTMLdivMoreless);
+		var readMoreless = selectMoreless.find(".readMoreless");
+		readMoreless.append(HTMLclosePage + " " + HTMLreadMore);
+
+		for (i = 5; i < work.jobs.length; i++) {
+			var moreWork = $("#work");
+			moreWork.append(HTMLentryStart);
+			var lastWork = moreWork.children(".item-entry:last");
+
+			var formEmployer, formTitle, formLocation, formDates, formDescription;
+			formEmployer = HTMLworkEmployer.replace("%data%", work.jobs[i].employer);
+			formTitle = HTMLworkTitle.replace("%data%", work.jobs[i].title);
+			formLocation = HTMLworkLocation.replace("%data%", work.jobs[i].location);
+			formDates = HTMLworkDates.replace("%data%", work.jobs[i].dates);
+			formDescription = HTMLworkDescription.replace("%data%", work.jobs[i].description);
+
+			lastWork.append(formEmployer);
+			lastWork.append(formTitle);
+			lastWork.append(HTMLformalInfo).append(formLocation + " " + formDates);
+			lastWork.append(formDescription);
+		}
+
+		var selectCloseless = $("#work");
+		selectCloseless.append(HTMLdivCloseless);
+		var closeReadless = selectCloseless.find(".closeReadless");
+		closeReadless.append(HTMLclosePages + " " + HTMLreadLess);
+
+	}//closes display function
+}//closes object
+work.display();
+
+function displayRecent() {
+		var selectItembox1;
+		selectItembox1 = $(".item-box:eq(0)");
+
+		selectItembox1.click(function() {
+			var tileSelect, displayPlane, displayBox, displayEntrystart, displayMoreless;
+			tileSelect = $("#itemsDisplay");
+			displayPlane = tileSelect.children("#displayItem1");
+			displayBox = displayPlane.children("#work");
+			displayEntrystart = displayBox.find(".item-entry:lt(5)");
+			displayMoreless = displayBox.find(".readMoreless");
+
+			displayPlane.toggleClass("hidden");
+			displayBox.toggleClass("hidden");
+			displayEntrystart.toggleClass("hidden");
+			displayMoreless.toggleClass("hidden");
+		});
+
+}
+displayRecent();
+
+
+
+/* Reste der alten Function:
+			function closeDisplay() {
+				var selectClose;
+				selectClose = $("#itemsDisplay").find("#close");
+
+				selectClose.click(function() {
+					var displayClose;
+					displayClose = $("#itemsDisplay").find("#displayItem1");
+
+					displayClose.slideUp();
+				});
+			}
+			closeDisplay();
+
+			function displayMore() {
+				var selectMore;
+				selectMore = $("#itemsDisplay").find("#more");
+
+				selectMore.click(function() {
+
+					var selectClicked;
+					selectClicked = $("#itemsDisplay").find("#more");
+					selectClicked.removeClass("asLink").addClass("asClicked");
+
+					function closeFinal() {
+						var selectClose;
+						selectClose = $("#itemsDisplay").find("#close2");
+
+						selectClose.click(function() {
+							var displayClose;
+							displayClose = $("#itemsDisplay").find("#displayItem1");
+
+							displayClose.slideUp();
+						});
+					}
+					closeFinal();
+
+					function closeLess() {
+						var selectLess;
+						selectLess = $("#itemsDisplay").find("#less");
+
+						selectLess.click(function() {
+							var selectLess, displayLess, displayLesslast;
+							selectLess = $("#itemsDisplay").children("#displayItem1");
+							displayLess = selectLess.find(".item-entry:gt(4)");
+							displayLesslast = selectLess.find(".closeReadless");
+							displayLesslast.slideUp();
+							displayLess.slideUp();
+
+							var selectClickless;
+							selectClickless = $("#itemsDisplay").find("#more");
+							selectClickless.removeClass("asClicked").addClass("asLink");
+						});
+					}
+					closeLess();
+				});
+			}
+			displayMore();
+
+// JSONLint: valid JSON (without function)
+/* Display function before reorganizing to different strategy:
+
+function myFunction() {
 		var selectItembox1;
 		selectItembox1 = $(".item-box:eq(0)");
 
@@ -327,14 +469,11 @@ var work = {
 				});
 			}
 			displayMore();
-		});
-	}
+		});//closes selectItembox1.click
+	
 }
-work.display();
-// JSONLint: valid JSON (without function)
-/* After adding the 'display function': It worries me a bit that Sublime
-does not connect the outermost curly braces--but everything works and
-JSHint does not complain paricularly...*/
+myFunction();
+*/
 
 
 /*The education object (to 'id item1' ?):

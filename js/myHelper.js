@@ -11,21 +11,21 @@ var HTMLwelcomeMsg = '<p id="welcome" class="quote white">%data%</p>';
 
 var HTMLskills = '<li class="flex-item"><span class="bold">%data%</span></li>';
 
-var HTMLfeaturedDisplay1 = '<div id="displayItem1" class="displayCanvas"></div>';
+var HTMLfeaturedDisplay1 = '<div id="displayItem1" class="displayCanvas hidden"></div>';
 var HTMLfeaturedDisplay2 = '<div id="displayItem2" class="displayCanvas"></div>';
 var HTMLfeaturedDisplay3 = '<div id="displayItem3" class="displayCanvas"></div>';
 var HTMLfeaturedDisplay4 = '<div id="displayItem4" class="displayCanvas"></div>';
 
-var HTMLentryStart = '<div class="item-entry"></div>';
+var HTMLentryStart = '<div class="item-entry hidden"></div>';
 var HTMLformalInfo = '<div class="formalInfo"></div>';
-var HTMLdivMoreless = '<div class="readMoreless"></div>';
-var HTMLdivCloseless = '<div class="closeReadless"></div>';
+var HTMLdivMoreless = '<div class="readMoreless hidden"></div>';
+var HTMLdivCloseless = '<div class="closeReadless hidden"></div>';
 var HTMLclosePage = '<span id="close" class="link asLink floatLeft"><br>Close...</span>';
 var HTMLclosePages = '<span id="close2" class="link asLink floatLeft"><br>Close...</span>';
 var HTMLreadMore = '<span id="more" class="link asLink floatRight"><br>Read more (below)...</span>';
 var HTMLreadLess = '<span id="less" class="link asLink floatRight"><br>Read Less...</span>';
 
-var HTMLdisplayWork = '<div id="work" class="display-box"><h1 class="title-box">Work Experience</h1></div>';
+var HTMLdisplayWork = '<div id="work" class="display-box hidden"><h1 class="title-box">Work Experience</h1></div>';
 var HTMLworkEmployer = '<h2 class="h2Resumedisplay caps">%data%</h2>';
 var HTMLworkTitle = '<h3 class="h3Resumedisplay">%data%</h3>';
 var HTMLworkDates = '<span class="quote floatRight">%data%</span>';

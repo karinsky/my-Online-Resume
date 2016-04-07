@@ -160,7 +160,11 @@ span {
   font-style: italic;
   color: #DBDBF9;
   text-decoration: underline;
-} 
+}
+
+.hidden {
+  display: none;
+}
 
 
 /*
