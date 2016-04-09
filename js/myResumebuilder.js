@@ -247,7 +247,6 @@ var work = {
 		selectMoreless.append(HTMLclosePage + " " + HTMLreadMore);
 
 		selectWork.append(HTMLboxMoreless);
-
 		for (i = 5; i < work.jobs.length; i++) {
 			var selectBox, moreWork, finalWork;
 			selectBox = selectWork.find(".boxMoreless");
@@ -277,15 +276,13 @@ var work = {
 			selectItembox1 = $(".item-box:eq(0)");
 
 			selectItembox1.click(function() {
-				var tileSelect, displayPlane, displayBox, displayEntrystart, displayMoreless;
-				tileSelect = $("#itemsDisplay");
-				displayPlane = tileSelect.children("#displayItem1");
+				document.getElementById("displayItem1").style.display = "block";
 
-				displayPlane.toggleClass("hidden");
-
-				var scrollStart, scrollTarget;
+				var scrollStart, basicSelect, displayCanvas, scrollTarget;
 				scrollStart = $("html, body");
-				scrollTarget = displayPlane.find("h1");
+				basicSelect = $("#itemsDisplay");
+				displayCanvas = basicSelect.children("#displayItem1");
+				scrollTarget = displayCanvas.find("h1");
 
 				scrollStart.animate({
 					scrollTop: scrollTarget.offset().top
@@ -295,44 +292,16 @@ var work = {
 		displayRecent();
 
 		function closeRecent() {
-			var selectClose;
-			selectClose = $("#itemsDisplay").find("#close");
+			var basicSelect, selectClose;
+			basicSelect = $("#itemsDisplay");
+			selectClose = basicSelect.find("#close");
 
 			selectClose.click(function() {
-				var tileSelectc1, closeDisplay;
-				tileSelectc1 = $("#itemsDisplay");
-				closeDisplay = tileSelectc1.children("#displayItem1");
+				var basicSelect, selectCanvas;
+				basicSelect = $("#itemsDisplay");
+				selectCanvas = basicSelect.children("#displayItem1");
 
-				closeDisplay.slideUp();
-
-/*					closeDisplay.animate({
-					height: "0px"
-				}, 1000);
-
-	 $.when ([condition fullfilled]).then*([action]);	
-                                       *sometimes .done instead of then
-
-    			function testClose1() {
-    				var selectHight; checkHight;
-    				selectHight = $("#itemsDisplay").children("#displayItem1");
-    				checkHight = selectHight.attr("height");
-    			console.log(checkHight);
-    				
-    				return selectHight.attr("height");
-    			}	*/	
-
-/*				var displayPlanec1, displayBoxc1, displayEntrystartc1, displayMorelessc1;
-
-				displayPlanec1 = tileSelectc1.children("#displayItem1");
-				displayBoxc1 = displayPlanec1.children("#work");
-				displayEntrystartc1 = displayBoxc1.find(".item-entry:lt(5)");
-				displayMorelessc1 = displayBoxc1.find(".readMoreless");
-
-				displayPlanec1.toggleClass("hidden");
-				displayBoxc1.toggleClass("hidden");
-				displayEntrystartc1.toggleClass("hidden");
-				displayMorelessc1.toggleClass("hidden");
-*/
+				selectCanvas.slideUp();
 			});
 		}
 		closeRecent();
