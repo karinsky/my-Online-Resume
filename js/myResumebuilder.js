@@ -162,7 +162,7 @@ var work = {
 			"title" : "Health Care and Estate Management", 
 			"location" : "Chicago, IL, U.S.A.",
 			"dates" : "2013 - current",
-			"description" : "Caring for my husband after he was diagnosed with stage 3 cancer and, after he passed, for his estate."
+			"description" : "Caring for my husband after he was diagnosed with stage 3 cancer; still caring for his estate and charting a new life after he passed away."
 		},
 		{
 			"employer" : "University of Chicago, Division of the Humanities",
@@ -215,16 +215,17 @@ var work = {
 		}
 	],
 	"display" : function() {
-		var basicSelect, addCanvas, selectItem1, item1Display;
+		var basicSelect, selectItem1;
 		basicSelect = $("#itemsDisplay");
-		addCanvas = basicSelect.append(HTMLfeaturedDisplay1);
+		basicSelect.append(HTMLfeaturedDisplay1);
 		selectItem1 = basicSelect.children("#displayItem1");
-		item1Display = selectItem1.append(HTMLdisplayWork);
+		selectItem1.append(HTMLdisplayWork);
 
 		for (i = 0; i < 5; i++) {
-			var myWork = $("#itemsDisplay").find("#work");
-			myWork.append(HTMLentryStart);
-			var lastWork = myWork.children(".item-entry:last");
+			var selectWork, myWork, lastWork;
+			selectWork = basicSelect.find("#work");
+			myWork = selectWork.append(HTMLentryStart);
+			lastWork = myWork.children(".item-entry:last");
 
 			var formEmployer, formTitle, formLocation, formDates, formDescription;
 			formEmployer = HTMLworkEmployer.replace("%data%", work.jobs[i].employer);
@@ -239,15 +240,19 @@ var work = {
 			lastWork.append(formDescription);
 		}
 
-		var selectMoreless = $("#itemsDisplay").find("#work");
-		selectMoreless.append(HTMLdivMoreless);
-		var readMoreless = selectMoreless.find(".readMoreless");
-		readMoreless.append(HTMLclosePage + " " + HTMLreadMore);
+		var selectWork, selectMoreless;
+		selectWork = basicSelect.find("#work");
+		selectWork.append(HTMLdivMoreless);
+		selectMoreless = basicSelect.find(".readMoreless");
+		selectMoreless.append(HTMLclosePage + " " + HTMLreadMore);
+
+		selectWork.append(HTMLboxMoreless);
 
 		for (i = 5; i < work.jobs.length; i++) {
-			var moreWork = $("#work");
-			moreWork.append(HTMLentryStart);
-			var lastWork = moreWork.children(".item-entry:last");
+			var selectBox, moreWork, finalWork;
+			selectBox = selectWork.find(".boxMoreless");
+			moreWork = selectBox.append(HTMLentryStart);
+			finalWork = moreWork.children(".item-entry:last");
 
 			var formEmployer, formTitle, formLocation, formDates, formDescription;
 			formEmployer = HTMLworkEmployer.replace("%data%", work.jobs[i].employer);
@@ -256,57 +261,90 @@ var work = {
 			formDates = HTMLworkDates.replace("%data%", work.jobs[i].dates);
 			formDescription = HTMLworkDescription.replace("%data%", work.jobs[i].description);
 
-			lastWork.append(formEmployer);
-			lastWork.append(formTitle);
-			lastWork.append(HTMLformalInfo).append(formLocation + " " + formDates);
-			lastWork.append(formDescription);
+			finalWork.append(formEmployer);
+			finalWork.append(formTitle);
+			finalWork.append(HTMLformalInfo).append(formLocation + " " + formDates);
+			finalWork.append(formDescription);
 		}
 
-		var selectCloseless = $("#work");
-		selectCloseless.append(HTMLdivCloseless);
-		var closeReadless = selectCloseless.find(".closeReadless");
-		closeReadless.append(HTMLclosePages + " " + HTMLreadLess);
+		var selectCloseless;
+		selectBox.append(HTMLdivCloseless);
+		selectCloseless = selectBox.find(".closeReadless");
+		selectCloseless.append(HTMLclosePages + " " + HTMLreadLess);
+
+		function displayRecent() {
+			var selectItembox1;
+			selectItembox1 = $(".item-box:eq(0)");
+
+			selectItembox1.click(function() {
+				var tileSelect, displayPlane, displayBox, displayEntrystart, displayMoreless;
+				tileSelect = $("#itemsDisplay");
+				displayPlane = tileSelect.children("#displayItem1");
+
+				displayPlane.toggleClass("hidden");
+
+				var scrollStart, scrollTarget;
+				scrollStart = $("html, body");
+				scrollTarget = displayPlane.find("h1");
+
+				scrollStart.animate({
+					scrollTop: scrollTarget.offset().top
+				}, 1500);
+			});
+		}
+		displayRecent();
+
+		function closeRecent() {
+			var selectClose;
+			selectClose = $("#itemsDisplay").find("#close");
+
+			selectClose.click(function() {
+				var tileSelectc1, closeDisplay;
+				tileSelectc1 = $("#itemsDisplay");
+				closeDisplay = tileSelectc1.children("#displayItem1");
+
+				closeDisplay.slideUp();
+
+/*					closeDisplay.animate({
+					height: "0px"
+				}, 1000);
+
+	 $.when ([condition fullfilled]).then*([action]);	
+                                       *sometimes .done instead of then
+
+    			function testClose1() {
+    				var selectHight; checkHight;
+    				selectHight = $("#itemsDisplay").children("#displayItem1");
+    				checkHight = selectHight.attr("height");
+    			console.log(checkHight);
+    				
+    				return selectHight.attr("height");
+    			}	*/	
+
+/*				var displayPlanec1, displayBoxc1, displayEntrystartc1, displayMorelessc1;
+
+				displayPlanec1 = tileSelectc1.children("#displayItem1");
+				displayBoxc1 = displayPlanec1.children("#work");
+				displayEntrystartc1 = displayBoxc1.find(".item-entry:lt(5)");
+				displayMorelessc1 = displayBoxc1.find(".readMoreless");
+
+				displayPlanec1.toggleClass("hidden");
+				displayBoxc1.toggleClass("hidden");
+				displayEntrystartc1.toggleClass("hidden");
+				displayMorelessc1.toggleClass("hidden");
+*/
+			});
+		}
+		closeRecent();
+
 
 	}//closes display function
 }//closes object
 work.display();
 
-function displayRecent() {
-		var selectItembox1;
-		selectItembox1 = $(".item-box:eq(0)");
-
-		selectItembox1.click(function() {
-			var tileSelect, displayPlane, displayBox, displayEntrystart, displayMoreless;
-			tileSelect = $("#itemsDisplay");
-			displayPlane = tileSelect.children("#displayItem1");
-			displayBox = displayPlane.children("#work");
-			displayEntrystart = displayBox.find(".item-entry:lt(5)");
-			displayMoreless = displayBox.find(".readMoreless");
-
-			displayPlane.toggleClass("hidden");
-			displayBox.toggleClass("hidden");
-			displayEntrystart.toggleClass("hidden");
-			displayMoreless.toggleClass("hidden");
-		});
-
-}
-displayRecent();
-
-
+// Test of scroll-function außerhalb des Objects funktioniert:
 
 /* Reste der alten Function:
-			function closeDisplay() {
-				var selectClose;
-				selectClose = $("#itemsDisplay").find("#close");
-
-				selectClose.click(function() {
-					var displayClose;
-					displayClose = $("#itemsDisplay").find("#displayItem1");
-
-					displayClose.slideUp();
-				});
-			}
-			closeDisplay();
 
 			function displayMore() {
 				var selectMore;
@@ -574,7 +612,7 @@ function displayEdu() {
 	basicSelect = $("#itemsDisplay");
 	eduDisplay = basicSelect.append(HTMLdisplayEdu);
 
-//# display-box provided 'on click'--next: appending loop...	
+//# displayBox provided 'on click'--next: appending loop...	
 	});
 }
 $(displayEdu);
