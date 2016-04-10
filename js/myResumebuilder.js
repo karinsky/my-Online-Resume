@@ -246,7 +246,7 @@ var work = {
 		selectMoreless = basicSelect.find(".readMoreless");
 		selectMoreless.append(HTMLclosePage + " " + HTMLreadMore);
 
-		selectWork.append(HTMLboxMoreless);
+		selectWork.append(HTMLdisplayMorework);
 		for (i = 5; i < work.jobs.length; i++) {
 			var selectBox, moreWork, finalWork;
 			selectBox = selectWork.find(".boxMoreless");
@@ -278,15 +278,15 @@ var work = {
 			selectItembox1.click(function() {
 				document.getElementById("displayItem1").style.display = "block";
 
-				var scrollStart, basicSelect, displayCanvas, scrollTarget;
+				var scrollStart, basicSelect, selectCanvas1, targetWork1;
 				scrollStart = $("html, body");
 				basicSelect = $("#itemsDisplay");
-				displayCanvas = basicSelect.children("#displayItem1");
-				scrollTarget = displayCanvas.find("h1");
+				selectCanvas1 = basicSelect.children("#displayItem1");
+				targetWork1 = selectCanvas1.find("h1");
 
 				scrollStart.animate({
-					scrollTop: scrollTarget.offset().top
-				}, 1500);
+					scrollTop: targetWork1.offset().top
+				}, 1200);
 			});
 		}
 		displayRecent();
@@ -301,11 +301,56 @@ var work = {
 				basicSelect = $("#itemsDisplay");
 				selectCanvas = basicSelect.children("#displayItem1");
 
-				selectCanvas.slideUp();
-			});
+				selectCanvas.fadeToggle(1000);
+
+				var mq550;
+				mq550 = window.matchMedia("(min-width:  550px)");
+
+				if (mq550.matches) {
+					var scrollStart, targetTop;
+					scrollStart = $("html, body");
+					targetTop = $("#header");
+					scrollStart.animate({
+						scrollTop: targetTop.offset().top
+					}, 1500);
+				} else {
+					var scrollStart, targetFeatured;
+					scrollStart = $("html, body");
+					targetFeatured = $("#featured");
+					scrollStart.animate({
+						scrollTop: targetFeatured.offset().top
+					}, 1500);
+				}
+			});//closes click(function)
 		}
 		closeRecent();
 
+		function displayMore() {
+			var basicSelect, selectMore;
+			basicSelect = $("#itemsDisplay");
+			selectMore = basicSelect.find("#more");
+
+			selectMore.click(function() {
+				document.getElementById("moreWork").style.display = "block";
+
+/*				var scrollStart, basicSelect, selectCanvas1, targetWork2, targetTest;
+				scrollStart = $("html, body");
+				basicSelect = $("#itemsDisplay");
+				selectCanvas1 = basicSelect.children("#displayItem1");
+				targetWork2 = selectCanvas1.find(".readMoreless");
+				targetTest = $("#header");
+
+//console.log(targetWork2);
+
+				scrollStart.animate({
+					scrollTop: targetTest.offset().top
+				}, 1200);*/
+
+
+			});//closes click(function)
+
+		}
+		displayMore();
 
 	}//closes display function
 }//closes object
@@ -315,15 +360,9 @@ work.display();
 
 /* Reste der alten Function:
 
-			function displayMore() {
-				var selectMore;
-				selectMore = $("#itemsDisplay").find("#more");
 
-				selectMore.click(function() {
+				 {
 
-					var selectClicked;
-					selectClicked = $("#itemsDisplay").find("#more");
-					selectClicked.removeClass("asLink").addClass("asClicked");
 
 					function closeFinal() {
 						var selectClose;

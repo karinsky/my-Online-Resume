@@ -608,6 +608,9 @@ span {
 
 /*
 *@ Section Featured
+    with 2 major break points:
+    1) at screen width 550px (item display changes to 2 columns)
+    2) at screen width 1100px (item display changes to 1 row)
 */
 
 @media screen and (min-width: 416px) and (max-width: 549px) {
