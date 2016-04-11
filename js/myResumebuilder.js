@@ -215,15 +215,15 @@ var work = {
 		}
 	],
 	"display" : function() {
-		var basicSelect, selectItem1;
+		var basicSelect, selectDisplay1;
 		basicSelect = $("#itemsDisplay");
 		basicSelect.append(HTMLfeaturedDisplay1);
-		selectItem1 = basicSelect.children("#displayItem1");
-		selectItem1.append(HTMLdisplayWork);
+		selectDisplay1 = basicSelect.children("#displayItem1");
+		selectDisplay1.append(HTMLdisplayWork);
 
 		for (i = 0; i < 5; i++) {
 			var selectWork, myWork, lastWork;
-			selectWork = basicSelect.find("#work");
+			selectWork = selectDisplay1.find("#work");
 			myWork = selectWork.append(HTMLentryStart);
 			lastWork = myWork.children(".item-entry:last");
 
@@ -241,12 +241,12 @@ var work = {
 		}
 
 		var selectWork, selectMoreless;
-		selectWork = basicSelect.find("#work");
+		selectWork = selectDisplay1.find("#work");
 		selectWork.append(HTMLdivMoreless);
-		selectMoreless = basicSelect.find(".readMoreless");
+		selectMoreless = selectDisplay1.find(".readMoreless");
 		selectMoreless.append(HTMLclosePage + " " + HTMLreadMore);
-
 		selectWork.append(HTMLdisplayMorework);
+
 		for (i = 5; i < work.jobs.length; i++) {
 			var selectBox, moreWork, finalWork;
 			selectBox = selectWork.find(".boxMoreless");
@@ -266,23 +266,27 @@ var work = {
 			finalWork.append(formDescription);
 		}
 
-		var selectCloseless;
+		var selectBox, selectCloseless;
+		selectBox = selectWork.find(".boxMoreless");
 		selectBox.append(HTMLdivCloseless);
 		selectCloseless = selectBox.find(".closeReadless");
 		selectCloseless.append(HTMLclosePages + " " + HTMLreadLess);
 
-		function displayRecent() {
-			var selectItembox1;
-			selectItembox1 = $(".item-box:eq(0)");
+//	scrolling effect as follows courtesy Cory LaViska
+//	http://www.abeautifulsite.net/smoothly-scroll-to-an-element-without-a-jquery-plugin-2/
 
-			selectItembox1.click(function() {
+		function displayRecent() {
+			var selectItem1;
+			selectItem1 = $(".item-box:eq(0)");
+
+			selectItem1.click(function() {
 				document.getElementById("displayItem1").style.display = "block";
 
 				var scrollStart, basicSelect, selectCanvas1, targetWork1;
 				scrollStart = $("html, body");
 				basicSelect = $("#itemsDisplay");
-				selectCanvas1 = basicSelect.children("#displayItem1");
-				targetWork1 = selectCanvas1.find("h1");
+				selectDisplay1 = basicSelect.children("#displayItem1");
+				targetWork1 = selectDisplay1.find("h1");
 
 				scrollStart.animate({
 					scrollTop: targetWork1.offset().top
@@ -291,20 +295,24 @@ var work = {
 		}
 		displayRecent();
 
+//	bug: does not work in repeated clicks for 'overflow' elements
+//	not yet solved.
+
 		function closeRecent() {
 			var basicSelect, selectClose;
 			basicSelect = $("#itemsDisplay");
-			selectClose = basicSelect.find("#close");
+			selectDisplay1 = basicSelect.children("#displayItem1");
+			selectClose = selectDisplay1.find("#close");
 
 			selectClose.click(function() {
-				var basicSelect, selectCanvas;
+				var basicSelect, selectDisplay1;
 				basicSelect = $("#itemsDisplay");
-				selectCanvas = basicSelect.children("#displayItem1");
+				selectDisplay1 = basicSelect.children("#displayItem1");
 
-				selectCanvas.fadeToggle(1000);
+				selectDisplay1.slideUp(1000);
 
 				var mq550;
-				mq550 = window.matchMedia("(min-width:  550px)");
+				mq550 = window.matchMedia("(min-width: 550px)");
 
 				if (mq550.matches) {
 					var scrollStart, targetTop;
@@ -326,75 +334,92 @@ var work = {
 		closeRecent();
 
 		function displayMore() {
-			var basicSelect, selectMore;
+			var basicSelect, selectDisplay1, selectMore;
 			basicSelect = $("#itemsDisplay");
-			selectMore = basicSelect.find("#more");
+			selectDisplay1 = basicSelect.children("#displayItem1");
+			selectMore = selectDisplay1.find("#more");
 
 			selectMore.click(function() {
 				document.getElementById("moreWork").style.display = "block";
 
-/*				var scrollStart, basicSelect, selectCanvas1, targetWork2, targetTest;
-				scrollStart = $("html, body");
+				var basicSelect, selectDisplay1, targetWork2;
 				basicSelect = $("#itemsDisplay");
-				selectCanvas1 = basicSelect.children("#displayItem1");
-				targetWork2 = selectCanvas1.find(".readMoreless");
-				targetTest = $("#header");
+				selectDisplay1 = basicSelect.children("#displayItem1");
+				targetWork2 = basicSelect.find(".item-entry:eq(0)");
 
-//console.log(targetWork2);
-
-				scrollStart.animate({
-					scrollTop: targetTest.offset().top
-				}, 1200);*/
-
-
+				selectDisplay1.animate({
+					scrollTop: targetWork2.position().top
+				}, 1200);
+				/*bug: I did not get a solution referring to clientHeight
+					 working; and scrollTop with precise traget-div kept
+					 scrolling to the bottom. Current solution scrolls
+					 'somewhat' down across devices.*/
 			});//closes click(function)
+
+			function closeFinal() {
+				var basicSelect, selectDisplay1, selectClose;
+				basicSelect = $("#itemsDisplay");
+				selectDisplay1 = basicSelect.children("#displayItem1");
+				selectClose = selectDisplay1.find("#close2");
+
+				selectClose.click(function() {
+					var basicSelect, selectDisplay1;
+					basicSelect = $("#itemsDisplay");
+					selectDisplay1 = basicSelect.find("#displayItem1");
+
+					selectDisplay1.slideUp(1000);
+
+					var mq550;
+					mq550 = window.matchMedia("(min-width: 550px)");
+
+					if (mq550.matches) {
+						var scrollStart, targetTop;
+						scrollStart = $("html, body");
+						targetTop = $("#header");
+						scrollStart.animate({
+							scrollTop: targetTop.offset().top
+						}, 1500);
+					} else {
+						var scrollStart, targetFeatured;
+						scrollStart = $("html, body");
+						targetFeatured = $("#featured");
+						scrollStart.animate({
+							scrollTop: targetFeatured.offset().top
+						}, 1500);
+					}
+				});//closes click(function)
+			}
+			closeFinal();
+
+			function closeLess() {
+				var basicSelect, selectDisplay1, selectLess;
+				basicSelect = $("#itemsDisplay");
+				selectDisplay1 = basicSelect.find("#displayItem1");
+				selectLess = selectDisplay1.find("#less");
+
+				selectLess.click(function() {
+					var basicSelect, selectDisplay1, selectCloseless;
+					basicSelect = $("#itemsDisplay");
+					selectDisplay1 = basicSelect.find("#displayItem1");
+					selectCloseless = selectDisplay1.find("#moreWork");
+
+					selectCloseless.slideUp(1000);
+				});
+			}
+			closeLess();
 
 		}
 		displayMore();
+
+
 
 	}//closes display function
 }//closes object
 work.display();
 
-// Test of scroll-function außerhalb des Objects funktioniert:
-
 /* Reste der alten Function:
 
 
-				 {
-
-
-					function closeFinal() {
-						var selectClose;
-						selectClose = $("#itemsDisplay").find("#close2");
-
-						selectClose.click(function() {
-							var displayClose;
-							displayClose = $("#itemsDisplay").find("#displayItem1");
-
-							displayClose.slideUp();
-						});
-					}
-					closeFinal();
-
-					function closeLess() {
-						var selectLess;
-						selectLess = $("#itemsDisplay").find("#less");
-
-						selectLess.click(function() {
-							var selectLess, displayLess, displayLesslast;
-							selectLess = $("#itemsDisplay").children("#displayItem1");
-							displayLess = selectLess.find(".item-entry:gt(4)");
-							displayLesslast = selectLess.find(".closeReadless");
-							displayLesslast.slideUp();
-							displayLess.slideUp();
-
-							var selectClickless;
-							selectClickless = $("#itemsDisplay").find("#more");
-							selectClickless.removeClass("asClicked").addClass("asLink");
-						});
-					}
-					closeLess();
 				});
 			}
 			displayMore();
