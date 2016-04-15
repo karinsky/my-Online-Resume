@@ -25,7 +25,7 @@ var HTMLclosePages = '<span id="close2" class="link asLink floatLeft"><br>Close.
 var HTMLreadMore = '<span id="more" class="link asLink floatRight"><br>Read more...</span>';
 var HTMLreadLess = '<span id="less" class="link asLink floatRight"><br>Read Less...</span>';
 
-var HTMLdisplayWork = '<div id="work" class="displayBox"><h1 class="title-box">Work Experience</h1></div>';
+var HTMLdisplayWork = '<div id="work" class="displayBox"><h1 class="titleBox">Work Experience</h1></div>';
 var HTMLdisplayMorework = '<div id="moreWork" class="boxMoreless" style="display: none"></div>';
 var HTMLworkEmployer = '<h2 class="h2Resumedisplay caps">%data%</h2>';
 var HTMLworkTitle = '<h3 class="h3Resumedisplay">%data%</h3>';
@@ -33,4 +33,4 @@ var HTMLworkDates = '<span class="quote floatRight">%data%</span>';
 var HTMLworkLocation = '<span class="quote floatLeft">%data%</span>';
 var HTMLworkDescription = '<p class="pResumedisplay">%data%</p>';
 
-var HTMLdisplayEdu = '<div id="edu" class="displayBox"><h1 class="title-box">Education</h1></div>';
+var HTMLdisplayEdu = '<div id="edu" class="displayBox"><h1 class="titleBox">Education</h1></div>';

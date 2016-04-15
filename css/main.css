@@ -347,7 +347,7 @@ span {
   padding-bottom: 20px;
 }
 
-.title-box {
+.titleBox {
   margin: auto;
   padding: 15px 10px;
 }
@@ -653,7 +653,7 @@ span {
 }
 
 @media screen and (min-width: 550px) and (max-width: 1099px) {
-  .title-box {
+  .titleBox {
     padding-top: 20px;
   }
   .item-box {
@@ -668,7 +668,7 @@ span {
 }
 
 @media screen and (min-width: 1100px) {
-  .title-box {
+  .titleBox {
     padding-top: 20px;
   }
   .item-box {

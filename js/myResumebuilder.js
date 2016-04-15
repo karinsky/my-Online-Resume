@@ -149,7 +149,7 @@ function replaceTitle() {
 	var selectTitle;
 	selectTitle = $("#featured").children("h1").first();
 
-	selectTitle.replaceWith('<h1 class="title-box">Resumé</h1>');
+	selectTitle.replaceWith('<h1 class="titleBox">Resumé</h1>');
 }
 replaceTitle();
 
@@ -275,14 +275,14 @@ var work = {
 //	scrolling effect as follows courtesy Cory LaViska
 //	http://www.abeautifulsite.net/smoothly-scroll-to-an-element-without-a-jquery-plugin-2/
 
-		function displayRecent() {
+/*		function displayRecent() {
 			var selectItem1;
 			selectItem1 = $(".item-box:eq(0)");
 
 			selectItem1.click(function() {
 				document.getElementById("displayItem1").style.display = "block";
 
-				var scrollStart, basicSelect, selectCanvas1, targetWork1;
+				var scrollStart, basicSelect, targetWork1;
 				scrollStart = $("html, body");
 				basicSelect = $("#itemsDisplay");
 				selectDisplay1 = basicSelect.children("#displayItem1");
@@ -293,10 +293,10 @@ var work = {
 				}, 1200);
 			});
 		}
-		displayRecent();
+		displayRecent();*/
 
-//	bug: does not work in repeated clicks for 'overflow' elements
-//	not yet solved.
+//	bug: does not work in repeated clicks for 'overflow' elements;
+//	currently in work below object.
 
 		function closeRecent() {
 			var basicSelect, selectClose;
@@ -350,11 +350,9 @@ var work = {
 				selectDisplay1.animate({
 					scrollTop: targetWork2.position().top
 				}, 1200);
-				/*bug: I did not get a solution referring to clientHeight
-					 working; and scrollTop with precise traget-div kept
-					 scrolling to the bottom. Current solution scrolls
-					 'somewhat' down across devices.*/
 			});//closes click(function)
+//	bug: does not scroll to intended target/position (yet in 'approximate' compromise);
+//	currently in work below object. 
 
 			function closeFinal() {
 				var basicSelect, selectDisplay1, selectClose;
@@ -416,135 +414,41 @@ var work = {
 	}//closes display function
 }//closes object
 work.display();
+// JSONLint: object valid JSON (without function)
+// JSHint: 
 
-/* Reste der alten Function:
+// Work on scrolling into/in overflow containers
+// 1) into (for 'displayRecent')
 
+	function myTest() {
+		var selectItem1;
+			selectItem1 = $(".item-box:eq(0)");
 
-				});
-			}
-			displayMore();
+		selectItem1.click(function() {
+			document.getElementById("displayItem1").style.display = "block";
 
-// JSONLint: valid JSON (without function)
-/* Display function before reorganizing to different strategy:
+			$("#displayItem1").scrollTop($("#displayItem1").scrollTop()+$("h1.titleBox").position().top);
+		console.log($("h1.titleBox"));
+		});
+		}
+		myTest();
 
-function myFunction() {
-		var selectItembox1;
-		selectItembox1 = $(".item-box:eq(0)");
+// 2) within (for/in 'displayMore')
 
-		selectItembox1.click(function() {
-			var basicSelect, addCanvas, selectItem1, item1Display;
-			basicSelect = $("#itemsDisplay");
-			addCanvas = basicSelect.append(HTMLfeaturedDisplay1);
-			selectItem1 = basicSelect.children("#displayItem1");
-			item1Display = selectItem1.append(HTMLdisplayWork);
+/*	function myTest2() {
+		var basicSelect, selectDisplay1, selectMore;
+		basicSelect = $("#itemsDisplay");
+		selectDisplay1 = basicSelect.children("#displayItem1");
+		selectMore = selectDisplay1.find("#more");
 
-			for (i = 0; i < 5; i++) {
-				var myWork = $("#itemsDisplay").find("#work");
-				myWork.append(HTMLentryStart);
-				var lastWork = myWork.children(".item-entry:last");
+		selectMore.click(function() {
+			document.getElementById("moreWork").style.display = "block";
 
-				var formEmployer, formTitle, formLocation, formDates, formDescription;
-				formEmployer = HTMLworkEmployer.replace("%data%", work.jobs[i].employer);
-				formTitle = HTMLworkTitle.replace("%data%", work.jobs[i].title);
-				formLocation = HTMLworkLocation.replace("%data%", work.jobs[i].location);
-				formDates = HTMLworkDates.replace("%data%", work.jobs[i].dates);
-				formDescription = HTMLworkDescription.replace("%data%", work.jobs[i].description);
-
-				lastWork.append(formEmployer);
-				lastWork.append(formTitle);
-				lastWork.append(HTMLformalInfo).append(formLocation + " " + formDates);
-				lastWork.append(formDescription);
-			}
-			var selectMoreless = $("#itemsDisplay").find("#work");
-			selectMoreless.append(HTMLdivMoreless);
-			var readMoreless = selectMoreless.find(".readMoreless");
-			readMoreless.append(HTMLclosePage + " " + HTMLreadMore);
-
-			function closeDisplay() {
-				var selectClose;
-				selectClose = $("#itemsDisplay").find("#close");
-
-				selectClose.click(function() {
-					var displayClose;
-					displayClose = $("#itemsDisplay").find("#displayItem1");
-
-					displayClose.slideUp();
-				});
-			}
-			closeDisplay();
-
-			function displayMore() {
-				var selectMore;
-				selectMore = $("#itemsDisplay").find("#more");
-
-				selectMore.click(function() {
-
-					var selectClicked;
-					selectClicked = $("#itemsDisplay").find("#more");
-					selectClicked.removeClass("asLink").addClass("asClicked");
-
-					for (i = 5; i < work.jobs.length; i++) {
-						var moreWork = $("#work");
-						moreWork.append(HTMLentryStart);
-						var lastWork = moreWork.children(".item-entry:last");
-
-						var formEmployer, formTitle, formLocation, formDates, formDescription;
-						formEmployer = HTMLworkEmployer.replace("%data%", work.jobs[i].employer);
-						formTitle = HTMLworkTitle.replace("%data%", work.jobs[i].title);
-						formLocation = HTMLworkLocation.replace("%data%", work.jobs[i].location);
-						formDates = HTMLworkDates.replace("%data%", work.jobs[i].dates);
-						formDescription = HTMLworkDescription.replace("%data%", work.jobs[i].description);
-
-						lastWork.append(formEmployer);
-						lastWork.append(formTitle);
-						lastWork.append(HTMLformalInfo).append(formLocation + " " + formDates);
-						lastWork.append(formDescription);
-					}
-
-					var selectCloseless = $("#work");
-					selectCloseless.append(HTMLdivCloseless);
-					var closeReadless = selectCloseless.find(".closeReadless");
-					closeReadless.append(HTMLclosePages + " " + HTMLreadLess);
-
-					function closeFinal() {
-						var selectClose;
-						selectClose = $("#itemsDisplay").find("#close2");
-
-						selectClose.click(function() {
-							var displayClose;
-							displayClose = $("#itemsDisplay").find("#displayItem1");
-
-							displayClose.slideUp();
-						});
-					}
-					closeFinal();
-
-					function closeLess() {
-						var selectLess;
-						selectLess = $("#itemsDisplay").find("#less");
-
-						selectLess.click(function() {
-							var selectLess, displayLess, displayLesslast;
-							selectLess = $("#itemsDisplay").children("#displayItem1");
-							displayLess = selectLess.find(".item-entry:gt(4)");
-							displayLesslast = selectLess.find(".closeReadless");
-							displayLesslast.slideUp();
-							displayLess.slideUp();
-
-							var selectClickless;
-							selectClickless = $("#itemsDisplay").find("#more");
-							selectClickless.removeClass("asClicked").addClass("asLink");
-						});
-					}
-					closeLess();
-				});
-			}
-			displayMore();
-		});//closes selectItembox1.click
-	
-}
-myFunction();
-*/
+			$("#displayItem1").scrollTop($("#displayItem1").scrollTop()+$(".readMoreless").position().top);
+		console.log($(".readMoreless"));
+		});
+	}
+	myTest2();*/
 
 
 /*The education object (to 'id item1' ?):
