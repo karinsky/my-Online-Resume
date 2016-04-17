@@ -449,7 +449,7 @@ span {
   margin: 10px auto;
 }
 
-.closeReadless {
+.closeReadmore {
   max-width: 95%;
   height: 50px;
   margin: 10px auto;
@@ -685,7 +685,7 @@ span {
   .readMoreless {
     max-width: 100%;
   }
-  .closeReadless {
+  .closeReadmore {
     max-width: 100%;
   }
 }

@@ -7,7 +7,7 @@ $(document).ready(function() {
 	myLoader.hide("slow");
 });
 
-/* To header section;
+/* To header section (bio object follows immediately);
 mouseover identifying logos:*/
 
 function hoover() {
@@ -68,17 +68,15 @@ var bio = {
 		],
 	"biopic" : "src='images/DSC0007cutedsw300w.JPG' alt='My picture'",
 	"display" : function() {
-		var contactHeader = $("#header");
-		var contactFooter = $("#footer");
-
-		var contactTopnode, contactFootertitle, contactFooternode;
-		contactTopnode = $("<div><ul id='topContacts' class='flexRow'></ul></div>");
-		contactFootertitle = $("<h1 class='footerTitle white'>Let's connect!</h1>");
-		contactFooternode = $("<div><ul id='footerContacts' class='flexRow'></ul></div>");
+		var contactHeader, contactFooter;
+		contactHeader = $("#header");
+		contactFooter = $("#footer");
+		contactHeader.append(HTMLcontactTopnode);
+		contactFooter.append(HTMLcontactFootertitle, HTMLcontactFooternode);
 
 		var contactTop, contactBottom;
-		contactTop = contactTopnode.find("#topContacts");
-		contactBottom = contactFooternode.find("#footerContacts");
+		contactTop = $("#topContacts");
+		contactBottom = $("#footerContacts");
 
 		var formMobile, formEmail, formGithub, formLocation;
 		formMobile = HTMLmobile.replace("%data%", bio.contacts.mobile);
@@ -86,23 +84,18 @@ var bio = {
 		formGithub = HTMLgithub.replace("%data%", bio.contacts.github);
 		formLocation = HTMLlocation.replace("%data%", bio.contacts.located);
 
-		contactHeader.append(contactTopnode);
 		contactTop.append(formMobile, formEmail, formGithub, formLocation);
-		contactFooter.append(contactFootertitle, contactFooternode);
 		contactBottom.append(formMobile, formEmail, formGithub, formLocation);
 		contactFooter.find("span").addClass("white");
 
 		var welcomeSelect, formWelcome;
 		welcomeSelect = $("#bigpicContent");
 		formWelcome = HTMLwelcomeMsg.replace("%data%", this.welcomeMessage);
-	
 		welcomeSelect.prepend(formWelcome);
 
-		var skillsSelect, skillsNode;
+		var skillsSelect;
 		skillsSelect = $("#featured");
-		skillsNode = $('<div id="skills" class="flexRow bold"></div>');
-
-		skillsSelect.prepend(skillsNode);
+		skillsSelect.prepend(HTMLskillsNode);
 		if (bio.skills.length >= 1) {
 			for (var skill in bio.skills) {
 				var selectSkills, formSkills;
@@ -112,18 +105,16 @@ var bio = {
 			}
 		}
 	
-		var glanceSelect, glanceText;
+		var glanceSelect;
 		glanceSelect = $("#skills");
-		glanceText = $("<p class='flex-item'><span class='caps'>Skills at a Glance:</span></p>");
-
-		glanceSelect.prepend(glanceText);
+		glanceSelect.prepend(HTMLglanceText);
 	}
 };
 bio.display();
 
 /*  Media queries adjusting for screen size in css.
 	(They use the same break points; thus it seemed more 
-	efficient to add some css to existing media queries.)
+	efficient to add some css to existing media queries.)*/
 
 
 /*	Section 'featured'
@@ -133,7 +124,7 @@ bio.display();
 2)	The 2nd main <div id='featuredItems'> contains 4 'tiles' (with
 	images) set up as event handlers to provide the other required
 	P3 objects (work experience, education, projects) plus, 4th,
-	the map 'on click'
+	the map 'on click'.
 3)	The 3rd main <div id='itemsDisplay' provides the 'anchor' to
 	append, in js, further 'boxes' and their display content.
 
@@ -142,18 +133,17 @@ bio.display();
 1)	Display content with event handlers at the end which allow to
 	either close or, with more extended content:
 2)	append more content, again with event handlers at the end which
-	allow to 'close' all or 'read less'.
+	allow to 'close all' or 'read less'.
 */
 
 function replaceTitle() {
 	var selectTitle;
 	selectTitle = $("#featured").children("h1").first();
-
 	selectTitle.replaceWith('<h1 class="titleBox">Resumé</h1>');
 }
 replaceTitle();
 
-// The work object
+// The 'work object' (2)
 
 var work = {
 	"jobs" : [
@@ -220,10 +210,11 @@ var work = {
 		basicSelect.append(HTMLfeaturedDisplay1);
 		selectDisplay1 = basicSelect.children("#displayItem1");
 		selectDisplay1.append(HTMLdisplayWork);
+// It would be most logical to have one 'display canvas' addressed by 1st, last, and nth-child--but not now
 
 		for (i = 0; i < 5; i++) {
 			var selectWork, myWork, lastWork;
-			selectWork = selectDisplay1.find("#work");
+			selectWork = $("#work");
 			myWork = selectWork.append(HTMLentryStart);
 			lastWork = myWork.children(".item-entry:last");
 
@@ -239,18 +230,17 @@ var work = {
 			lastWork.append(HTMLformalInfo).append(formLocation + " " + formDates);
 			lastWork.append(formDescription);
 		}
-
-		var selectWork, selectMoreless;
-		selectWork = selectDisplay1.find("#work");
 		selectWork.append(HTMLdivMoreless);
-		selectMoreless = selectDisplay1.find(".readMoreless");
+
+		var selectMoreless;
+		selectMoreless = selectWork.find(".readMoreless");
 		selectMoreless.append(HTMLclosePage + " " + HTMLreadMore);
 		selectWork.append(HTMLdisplayMorework);
 
 		for (i = 5; i < work.jobs.length; i++) {
-			var selectBox, moreWork, finalWork;
-			selectBox = selectWork.find(".boxMoreless");
-			moreWork = selectBox.append(HTMLentryStart);
+			var selectMoreless, moreWork, finalWork;
+			selectMoreless = selectWork.find(".boxMoreless");
+			moreWork = selectMoreless.append(HTMLentryStart);
 			finalWork = moreWork.children(".item-entry:last");
 
 			var formEmployer, formTitle, formLocation, formDates, formDescription;
@@ -265,11 +255,10 @@ var work = {
 			finalWork.append(HTMLformalInfo).append(formLocation + " " + formDates);
 			finalWork.append(formDescription);
 		}
+		selectMoreless.append(HTMLdivClosemore);
 
-		var selectBox, selectCloseless;
-		selectBox = selectWork.find(".boxMoreless");
-		selectBox.append(HTMLdivCloseless);
-		selectCloseless = selectBox.find(".closeReadless");
+		var selectCloseless;
+		selectCloseless = selectMoreless.find(".closeReadmore");
 		selectCloseless.append(HTMLclosePages + " " + HTMLreadLess);
 
 //	scrolling effect as follows courtesy Cory LaViska
