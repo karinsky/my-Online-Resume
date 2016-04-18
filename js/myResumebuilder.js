@@ -264,7 +264,7 @@ var work = {
 //	scrolling effect as follows courtesy Cory LaViska
 //	http://www.abeautifulsite.net/smoothly-scroll-to-an-element-without-a-jquery-plugin-2/
 
-/*		function displayRecent() {
+		function displayRecent() {
 			var selectItem1;
 			selectItem1 = $(".item-box:eq(0)");
 
@@ -282,16 +282,15 @@ var work = {
 				}, 1200);
 			});
 		}
-		displayRecent();*/
+		displayRecent();
 
 //	bug: does not work in repeated clicks for 'overflow' elements;
 //	currently in work below object.
 
 		function closeRecent() {
-			var basicSelect, selectClose;
-			basicSelect = $("#itemsDisplay");
-			selectDisplay1 = basicSelect.children("#displayItem1");
-			selectClose = selectDisplay1.find("#close");
+			var selectWork, selectClose;
+			selectWork = $("#work");
+			selectClose = selectWork.find("span:contains('Close...')");
 
 			selectClose.click(function() {
 				var basicSelect, selectDisplay1;
@@ -323,10 +322,9 @@ var work = {
 		closeRecent();
 
 		function displayMore() {
-			var basicSelect, selectDisplay1, selectMore;
-			basicSelect = $("#itemsDisplay");
-			selectDisplay1 = basicSelect.children("#displayItem1");
-			selectMore = selectDisplay1.find("#more");
+			var selectWork, selectMore;
+			selectWork = $("#work");
+			selectMore = selectWork.find("span:contains('Read more...')");
 
 			selectMore.click(function() {
 				document.getElementById("moreWork").style.display = "block";
@@ -344,10 +342,9 @@ var work = {
 //	currently in work below object. 
 
 			function closeFinal() {
-				var basicSelect, selectDisplay1, selectClose;
-				basicSelect = $("#itemsDisplay");
-				selectDisplay1 = basicSelect.children("#displayItem1");
-				selectClose = selectDisplay1.find("#close2");
+			var selectWork, selectClose;
+			selectWork = $("#work");
+			selectClose = selectWork.find("span:contains('Close all...')");
 
 				selectClose.click(function() {
 					var basicSelect, selectDisplay1;
@@ -378,22 +375,21 @@ var work = {
 			}
 			closeFinal();
 
-			function closeLess() {
-				var basicSelect, selectDisplay1, selectLess;
-				basicSelect = $("#itemsDisplay");
-				selectDisplay1 = basicSelect.find("#displayItem1");
-				selectLess = selectDisplay1.find("#less");
+			function closeMore() {
+				var selectWork, selectMore;
+				selectWork = $("#work");
+				selectMore = selectWork.find("span:contains('Read less...')");
 
-				selectLess.click(function() {
-					var basicSelect, selectDisplay1, selectCloseless;
+				selectMore.click(function() {
+					var basicSelect, selectDisplay1, selectCloseMore;
 					basicSelect = $("#itemsDisplay");
 					selectDisplay1 = basicSelect.find("#displayItem1");
-					selectCloseless = selectDisplay1.find("#moreWork");
+					selectCloseMore = selectDisplay1.find("#moreWork");
 
-					selectCloseless.slideUp(1000);
+					selectCloseMore.slideUp(1000);
 				});
 			}
-			closeLess();
+			closeMore();
 
 		}
 		displayMore();
@@ -409,7 +405,7 @@ work.display();
 // Work on scrolling into/in overflow containers
 // 1) into (for 'displayRecent')
 
-	function myTest() {
+/*	function myTest() {
 		var selectItem1;
 			selectItem1 = $(".item-box:eq(0)");
 
@@ -420,7 +416,7 @@ work.display();
 		console.log($("h1.titleBox"));
 		});
 		}
-		myTest();
+		myTest();*/
 
 // 2) within (for/in 'displayMore')
 

@@ -28,10 +28,10 @@ var HTMLentryStart = '<div class="item-entry"></div>';
 var HTMLformalInfo = '<div class="formalInfo"></div>';
 var HTMLdivMoreless = '<div class="readMoreless"></div>';
 var HTMLdivClosemore = '<div class="closeReadmore"></div>';
-var HTMLclosePage = '<span id="close" class="link asLink floatLeft"><br>Close...</span>';
-var HTMLclosePages = '<span id="close2" class="link asLink floatLeft"><br>Close...</span>';
-var HTMLreadMore = '<span id="more" class="link asLink floatRight"><br>Read more...</span>';
-var HTMLreadLess = '<span id="less" class="link asLink floatRight"><br>Read Less...</span>';
+var HTMLclosePage = '<span class="link asLink floatLeft"><br>Close...</span>';
+var HTMLclosePages = '<span class="link asLink floatLeft"><br>Close all...</span>';
+var HTMLreadMore = '<span class="link asLink floatRight"><br>Read more...</span>';
+var HTMLreadLess = '<span class="link asLink floatRight"><br>Read less...</span>';
 
 
 // Html for 'work object':
