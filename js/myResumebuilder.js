@@ -207,8 +207,8 @@ var work = {
 	"display" : function() {
 		var basicSelect, selectDisplay1;
 		basicSelect = $("#itemsDisplay");
-		basicSelect.append(HTMLfeaturedDisplay1);
-		selectDisplay1 = basicSelect.children("#displayItem1");
+		basicSelect.append(HTMLfeaturedDisplay);
+		selectDisplay1 = basicSelect.children().filter(":eq(0)");
 		selectDisplay1.append(HTMLdisplayWork);
 // It would be most logical to have one 'display canvas' addressed by 1st, last, and nth-child--but not now
 
@@ -269,13 +269,13 @@ var work = {
 			selectItem1 = $(".item-box:eq(0)");
 
 			selectItem1.click(function() {
-				document.getElementById("displayItem1").style.display = "block";
-
-				var scrollStart, basicSelect, targetWork1;
-				scrollStart = $("html, body");
+				var basicSelect, selectDisplay1, scrollStart, targetWork1;
 				basicSelect = $("#itemsDisplay");
-				selectDisplay1 = basicSelect.children("#displayItem1");
+				selectDisplay1 = basicSelect.children().filter(":eq(0)");
+				scrollStart = $("html, body");
 				targetWork1 = selectDisplay1.find("h1");
+
+				selectDisplay1.attr("style", "display: block");
 
 				scrollStart.animate({
 					scrollTop: targetWork1.offset().top
@@ -295,7 +295,7 @@ var work = {
 			selectClose.click(function() {
 				var basicSelect, selectDisplay1;
 				basicSelect = $("#itemsDisplay");
-				selectDisplay1 = basicSelect.children("#displayItem1");
+				selectDisplay1 = basicSelect.children().filter(":eq(0)");
 
 				selectDisplay1.slideUp(1000);
 
@@ -331,7 +331,7 @@ var work = {
 
 				var basicSelect, selectDisplay1, targetWork2;
 				basicSelect = $("#itemsDisplay");
-				selectDisplay1 = basicSelect.children("#displayItem1");
+				selectDisplay1 = basicSelect.children().filter(":eq(0)");
 				targetWork2 = basicSelect.find(".item-entry:eq(0)");
 
 				selectDisplay1.animate({
@@ -349,7 +349,7 @@ var work = {
 				selectClose.click(function() {
 					var basicSelect, selectDisplay1;
 					basicSelect = $("#itemsDisplay");
-					selectDisplay1 = basicSelect.find("#displayItem1");
+					selectDisplay1 = basicSelect.children().filter(":eq(0)");
 
 					selectDisplay1.slideUp(1000);
 
@@ -383,7 +383,7 @@ var work = {
 				selectMore.click(function() {
 					var basicSelect, selectDisplay1, selectCloseMore;
 					basicSelect = $("#itemsDisplay");
-					selectDisplay1 = basicSelect.find("#displayItem1");
+					selectDisplay1 = basicSelect.children().filter(":eq(0)");
 					selectCloseMore = selectDisplay1.find("#moreWork");
 
 					selectCloseMore.slideUp(1000);
@@ -423,7 +423,7 @@ work.display();
 /*	function myTest2() {
 		var basicSelect, selectDisplay1, selectMore;
 		basicSelect = $("#itemsDisplay");
-		selectDisplay1 = basicSelect.children("#displayItem1");
+		selectDisplay1 = basicSelect.children().filter(":eq(0)");
 		selectMore = selectDisplay1.find("#more");
 
 		selectMore.click(function() {

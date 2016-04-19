@@ -19,11 +19,7 @@ var HTMLskills = '<li class="flex-item"><span class="bold">%data%</span></li>';
 
 // Html for interactive display of 'featured items' (in 3rd main <div id="itemDisplay">):
 
-var HTMLfeaturedDisplay1 = '<div id="displayItem1" class="displayCanvas" style="display: none"></div>';
-var HTMLfeaturedDisplay2 = '<div id="displayItem2" class="displayCanvas" style="display: none"></div>';
-var HTMLfeaturedDisplay3 = '<div id="displayItem3" class="displayCanvas" style="display: none"></div>';
-var HTMLfeaturedDisplay4 = '<div id="displayItem4" class="displayCanvas" style="display: none"></div>';
-
+var HTMLfeaturedDisplay = '<div class="displayCanvas" style="display: none"></div>';
 var HTMLentryStart = '<div class="item-entry"></div>';
 var HTMLformalInfo = '<div class="formalInfo"></div>';
 var HTMLdivMoreless = '<div class="readMoreless"></div>';
