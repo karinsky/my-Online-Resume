@@ -58,7 +58,7 @@ var bio = {
 		"github" : "karinsky",
 		"located" : "Chicago (IL) U.S.A."
 		},
-	"welcomeMessage" : "Welcome!<br><br>I fell for Front End Web Development because it allows me to unite two long separated sides of my mind and life: my visual sences which love art and design, and my trained analytical brain which equally loves to systematically identify and solve problems.",
+	"welcomeMessage" : "Welcome!<br><br>I fell for Front End Web Development because it allows me to unite two long separated strands of my mind and life: my visual sences which love art and design, and my trained analytical brain which equally loves to systematically identify and solve problems.",
 	"skills" : [
 		"Analysis",
 		"Project Management",
@@ -263,6 +263,7 @@ var work = {
 
 //	scrolling effect as follows courtesy Cory LaViska
 //	http://www.abeautifulsite.net/smoothly-scroll-to-an-element-without-a-jquery-plugin-2/
+//	bug: does not work properly on repeated clicks
 
 		function displayRecent() {
 			var selectItem1;
