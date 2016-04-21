@@ -210,7 +210,6 @@ var work = {
 		basicSelect.append(HTMLfeaturedDisplay);
 		selectDisplay1 = basicSelect.children().filter(":eq(0)");
 		selectDisplay1.append(HTMLdisplayWork);
-// It would be most logical to have one 'display canvas' addressed by 1st, last, and nth-child--but not now
 
 		for (i = 0; i < 5; i++) {
 			var selectWork, myWork, lastWork;
@@ -439,58 +438,51 @@ work.display();
 
 /*The education object (to 'id item1' ?):
 
-Preface on my German education:
+Preface on presenting my education:
 a) The structure and degrees in the German educational system
-   are not directly comparable to the American system, i.e.
-   I do not have completed majors, though I have a PhD.
-   Thus it took me some time to figure out the particular
-   meaning of "degree" and "major" in Udacity's setup of
-   properties for the 'education object'. As to my mind, I still
-   completed a section of my education with a degree, I use
-   the "major" property to designate a 'department/program'
-   framework for the degree with which I left the educational
-   institution.
+   are (were: this is changing) not directly comparable to the
+   American system, i.e. I do not have completed majors, though
+   I have a PhD. Thus I cannot 'mimick' the pregiven set-up
+   completely:
+   As the specifics of a certain degree are/were given by its
+   title as well as the department or faculty of studies, I add
+   this information to the 'name' of the 'school' and I skip a
+   'major' (which was good enough for the University of Chicago
+   some years ago).
 b) A PhD in Germany did not require attending a program, and
    there was no formal start date. Anyway, a PhD is usually
-   listed just with the year of it's accomplishment. In order
-   to stick to an overall style, though, I add the month in
-   'dates'.
-A last remark: Young people may still include days in the
-'dates' of their resumes. Later on, no one cares on which day
-exactly someone started or finished schools or jobs 20 years
-ago. Thus, 'month/year' as used here is a common resume formate
-for 'dates'.*/
+   listed just with the year of it's accomplishment.
+   In a longer life and career, exact dates become anyway
+   less relevant. In a common resume formate, I give the year
+   in which a formal degree was received; and I give month and
+   year for more recent online courses.*/
 
 
 var education = {
 	"schools" : [
 		{
-			"name" : "J W Goethe University",
-			"major" : "Department of Social Sciences",
+			"name" : "J W Goethe University, Department of Social Sciences",
 			"location" : "Frankfurt (Main), Germany",
-			"dates" : "1/2008",
+			"dates" : "2008",
 			"url" : "http://www.fb03.uni-frankfurt.de/39791667/international",
 			"degree" : "PhD in Sociology"
 		},
 		{
-			"name" : "J W Goethe University",
-			"major" : "Department of Social Sciences",
+			"name" : "J W Goethe University, Department of Social Sciences",
 			"location" : "Frankfurt (Main), Germany",
-			"dates" : "10/1996",
+			"dates" : "1996",
 			"url" : "http://www.fb03.uni-frankfurt.de/39791667/international",
 			"degree" : "Certificate of Equivalence in Political Science"
 		},
 		{
-			"name" : "Ruhr University Bochum",
-			"major" : "Faculty of Social Sciences",
+			"name" : "Ruhr University Bochum, Faculty of Social Sciences",
 			"location" : "Bochum, Germany",
 			"dates" : "1988",
 			"url" : "http://www.sowi.rub.de/index.html.en",
 			"degree" : "Diploma in Social Sciences"
 		},
 		{
-			"name" : "Märkisches Gymnasium Schwelm",
-			"major" : "'STEM' path",
+			"name" : "Märkisches Gymnasium ('stem path')",
 			"location" : "Schwelm, Germany",
 			"dates" : "1976",
 			"url" : "http://www.mgs-schwelm.de/",
@@ -507,7 +499,7 @@ var education = {
 		{
 			"title" : "Learn JavaScript + Learn jQuery",
 			"school" : "w3schools.com",
-			"dates" : "1-2/2016",
+			"dates" : "2/2016-3/2016",
 			"url" : "http://www.w3schools.com/default.asp"
 		},
 		{
@@ -527,16 +519,33 @@ var education = {
 // JSONLint: valid JSON (without function)
 
 function displayEdu() {
-	var selectItembox2;
-	selectItembox2 = $(".item-box:eq(1)");
+		var basicSelect, selectDisplay2;
+		basicSelect = $("#itemsDisplay");
+		basicSelect.append(HTMLfeaturedDisplay);
+		selectDisplay2 = basicSelect.children().filter(":eq(1)");
+		selectDisplay2.append(HTMLdisplayEdu);
 
-	selectItembox2.click(function() {
-	var basicSelect, eduDisplay;
-	basicSelect = $("#itemsDisplay");
-	eduDisplay = basicSelect.append(HTMLdisplayEdu);
+		for (degree in education.schools) {
+			var selectEdu, myEdu, lastEdu;
+			selectEdu = $("#edu");
+			myEdu = selectEdu.append(HTMLentryStart);
+			lastEdu = myEdu.children(".item-entry:last");
+console.log(selectEdu);
 
-//# displayBox provided 'on click'--next: appending loop...	
-	});
+			var formSchoolname, formDegree, formLocation, formDates, formUrlp;
+			formSchoolname = HTMLschoolName.replace("%data%", education.schools[degree].name);
+			formDegree = HTMLschoolDegree.replace("%data%", education.schools[degree].degree);
+			formLocation = HTMLschoolLocation.replace("%data%", education.schools[degree].location);
+			formDates = HTMLschoolDates.replace("%data%", education.schools[degree].dates);
+			formUrlp = HTMLpUrl.replace("%data%", education.schools[degree].url);
+
+			lastEdu.append(formSchoolname);
+			lastEdu.append(formDegree);
+			lastEdu.append(HTMLformalInfo).append(formLocation + " " + formDates);
+			lastEdu.append(formUrlp);
+		}
+		selectEdu.append(HTMLdivMoreless);
+
 }
 $(displayEdu);
 
