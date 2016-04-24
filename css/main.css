@@ -425,18 +425,20 @@ span {
   background-color: white;
 }
 
-.h2Resumedisplay {
+.displayFirstdiv {
   padding-top: 10px;
 }
 
-.h3Resumedisplay {
+.displayMiddlediv {
   padding: 4px 0 0 5px;
 }
 
-.pResumedisplay {
-  font-size: 14px;
+.displayLastdiv {
+  padding: 0 0 10px 5px;
+}
+
+.removeFloat {
   clear: both;
-  padding-bottom: 10px;
 }
 
 .boxMoreless {
@@ -624,18 +626,18 @@ span {
 
 @media screen and (min-width: 490px) {
   a {
-    font-size: 14px;
+    font-size: 12px;
   }
 }
 
 @media screen and (min-width: 550px) {
-  .h3Resumedisplay {
+  .displayMiddlediv {
     padding-left: 10px;
   }
   span {
     padding-left: 10px;
   }
-  .pResumedisplay {
+  .displayLastdiv {
     padding-left: 10px;
   }
 }

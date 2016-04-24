@@ -22,35 +22,38 @@ var HTMLskills = '<li class="flex-item"><span class="bold">%data%</span></li>';
 var HTMLfeaturedDisplay = '<div class="displayCanvas" style="display: none"></div>';
 var HTMLentryStart = '<div class="item-entry"></div>';
 var HTMLformalInfo = '<div class="formalInfo"></div>';
+
+var HTMLdisplayMore = '<div id="ShowMore" class="boxMoreless" style="display: none"></div>';
 var HTMLdivMoreless = '<div class="readMoreless"></div>';
 var HTMLdivClosemore = '<div class="closeReadmore"></div>';
 var HTMLclosePage = '<span class="link asLink floatLeft"><br>Close...</span>';
-var HTMLclosePages = '<span class="link asLink floatLeft"><br>Close all...</span>';
+var HTMLclosePages = '<span class="link asLink floatLeft"><br>Close section...</span>';
 var HTMLreadMore = '<span class="link asLink floatRight"><br>Read more...</span>';
 var HTMLreadLess = '<span class="link asLink floatRight"><br>Read less...</span>';
 
 // Html for 'work object':
 
 var HTMLdisplayWork = '<div id="work" class="displayBox"><h1 class="titleBox">Work Experience</h1></div>';
-var HTMLdisplayMorework = '<div id="moreWork" class="boxMoreless" style="display: none"></div>';
-var HTMLworkEmployer = '<h2 class="h2Resumedisplay caps">%data%</h2>';
-var HTMLworkTitle = '<h3 class="h3Resumedisplay">%data%</h3>';
+
+var HTMLworkEmployer = '<h2 class="displayFirstdiv caps">%data%</h2>';
+var HTMLworkTitle = '<h3 class="displayMiddlediv">%data%</h3>';
 var HTMLworkDates = '<span class="quote floatRight">%data%</span>';
 var HTMLworkLocation = '<span class="quote floatLeft">%data%</span>';
-var HTMLworkDescription = '<p class="pResumedisplay">%data%</p>';
+var HTMLworkDescription = '<div class="removeFloat displayLastdiv">%data%</div>';
 
 // Html for 'edu object':
 
 var HTMLdisplayEdu = '<div id="edu" class="displayBox"><h1 class="titleBox">Education</h1></div>';
-var HTMLpUrl = '<p class="pResumedisplay"><a href>%data%</a href></p>';
 
-var HTMLschoolName = '<h2 class="h2Resumedisplay caps">%data%</h2>';
-var HTMLschoolDegree = '<h3 class="h3Resumedisplay">%data%</h3>';
+var HTMLschoolName = '<h2 class="displayFirstdiv caps">%data%</h2>';
+var HTMLschoolDegree = '<h3 class="displayMiddlediv">%data%</h3>';
+var HTMLschoolMajor = '<div class="displayMiddlediv">%data%</div>';
 var HTMLschoolDates = '<span class="quote floatRight">%data%</span>';
 var HTMLschoolLocation = '<span class="quote floatLeft">%data%</span>';
+var HTMLeduUrl = '<div class="displayLastdiv removeFloat"><a href>%data%</a></div>';
 
-var HTMLonlineClasses = 'h2 class="h2Resumedisplay caps">Online Classes</h2>';
-var HTMLonlineTitle = '<h3 class="h3Resumedisplay">%data%</h3>';
+var HTMLonlineHeader = '<div><h2 class="displayFirstdiv caps">Online Classes</h2></div>';
+var HTMLonlineTitle = '<h3 class="displayMiddlediv">%data%</h3>';
 var HTMLonlineSchool = '<span class="quote floatLeft">%data%</span>';
 var HTMLonlineDates = '<span class="quote floatRight">%data%</span>';
 

@@ -234,7 +234,7 @@ var work = {
 		var selectMoreless;
 		selectMoreless = selectWork.find(".readMoreless");
 		selectMoreless.append(HTMLclosePage + " " + HTMLreadMore);
-		selectWork.append(HTMLdisplayMorework);
+		selectWork.append(HTMLdisplayMore);
 
 		for (i = 5; i < work.jobs.length; i++) {
 			var selectMoreless, moreWork, finalWork;
@@ -327,7 +327,7 @@ var work = {
 			selectMore = selectWork.find("span:contains('Read more...')");
 
 			selectMore.click(function() {
-				document.getElementById("moreWork").style.display = "block";
+				document.getElementById("ShowMore").style.display = "block";
 
 				var basicSelect, selectDisplay1, targetWork2;
 				basicSelect = $("#itemsDisplay");
@@ -384,7 +384,7 @@ var work = {
 					var basicSelect, selectDisplay1, selectCloseMore;
 					basicSelect = $("#itemsDisplay");
 					selectDisplay1 = basicSelect.children().filter(":eq(0)");
-					selectCloseMore = selectDisplay1.find("#moreWork");
+					selectCloseMore = selectDisplay1.find("#ShowMore");
 
 					selectCloseMore.slideUp(1000);
 				});
@@ -427,7 +427,7 @@ work.display();
 		selectMore = selectDisplay1.find("#more");
 
 		selectMore.click(function() {
-			document.getElementById("moreWork").style.display = "block";
+			document.getElementById("ShowMore").style.display = "block";
 
 			$("#displayItem1").scrollTop($("#displayItem1").scrollTop()+$(".readMoreless").position().top);
 		console.log($(".readMoreless"));
@@ -442,16 +442,10 @@ Preface on presenting my education:
 a) The structure and degrees in the German educational system
    are (were: this is changing) not directly comparable to the
    American system, i.e. I do not have completed majors, though
-   I have a PhD. Thus I cannot 'mimick' the pregiven set-up
-   completely:
-   As the specifics of a certain degree are/were given by its
-   title as well as the department or faculty of studies, I add
-   this information to the 'name' of the 'school' and I skip a
-   'major' (which was good enough for the University of Chicago
-   some years ago).
+   I have a PhD. Thus I need to adjust the given set-up.
 b) A PhD in Germany did not require attending a program, and
-   there was no formal start date. Anyway, a PhD is usually
-   listed just with the year of it's accomplishment.
+   there was no formal start date. In academics, a PhD is listed
+   usually just with the year of it's accomplishment.
    In a longer life and career, exact dates become anyway
    less relevant. In a common resume formate, I give the year
    in which a formal degree was received; and I give month and
@@ -465,28 +459,32 @@ var education = {
 			"location" : "Frankfurt (Main), Germany",
 			"dates" : "2008",
 			"url" : "http://www.fb03.uni-frankfurt.de/39791667/international",
-			"degree" : "PhD in Sociology"
+			"degree" : "PhD in Sociology",
+			"major" : "Roughly equivalent to a major in: Sociology"
 		},
 		{
 			"name" : "J W Goethe University, Department of Social Sciences",
 			"location" : "Frankfurt (Main), Germany",
 			"dates" : "1996",
 			"url" : "http://www.fb03.uni-frankfurt.de/39791667/international",
-			"degree" : "Certificate of Equivalence in Political Science"
+			"degree" : "Certificate of Equivalence in Political Science",
+			"major" : "n/a"
 		},
 		{
 			"name" : "Ruhr University Bochum, Faculty of Social Sciences",
 			"location" : "Bochum, Germany",
 			"dates" : "1988",
 			"url" : "http://www.sowi.rub.de/index.html.en",
-			"degree" : "Diploma in Social Sciences"
+			"degree" : "Diploma in Social Sciences",
+			"major" : "Roughly equivalent to a major in: Sociology"
 		},
 		{
-			"name" : "Märkisches Gymnasium ('stem path')",
+			"name" : "Märkisches Gymnasium",
 			"location" : "Schwelm, Germany",
 			"dates" : "1976",
 			"url" : "http://www.mgs-schwelm.de/",
-			"degree" : "University-Entrance Diploma"
+			"degree" : "University-Entrance Diploma",
+			"major" : "Roughly equivalent to a major in: 'stem path'"
 		}
 	],
 	"onlineCourses" : [
@@ -530,21 +528,47 @@ function displayEdu() {
 			selectEdu = $("#edu");
 			myEdu = selectEdu.append(HTMLentryStart);
 			lastEdu = myEdu.children(".item-entry:last");
-console.log(selectEdu);
 
-			var formSchoolname, formDegree, formLocation, formDates, formUrlp;
+			var formSchoolname, formDegree, formMajor, formLocation, formDates, formEduurl;
 			formSchoolname = HTMLschoolName.replace("%data%", education.schools[degree].name);
 			formDegree = HTMLschoolDegree.replace("%data%", education.schools[degree].degree);
+			formMajor = HTMLschoolMajor.replace("%data%", education.schools[degree].major);
 			formLocation = HTMLschoolLocation.replace("%data%", education.schools[degree].location);
 			formDates = HTMLschoolDates.replace("%data%", education.schools[degree].dates);
-			formUrlp = HTMLpUrl.replace("%data%", education.schools[degree].url);
+			formEduurl = HTMLeduUrl.replace("%data%", education.schools[degree].url);
 
 			lastEdu.append(formSchoolname);
 			lastEdu.append(formDegree);
+			lastEdu.append(formMajor);
 			lastEdu.append(HTMLformalInfo).append(formLocation + " " + formDates);
-			lastEdu.append(formUrlp);
+			lastEdu.append(formEduurl);
 		}
 		selectEdu.append(HTMLdivMoreless);
+
+		var selectMoreless;
+		selectMoreless = selectEdu.find(".readMoreless");
+		selectMoreless.append(HTMLclosePage + " " + HTMLreadMore);
+		selectEdu.append(HTMLdisplayMore);
+
+//		for (taken in education.onlineCourses) {
+			var selectOnline, onlineHeader, myOnline, lastOnline;
+			selectOnline = selectEdu.find(".boxMoreless");
+			onlineHeader = selectOnline.append("HTMLonlineHeader");
+			myOnline = selectOnline.append(HTMLentryStart);
+			lastOnline = myOnline.children(".item-entry:last");
+
+
+
+/*			var formSchoolname, formDegree, formMajor, formLocation, formDates, formEduurl;
+
+			formSchoolname = HTMLschoolName.replace("%data%", education.schools[degree].name);
+			formDegree = HTMLschoolDegree.replace("%data%", education.schools[degree].degree);
+			formMajor = HTMLschoolMajor.replace("%data%", education.schools[degree].major);
+			formLocation = HTMLschoolLocation.replace("%data%", education.schools[degree].location);
+			formDates = HTMLschoolDates.replace("%data%", education.schools[degree].dates);
+			formEduurl = HTMLeduUrl.replace("%data%", education.schools[degree].url);*/
+
+
 
 }
 $(displayEdu);
