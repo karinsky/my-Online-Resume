@@ -550,23 +550,27 @@ function displayEdu() {
 		selectMoreless.append(HTMLclosePage + " " + HTMLreadMore);
 		selectEdu.append(HTMLdisplayMore);
 
-//		for (taken in education.onlineCourses) {
-			var selectOnline, onlineHeader, myOnline, lastOnline;
-			selectOnline = selectEdu.find(".boxMoreless");
-			onlineHeader = selectOnline.append("HTMLonlineHeader");
+		var selectOnline, onlineHeader;
+		selectOnline = selectEdu.find(".boxMoreless");
+		onlineHeader = selectOnline.append(HTMLonlineHeader);
+
+		for (taken in education.onlineCourses) {
+			var myOnline, lastOnline;
 			myOnline = selectOnline.append(HTMLentryStart);
 			lastOnline = myOnline.children(".item-entry:last");
 
+			var formOnlinetitle, formOnlineschool, formOnlinedates, formOnlineurl;
+			formOnlinetitle = HTMLonlineTitle.replace("%data%", education.onlineCourses[taken].title);
+			formOnlineschool = HTMLonlineSchool.replace("%data%", education.onlineCourses[taken].school);
+			formOnlinedates = HTMLonlineDates.replace("%data%", education.onlineCourses[taken].dates);
+			formOnlineurl = HTMLonlineUrl.replace("%data%", education.onlineCourses[taken].url);
 
+			lastOnline.append(formOnlinetitle);
+			lastOnline.append(formOnlineschool);
+			lastOnline.append(formOnlinedates);
+			lastOnline.append(formOnlineurl);
+		}
 
-/*			var formSchoolname, formDegree, formMajor, formLocation, formDates, formEduurl;
-
-			formSchoolname = HTMLschoolName.replace("%data%", education.schools[degree].name);
-			formDegree = HTMLschoolDegree.replace("%data%", education.schools[degree].degree);
-			formMajor = HTMLschoolMajor.replace("%data%", education.schools[degree].major);
-			formLocation = HTMLschoolLocation.replace("%data%", education.schools[degree].location);
-			formDates = HTMLschoolDates.replace("%data%", education.schools[degree].dates);
-			formEduurl = HTMLeduUrl.replace("%data%", education.schools[degree].url);*/
 
 
 

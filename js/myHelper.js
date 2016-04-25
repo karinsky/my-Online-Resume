@@ -52,8 +52,9 @@ var HTMLschoolDates = '<span class="quote floatRight">%data%</span>';
 var HTMLschoolLocation = '<span class="quote floatLeft">%data%</span>';
 var HTMLeduUrl = '<div class="displayLastdiv removeFloat"><a href>%data%</a></div>';
 
-var HTMLonlineHeader = '<div><h2 class="displayFirstdiv caps">Online Classes</h2></div>';
+var HTMLonlineHeader = '<div><h2 class="displayLastdiv caps">Online Classes</h2></div>';
 var HTMLonlineTitle = '<h3 class="displayMiddlediv">%data%</h3>';
 var HTMLonlineSchool = '<span class="quote floatLeft">%data%</span>';
 var HTMLonlineDates = '<span class="quote floatRight">%data%</span>';
+var HTMLonlineUrl = '<div class="displayLastdiv removeFloat"><a href>%data%</a></div>';
 
