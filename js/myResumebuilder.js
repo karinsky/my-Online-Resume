@@ -133,7 +133,7 @@ bio.display();
 1)	Display content with event handlers at the end which allow to
 	either close or, with more extended content:
 2)	append more content, again with event handlers at the end which
-	allow to 'close all' or 'read less'.
+	allow to 'close section' or 'read less'.
 */
 
 function replaceTitle() {
@@ -205,11 +205,11 @@ var work = {
 		}
 	],
 	"display" : function() {
-		var basicSelect, selectDisplay1;
+		var basicSelect, selectItem1;
 		basicSelect = $("#itemsDisplay");
 		basicSelect.append(HTMLfeaturedDisplay);
-		selectDisplay1 = basicSelect.children().filter(":eq(0)");
-		selectDisplay1.append(HTMLdisplayWork);
+		selectItem1 = basicSelect.children().filter(":eq(0)");
+		selectItem1.append(HTMLdisplayWork);
 
 		for (i = 0; i < 5; i++) {
 			var selectWork, myWork, lastWork;
@@ -262,20 +262,20 @@ var work = {
 
 //	scrolling effect as follows courtesy Cory LaViska
 //	http://www.abeautifulsite.net/smoothly-scroll-to-an-element-without-a-jquery-plugin-2/
-//	bug: does not work properly on repeated clicks
+//	bug: does not work properly on repeated clicks (and neither in overflow elements)
 
 		function displayRecent() {
 			var selectItem1;
 			selectItem1 = $(".item-box:eq(0)");
 
 			selectItem1.click(function() {
-				var basicSelect, selectDisplay1, scrollStart, targetWork1;
+				var basicSelect, selectItem1, scrollStart, targetWork1;
 				basicSelect = $("#itemsDisplay");
-				selectDisplay1 = basicSelect.children().filter(":eq(0)");
+				selectItem1 = basicSelect.children().filter(":eq(0)");
 				scrollStart = $("html, body");
-				targetWork1 = selectDisplay1.find("h1");
+				targetWork1 = selectItem1.find("h1");
 
-				selectDisplay1.attr("style", "display: block");
+				selectItem1.attr("style", "display: block");
 
 				scrollStart.animate({
 					scrollTop: targetWork1.offset().top
@@ -284,7 +284,6 @@ var work = {
 		}
 		displayRecent();
 
-//	bug: does not work in repeated clicks for 'overflow' elements;
 //	currently in work below object.
 
 		function closeRecent() {
@@ -293,11 +292,11 @@ var work = {
 			selectClose = selectWork.find("span:contains('Close...')");
 
 			selectClose.click(function() {
-				var basicSelect, selectDisplay1;
+				var basicSelect, selectItem1;
 				basicSelect = $("#itemsDisplay");
-				selectDisplay1 = basicSelect.children().filter(":eq(0)");
+				selectItem1 = basicSelect.children().filter(":eq(0)");
 
-				selectDisplay1.slideUp(1000);
+				selectItem1.slideUp(1000);
 
 				var mq550;
 				mq550 = window.matchMedia("(min-width: 550px)");
@@ -329,12 +328,12 @@ var work = {
 			selectMore.click(function() {
 				document.getElementById("ShowMore").style.display = "block";
 
-				var basicSelect, selectDisplay1, targetWork2;
+				var basicSelect, selectItem1, targetWork2;
 				basicSelect = $("#itemsDisplay");
-				selectDisplay1 = basicSelect.children().filter(":eq(0)");
+				selectItem1 = basicSelect.children().filter(":eq(0)");
 				targetWork2 = basicSelect.find(".item-entry:eq(0)");
 
-				selectDisplay1.animate({
+				selectItem1.animate({
 					scrollTop: targetWork2.position().top
 				}, 1200);
 			});//closes click(function)
@@ -344,14 +343,15 @@ var work = {
 			function closeFinal() {
 			var selectWork, selectClose;
 			selectWork = $("#work");
-			selectClose = selectWork.find("span:contains('Close all...')");
+			selectClose = selectWork.find("span:contains('Close section...')");
+console.log(selectClose);
 
 				selectClose.click(function() {
-					var basicSelect, selectDisplay1;
+					var basicSelect, selectItem1;
 					basicSelect = $("#itemsDisplay");
-					selectDisplay1 = basicSelect.children().filter(":eq(0)");
+					selectItem1 = basicSelect.children().filter(":eq(0)");
 
-					selectDisplay1.slideUp(1000);
+					selectItem1.slideUp(1000);
 
 					var mq550;
 					mq550 = window.matchMedia("(min-width: 550px)");
@@ -379,12 +379,13 @@ var work = {
 				var selectWork, selectMore;
 				selectWork = $("#work");
 				selectMore = selectWork.find("span:contains('Read less...')");
+console.log(selectMore);
 
 				selectMore.click(function() {
-					var basicSelect, selectDisplay1, selectCloseMore;
+					var basicSelect, selectItem1, selectCloseMore;
 					basicSelect = $("#itemsDisplay");
-					selectDisplay1 = basicSelect.children().filter(":eq(0)");
-					selectCloseMore = selectDisplay1.find("#ShowMore");
+					selectItem1 = basicSelect.children().filter(":eq(0)");
+					selectCloseMore = selectItem1.find("#ShowMore");
 
 					selectCloseMore.slideUp(1000);
 				});
@@ -421,10 +422,10 @@ work.display();
 // 2) within (for/in 'displayMore')
 
 /*	function myTest2() {
-		var basicSelect, selectDisplay1, selectMore;
+		var basicSelect, selectItem1, selectMore;
 		basicSelect = $("#itemsDisplay");
-		selectDisplay1 = basicSelect.children().filter(":eq(0)");
-		selectMore = selectDisplay1.find("#more");
+		selectItem1 = basicSelect.children().filter(":eq(0)");
+		selectMore = selectItem1.find("#more");
 
 		selectMore.click(function() {
 			document.getElementById("ShowMore").style.display = "block";
@@ -517,11 +518,11 @@ var education = {
 // JSONLint: valid JSON (without function)
 
 function displayEdu() {
-		var basicSelect, selectDisplay2;
+		var basicSelect, selectItem2;
 		basicSelect = $("#itemsDisplay");
 		basicSelect.append(HTMLfeaturedDisplay);
-		selectDisplay2 = basicSelect.children().filter(":eq(1)");
-		selectDisplay2.append(HTMLdisplayEdu);
+		selectItem2 = basicSelect.children().filter(":eq(1)");
+		selectItem2.append(HTMLdisplayEdu);
 
 		for (degree in education.schools) {
 			var selectEdu, myEdu, lastEdu;
@@ -571,9 +572,43 @@ function displayEdu() {
 			lastOnline.append(formOnlineurl);
 		}
 
+//	scrolling effect as follows courtesy Cory LaViska
+//	http://www.abeautifulsite.net/smoothly-scroll-to-an-element-without-a-jquery-plugin-2/
+//	bug: does not work properly on repeated clicks (and neither in overflow elements)
 
+		function displayFormaledu() {
+			var selectItem2;
+			selectItem2 = $(".item-box:eq(1)");
+
+			selectItem2.click(function() {
+				var basicSelect, selectDisplay2, scrollStart, targetEdu1;
+				basicSelect = $("#itemsDisplay");
+				selectDisplay2 = basicSelect.children().filter(":eq(1)");
+				scrollStart = $("html, body");
+				targetEdu1 = selectDisplay2.find("h1");
+
+				selectDisplay2.attr("style", "display: block");
+
+				scrollStart.animate({
+					scrollTop: targetEdu1.offset().top
+				}, 1200);
+			});
+
+		}
+		displayFormaledu();
+
+/*click function works--aber ich have wohl zu voreilig alle 'selectDisplay[#]'
+mit 'selectItem[#]' ersetzt!! Nochmal durchdenken und strikt darauf beziehen,
+ob ich die sub-sections 'featured items' oder 'itemsdisplay' addressiere !!*/
 
 
 }
 $(displayEdu);
 
+
+/*		function displayRecent() {
+
+
+			});
+		}
+		displayRecent();*/
