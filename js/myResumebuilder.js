@@ -205,11 +205,11 @@ var work = {
 		}
 	],
 	"display" : function() {
-		var basicSelect, selectItem1;
+		var basicSelect, selectDisplay1;
 		basicSelect = $("#itemsDisplay");
 		basicSelect.append(HTMLfeaturedDisplay);
-		selectItem1 = basicSelect.children().filter(":eq(0)");
-		selectItem1.append(HTMLdisplayWork);
+		selectDisplay1 = basicSelect.children().filter(":eq(0)");
+		selectDisplay1.append(HTMLdisplayWork);
 
 		for (i = 0; i < 5; i++) {
 			var selectWork, myWork, lastWork;
@@ -237,9 +237,9 @@ var work = {
 		selectWork.append(HTMLdisplayMore);
 
 		for (i = 5; i < work.jobs.length; i++) {
-			var selectMoreless, moreWork, finalWork;
-			selectMoreless = selectWork.find(".boxMoreless");
-			moreWork = selectMoreless.append(HTMLentryStart);
+			var selectReadmore, moreWork, finalWork;
+			selectReadmore = selectWork.find(".boxReadmore");
+			moreWork = selectReadmore.append(HTMLentryStart);
 			finalWork = moreWork.children(".item-entry:last");
 
 			var formEmployer, formTitle, formLocation, formDates, formDescription;
@@ -248,17 +248,18 @@ var work = {
 			formLocation = HTMLworkLocation.replace("%data%", work.jobs[i].location);
 			formDates = HTMLworkDates.replace("%data%", work.jobs[i].dates);
 			formDescription = HTMLworkDescription.replace("%data%", work.jobs[i].description);
+//	acc. JSHint 'already defined'--but 'out of scope' in following when not, again, defined here
 
 			finalWork.append(formEmployer);
 			finalWork.append(formTitle);
 			finalWork.append(HTMLformalInfo).append(formLocation + " " + formDates);
 			finalWork.append(formDescription);
 		}
-		selectMoreless.append(HTMLdivClosemore);
+		selectReadmore.append(HTMLdivClosemore);
 
-		var selectCloseless;
-		selectCloseless = selectMoreless.find(".closeReadmore");
-		selectCloseless.append(HTMLclosePages + " " + HTMLreadLess);
+		var selectClosefinal;
+		selectClosefinal = selectReadmore.find(".closeReadmore");
+		selectClosefinal.append(HTMLclosePages + " " + HTMLreadLess);
 
 //	scrolling effect as follows courtesy Cory LaViska
 //	http://www.abeautifulsite.net/smoothly-scroll-to-an-element-without-a-jquery-plugin-2/
@@ -269,13 +270,13 @@ var work = {
 			selectItem1 = $(".item-box:eq(0)");
 
 			selectItem1.click(function() {
-				var basicSelect, selectItem1, scrollStart, targetWork1;
+				var basicSelect, selectDisplay1, scrollStart, targetWork1;
 				basicSelect = $("#itemsDisplay");
-				selectItem1 = basicSelect.children().filter(":eq(0)");
+				selectDisplay1 = basicSelect.children().filter(":eq(0)");
 				scrollStart = $("html, body");
-				targetWork1 = selectItem1.find("h1");
+				targetWork1 = selectDisplay1.find("h1");
 
-				selectItem1.attr("style", "display: block");
+				selectDisplay1.attr("style", "display: block");
 
 				scrollStart.animate({
 					scrollTop: targetWork1.offset().top
@@ -292,26 +293,23 @@ var work = {
 			selectClose = selectWork.find("span:contains('Close...')");
 
 			selectClose.click(function() {
-				var basicSelect, selectItem1;
+				var basicSelect, selectDisplay1;
 				basicSelect = $("#itemsDisplay");
-				selectItem1 = basicSelect.children().filter(":eq(0)");
+				selectDisplay1 = basicSelect.children().filter(":eq(0)");
 
-				selectItem1.slideUp(1000);
+				selectDisplay1.slideUp(1000);
 
-				var mq550;
+				var mq550, scrollStart, targetTop, targetFeatured;
 				mq550 = window.matchMedia("(min-width: 550px)");
+				scrollStart = $("html, body");
+				targetTop = $("#header");
+				targetFeatured = $("#featured");
 
 				if (mq550.matches) {
-					var scrollStart, targetTop;
-					scrollStart = $("html, body");
-					targetTop = $("#header");
 					scrollStart.animate({
 						scrollTop: targetTop.offset().top
 					}, 1500);
 				} else {
-					var scrollStart, targetFeatured;
-					scrollStart = $("html, body");
-					targetFeatured = $("#featured");
 					scrollStart.animate({
 						scrollTop: targetFeatured.offset().top
 					}, 1500);
@@ -320,88 +318,85 @@ var work = {
 		}
 		closeRecent();
 
-		function displayMore() {
+		function displayMorework() {
 			var selectWork, selectMore;
 			selectWork = $("#work");
 			selectMore = selectWork.find("span:contains('Read more...')");
 
 			selectMore.click(function() {
-				document.getElementById("ShowMore").style.display = "block";
+				var selectWork, displayMore;
+				selectWork = $("#work");
+				displayMore = selectWork.find(".boxReadmore");
 
-				var basicSelect, selectItem1, targetWork2;
+				displayMore.attr("style", "display: block");
+
+				var basicSelect, selectDisplay1, targetWorkmore;
 				basicSelect = $("#itemsDisplay");
-				selectItem1 = basicSelect.children().filter(":eq(0)");
-				targetWork2 = basicSelect.find(".item-entry:eq(0)");
-
-				selectItem1.animate({
-					scrollTop: targetWork2.position().top
+				selectDisplay1 = basicSelect.children().filter(":eq(0)");
+				targetWorkmore = selectDisplay1.find(".boxReadmore");
+console.log(targetWorkmore);
+				selectDisplay1.animate({
+					scrollTop: targetWorkmore.position().top
 				}, 1200);
 			});//closes click(function)
-//	bug: does not scroll to intended target/position (yet in 'approximate' compromise);
-//	currently in work below object. 
-
-			function closeFinal() {
+//	bug: does not scroll to intended target/position (-> still in state of trials;
+//	some left over in work below object). 
+//
+			function closeWorkfinal() {
 			var selectWork, selectClose;
 			selectWork = $("#work");
 			selectClose = selectWork.find("span:contains('Close section...')");
-console.log(selectClose);
 
 				selectClose.click(function() {
-					var basicSelect, selectItem1;
+					var basicSelect, selectDisplay1;
 					basicSelect = $("#itemsDisplay");
-					selectItem1 = basicSelect.children().filter(":eq(0)");
+					selectDisplay1 = basicSelect.children().filter(":eq(0)");
 
-					selectItem1.slideUp(1000);
+					selectDisplay1.slideUp(1000);
 
-					var mq550;
+					var mq550, scrollStart, targetTop, targetFeatured;
 					mq550 = window.matchMedia("(min-width: 550px)");
+					scrollStart = $("html, body");
+					targetTop = $("#header");
+					targetFeatured = $("#featured");
 
 					if (mq550.matches) {
-						var scrollStart, targetTop;
-						scrollStart = $("html, body");
-						targetTop = $("#header");
 						scrollStart.animate({
 							scrollTop: targetTop.offset().top
 						}, 1500);
 					} else {
-						var scrollStart, targetFeatured;
-						scrollStart = $("html, body");
-						targetFeatured = $("#featured");
 						scrollStart.animate({
 							scrollTop: targetFeatured.offset().top
 						}, 1500);
 					}
 				});//closes click(function)
 			}
-			closeFinal();
+			closeWorkfinal();
 
-			function closeMore() {
+			function closeMorework() {
 				var selectWork, selectMore;
 				selectWork = $("#work");
 				selectMore = selectWork.find("span:contains('Read less...')");
-console.log(selectMore);
 
 				selectMore.click(function() {
-					var basicSelect, selectItem1, selectCloseMore;
+					var basicSelect, selectDisplay1, selectCloseMore;
 					basicSelect = $("#itemsDisplay");
-					selectItem1 = basicSelect.children().filter(":eq(0)");
-					selectCloseMore = selectItem1.find("#ShowMore");
+					selectDisplay1 = basicSelect.children().filter(":eq(0)");
+					selectCloseMore = selectDisplay1.find(".boxReadmore");
 
 					selectCloseMore.slideUp(1000);
 				});
 			}
-			closeMore();
-
+			closeMorework();
 		}
-		displayMore();
+		displayMorework();
 
-
-
-	}//closes display function
+	}//closes 'display: function' in object
 }//closes object
 work.display();
+
 // JSONLint: object valid JSON (without function)
-// JSHint: 
+// JSHint for function: ok exept for external defined variables and issues commented upon
 
 // Work on scrolling into/in overflow containers
 // 1) into (for 'displayRecent')
@@ -422,10 +417,10 @@ work.display();
 // 2) within (for/in 'displayMore')
 
 /*	function myTest2() {
-		var basicSelect, selectItem1, selectMore;
+		var basicSelect, selectDisplay1, selectMore;
 		basicSelect = $("#itemsDisplay");
-		selectItem1 = basicSelect.children().filter(":eq(0)");
-		selectMore = selectItem1.find("#more");
+		selectDisplay1 = basicSelect.children().filter(":eq(0)");
+		selectMore = selectDisplay1.find("#more");
 
 		selectMore.click(function() {
 			document.getElementById("ShowMore").style.display = "block";
@@ -461,7 +456,7 @@ var education = {
 			"dates" : "2008",
 			"url" : "http://www.fb03.uni-frankfurt.de/39791667/international",
 			"degree" : "PhD in Sociology",
-			"major" : "Roughly equivalent to a major in: Sociology"
+			"major" : "(With a thesis on Methodology)"
 		},
 		{
 			"name" : "J W Goethe University, Department of Social Sciences",
@@ -469,7 +464,7 @@ var education = {
 			"dates" : "1996",
 			"url" : "http://www.fb03.uni-frankfurt.de/39791667/international",
 			"degree" : "Certificate of Equivalence in Political Science",
-			"major" : "n/a"
+			"major" : "(of previous studies; see next)"
 		},
 		{
 			"name" : "Ruhr University Bochum, Faculty of Social Sciences",
@@ -477,7 +472,7 @@ var education = {
 			"dates" : "1988",
 			"url" : "http://www.sowi.rub.de/index.html.en",
 			"degree" : "Diploma in Social Sciences",
-			"major" : "Roughly equivalent to a major in: Sociology"
+			"major" : "(Roughly equivalent to a major in sociology)"
 		},
 		{
 			"name" : "Märkisches Gymnasium",
@@ -485,7 +480,7 @@ var education = {
 			"dates" : "1976",
 			"url" : "http://www.mgs-schwelm.de/",
 			"degree" : "University-Entrance Diploma",
-			"major" : "Roughly equivalent to a major in: 'stem path'"
+			"major" : "(on a 'stem path' avant le lettre)"
 		}
 	],
 	"onlineCourses" : [
@@ -516,17 +511,18 @@ var education = {
 	]
 }
 // JSONLint: valid JSON (without function)
+// JSHint for function: ok exept for external defined variables and issues commented upon
 
 function displayEdu() {
-		var basicSelect, selectItem2;
+		var basicSelect, selectDisplay2, selectEdu;
 		basicSelect = $("#itemsDisplay");
 		basicSelect.append(HTMLfeaturedDisplay);
-		selectItem2 = basicSelect.children().filter(":eq(1)");
-		selectItem2.append(HTMLdisplayEdu);
+		selectDisplay2 = basicSelect.children().filter(":eq(1)");
+		selectDisplay2.append(HTMLdisplayEdu);
+		selectEdu = $("#edu");
 
-		for (degree in education.schools) {
-			var selectEdu, myEdu, lastEdu;
-			selectEdu = $("#edu");
+		for (var degree in education.schools) {
+			var myEdu, lastEdu;
 			myEdu = selectEdu.append(HTMLentryStart);
 			lastEdu = myEdu.children(".item-entry:last");
 
@@ -543,7 +539,8 @@ function displayEdu() {
 			lastEdu.append(formMajor);
 			lastEdu.append(HTMLformalInfo).append(formLocation + " " + formDates);
 			lastEdu.append(formEduurl);
-		}
+		}// 'for in' not wrapped in 'if' as wrapped in object
+
 		selectEdu.append(HTMLdivMoreless);
 
 		var selectMoreless;
@@ -551,13 +548,13 @@ function displayEdu() {
 		selectMoreless.append(HTMLclosePage + " " + HTMLreadMore);
 		selectEdu.append(HTMLdisplayMore);
 
-		var selectOnline, onlineHeader;
-		selectOnline = selectEdu.find(".boxMoreless");
-		onlineHeader = selectOnline.append(HTMLonlineHeader);
+		var selectOnlineedu, onlineHeader;
+		selectOnlineedu = selectEdu.find(".boxReadmore");
+		onlineHeader = selectOnlineedu.append(HTMLonlineHeader);
 
-		for (taken in education.onlineCourses) {
+		for (var taken in education.onlineCourses) {
 			var myOnline, lastOnline;
-			myOnline = selectOnline.append(HTMLentryStart);
+			myOnline = selectOnlineedu.append(HTMLentryStart);
 			lastOnline = myOnline.children(".item-entry:last");
 
 			var formOnlinetitle, formOnlineschool, formOnlinedates, formOnlineurl;
@@ -570,7 +567,13 @@ function displayEdu() {
 			lastOnline.append(formOnlineschool);
 			lastOnline.append(formOnlinedates);
 			lastOnline.append(formOnlineurl);
-		}
+		}// 'for in' not wrapped in 'if' as wrapped in object
+
+		selectOnlineedu.append(HTMLdivClosemore);
+
+		var selectClosefinal;
+		selectClosefinal = selectOnlineedu.find(".closeReadmore");
+		selectClosefinal.append(HTMLclosePages + " " + HTMLreadLess);
 
 //	scrolling effect as follows courtesy Cory LaViska
 //	http://www.abeautifulsite.net/smoothly-scroll-to-an-element-without-a-jquery-plugin-2/
@@ -597,18 +600,114 @@ function displayEdu() {
 		}
 		displayFormaledu();
 
-/*click function works--aber ich have wohl zu voreilig alle 'selectDisplay[#]'
-mit 'selectItem[#]' ersetzt!! Nochmal durchdenken und strikt darauf beziehen,
-ob ich die sub-sections 'featured items' oder 'itemsdisplay' addressiere !!*/
+		function closeFormaledu() {
+			var selectEdu, selectClose;
+			selectEdu = $("#edu");
+			selectClose = selectEdu.find("span:contains('Close...')");
 
+			selectClose.click(function() {
+				var basicSelect, selectDisplay2;
+				basicSelect = $("#itemsDisplay");
+				selectDisplay2 = basicSelect.children().filter(":eq(1)");
+
+				selectDisplay2.slideUp(1000);
+
+				var mq550, scrollStart, targetTop, targetFeatured;
+				mq550 = window.matchMedia("(min-width: 550px)");
+				scrollStart = $("html, body");
+				targetTop = $("#header");
+				targetFeatured = $("#featured");
+
+				if (mq550.matches) {
+					scrollStart.animate({
+						scrollTop: targetTop.offset().top
+					}, 1500);
+				} else {
+					scrollStart.animate({
+						scrollTop: targetFeatured.offset().top
+					}, 1500);
+				}
+			});//closes click(function)
+		}
+		closeFormaledu();
+
+		function displayMoreedu() {
+			var selectEdu, selectMore;
+			selectEdu = $("#edu");
+			selectMore = selectEdu.find("span:contains('Read more...')");
+
+			selectMore.click(function() {
+				var selectEdu, displayMore;
+				selectEdu = $("#edu");
+				displayMore = selectEdu.find(".boxReadmore");
+
+				displayMore.attr("style", "display: block");
+
+				var basicSelect, selectDisplay2, targetEdumore;
+				basicSelect = $("#itemsDisplay");
+				selectDisplay2 = basicSelect.children().filter(":eq(1)");
+				targetEdumore = basicSelect.find(".item-entry:eq(0)");
+console.log(targetEdumore);
+				selectDisplay2.animate({
+					scrollTop: targetEdumore.position().top
+				}, 1200);
+	
+			});//closes click(function)
+//	bug: does not scroll to intended target/position...
+//	(this was 'approximate compromise' before--I'm not sure what I thought;
+//	started new trials in work section...: the whole concept of what is
+//	'scrollStart' and what 'target' seems very unclear!!!);
+
+			function closeEdufinal() {
+			var selectEdu, selectClose;
+			selectEdu = $("#edu");
+			selectClose = selectEdu.find("span:contains('Close section...')");
+
+				selectClose.click(function() {
+					var basicSelect, selectDisplay2;
+					basicSelect = $("#itemsDisplay");
+					selectDisplay2 = basicSelect.children().filter(":eq(1)");
+
+					selectDisplay2.slideUp(1000);
+
+					var mq550, scrollStart, targetTop, targetFeatured;
+					mq550 = window.matchMedia("(min-width: 550px)");
+					scrollStart = $("html, body");
+					targetTop = $("#header");
+					targetFeatured = $("#featured");
+
+					if (mq550.matches) {
+						scrollStart.animate({
+							scrollTop: targetTop.offset().top
+						}, 1500);
+					} else {
+						scrollStart.animate({
+							scrollTop: targetFeatured.offset().top
+						}, 1500);
+					}
+				});//closes click(function)
+			}
+			closeEdufinal();
+
+			function closeMoreedu() {
+				var selectEdu, selectMore;
+				selectEdu = $("#edu");
+				selectMore = selectEdu.find("span:contains('Read less...')");
+
+				selectMore.click(function() {
+					var basicSelect, selectDisplay2, selectCloseMore;
+					basicSelect = $("#itemsDisplay");
+					selectDisplay2 = basicSelect.children().filter(":eq(1)");
+					selectCloseMore = selectDisplay2.find(".boxReadmore");
+
+					selectCloseMore.slideUp(1000);
+				});
+			}
+			closeMoreedu();
+		}
+		displayMoreedu();
 
 }
 $(displayEdu);
 
 
-/*		function displayRecent() {
-
-
-			});
-		}
-		displayRecent();*/

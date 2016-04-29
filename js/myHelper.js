@@ -23,7 +23,7 @@ var HTMLfeaturedDisplay = '<div class="displayCanvas" style="display: none"></di
 var HTMLentryStart = '<div class="item-entry"></div>';
 var HTMLformalInfo = '<div class="formalInfo"></div>';
 
-var HTMLdisplayMore = '<div id="ShowMore" class="boxMoreless" style="display: none"></div>';
+var HTMLdisplayMore = '<div class="boxReadmore" style="display: none"></div>';
 var HTMLdivMoreless = '<div class="readMoreless"></div>';
 var HTMLdivClosemore = '<div class="closeReadmore"></div>';
 var HTMLclosePage = '<span class="link asLink floatLeft"><br>Close...</span>';
