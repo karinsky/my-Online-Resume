@@ -248,7 +248,7 @@ var work = {
 			formLocation = HTMLworkLocation.replace("%data%", work.jobs[i].location);
 			formDates = HTMLworkDates.replace("%data%", work.jobs[i].dates);
 			formDescription = HTMLworkDescription.replace("%data%", work.jobs[i].description);
-//	acc. JSHint 'already defined'--but 'out of scope' in following when not, again, defined here
+//	acc. JSHint 'already defined'--but 'out of scope' in following when not defined (->defined again)
 
 			finalWork.append(formEmployer);
 			finalWork.append(formTitle);
@@ -508,12 +508,8 @@ var education = {
 			"dates" : "9/2015",
 			"url" : "https://www.coursera.org/course/cs101"
 		}
-	]
-}
-// JSONLint: valid JSON (without function)
-// JSHint for function: ok exept for external defined variables and issues commented upon
-
-function displayEdu() {
+	],
+	"display" : function() {
 		var basicSelect, selectDisplay2, selectEdu;
 		basicSelect = $("#itemsDisplay");
 		basicSelect.append(HTMLfeaturedDisplay);
@@ -539,7 +535,7 @@ function displayEdu() {
 			lastEdu.append(formMajor);
 			lastEdu.append(HTMLformalInfo).append(formLocation + " " + formDates);
 			lastEdu.append(formEduurl);
-		}// 'for in' not wrapped in 'if' as wrapped in object
+		}// 'for in' not wrapped in 'if' because wrapped in object
 
 		selectEdu.append(HTMLdivMoreless);
 
@@ -567,7 +563,7 @@ function displayEdu() {
 			lastOnline.append(formOnlineschool);
 			lastOnline.append(formOnlinedates);
 			lastOnline.append(formOnlineurl);
-		}// 'for in' not wrapped in 'if' as wrapped in object
+		}// 'for in' not wrapped in 'if' because wrapped in object
 
 		selectOnlineedu.append(HTMLdivClosemore);
 
@@ -706,8 +702,12 @@ console.log(targetEdumore);
 			closeMoreedu();
 		}
 		displayMoreedu();
+	}//closes 'display: function' in object
+}//closes object
+education.display();
 
-}
-$(displayEdu);
+// JSONLint: valid JSON (without function)
+// JSHint for function: ok exept for external defined variables and issues commented upon
+
 
 
