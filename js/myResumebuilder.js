@@ -710,4 +710,84 @@ education.display();
 // JSHint for function: ok exept for external defined variables and issues commented upon
 
 
+/*The projects object (extension of 'featured items 3' ?):
+One remark ahead:
+I cannot, for the hell of me, relate to (more or less precise)
+start and end "dates" for a project. There might be some concept
+in the background which I do not get yet. But as I use 'placeholder'
+anyway for the time being, I settle on a 'release date' (without
+hyphen--but I trust to show than I can add a hyphen if necessary).*/
 
+var projects = {
+	"locum" : [
+		{
+			"title" : "'Vom Text zum Wissen'",
+			"released" : "Konstanz, Germany, 2008",
+			"description" : "Phd Thesis ('From Text To Knowledge') on Theories and Problems Of Qualitative Social Research",
+			"projectImage" : ["images/2009_Diss-fromAmazon4x3_300w.JPG"]
+		},
+		{
+			"title" : "Performance is...? Short Cuts on Voice and Other Metaphors",
+			"released" : "Urbana-Champaign (IL), 2010",
+			"description" : "1st publication in the U.S.A.",
+			"projectImage" : ["images/2010_IRQR-PerformanceIs4x3_300w.JPG"]
+		}
+	]
+}
+
+function display() {
+		var basicSelect, selectDisplay3, selectEdu;
+		basicSelect = $("#itemsDisplay");
+		basicSelect.append(HTMLfeaturedDisplay);
+		selectDisplay3 = basicSelect.children().filter(":eq(2)");
+		selectDisplay3.append(HTMLdisplayProjects);
+		selectProjects = $("#projects");
+
+		if (projects.locum.length >= 1) {
+			for (var project in projects.locum) {
+				var myProject, lastProject;
+				myProject = selectProjects.append(HTMLentryStartflex);
+				lastProject = myProject.children(".item-entry:last");
+
+				var formProjecttitle, formProjectdates, formProjectdescription, formProjectimage;
+				formProjecttitle = HTMLprojectTitle.replace("%data%", projects.locum[project].title);
+				formProjectdates = HTMLprojectDates.replace("%data%", projects.locum[project].released);
+				formProjectdescription = HTMLprojectDescription.replace("%data%", projects.locum[project].description);
+				formProjectimage = HTMLprojectImage.replace("%data%", projects.locum[project].projectImage);
+
+				lastProject.append(HTMLflexItem1of2);
+				lastProject.append(HTMLflexItem2of2);
+				lastProject.children(".itemUpleft").append(formProjectimage);
+				lastProject.children(".itemDownright").append(formProjecttitle);
+				lastProject.children(".itemDownright").append(HTMLformalInfo).append(formProjectdates);
+				lastProject.children(".itemDownright").append(formProjectdescription);
+			}
+		}
+
+
+		
+/*	
+		for (var degree in education.schools) {
+			var myEdu, lastEdu;
+			myEdu = selectEdu.append(HTMLentryStart);
+			lastEdu = myEdu.children(".item-entry:last");
+
+			var formSchoolname, formDegree, formMajor, formLocation, formDates, formEduurl;
+			formSchoolname = HTMLschoolName.replace("%data%", education.schools[degree].name);
+			formDegree = HTMLschoolDegree.replace("%data%", education.schools[degree].degree);
+			formMajor = HTMLschoolMajor.replace("%data%", education.schools[degree].major);
+			formLocation = HTMLschoolLocation.replace("%data%", education.schools[degree].location);
+			formDates = HTMLschoolDates.replace("%data%", education.schools[degree].dates);
+			formEduurl = HTMLeduUrl.replace("%data%", education.schools[degree].url);
+
+			lastEdu.append(formSchoolname);
+			lastEdu.append(formDegree);
+			lastEdu.append(formMajor);
+			lastEdu.append(HTMLformalInfo).append(formLocation + " " + formDates);
+			lastEdu.append(formEduurl);
+		}// 'for in' not wrapped in 'if' because wrapped in object
+
+*/
+
+}
+display();
