@@ -732,10 +732,8 @@ var projects = {
 			"description" : "1st publication in the U.S.A.",
 			"projectImage" : ["images/2010_IRQR-PerformanceIs4x3_300w.JPG"]
 		}
-	]
-}
-
-function display() {
+	],
+	"display" : function() {
 		var basicSelect, selectDisplay3, selectEdu;
 		basicSelect = $("#itemsDisplay");
 		basicSelect.append(HTMLfeaturedDisplay);
@@ -757,37 +755,79 @@ function display() {
 
 				lastProject.append(HTMLflexItem1of2);
 				lastProject.append(HTMLflexItem2of2);
-				lastProject.children(".itemUpleft").append(formProjectimage);
-				lastProject.children(".itemDownright").append(formProjecttitle);
-				lastProject.children(".itemDownright").append(HTMLformalInfo).append(formProjectdates);
-				lastProject.children(".itemDownright").append(formProjectdescription);
+				lastProject.children(".itemdisplay-pic").append(formProjectimage);
+				lastProject.children(".itemdisplay-text").append(formProjecttitle);
+				lastProject.children(".itemdisplay-text").append(HTMLformalInfo).append(formProjectdates);
+				lastProject.children(".itemdisplay-text").append(formProjectdescription);
 			}
 		}
 
+		selectProjects.append(HTMLdivMoreless);
 
+		var selectMoreless;
+		selectMoreless = selectProjects.find(".readMoreless");
+		selectMoreless.append(HTMLclosePage);
 		
-/*	
-		for (var degree in education.schools) {
-			var myEdu, lastEdu;
-			myEdu = selectEdu.append(HTMLentryStart);
-			lastEdu = myEdu.children(".item-entry:last");
+//	scrolling effect as follows courtesy Cory LaViska
+//	http://www.abeautifulsite.net/smoothly-scroll-to-an-element-without-a-jquery-plugin-2/
+//	bug: does not work properly on repeated clicks (and neither in overflow elements)
 
-			var formSchoolname, formDegree, formMajor, formLocation, formDates, formEduurl;
-			formSchoolname = HTMLschoolName.replace("%data%", education.schools[degree].name);
-			formDegree = HTMLschoolDegree.replace("%data%", education.schools[degree].degree);
-			formMajor = HTMLschoolMajor.replace("%data%", education.schools[degree].major);
-			formLocation = HTMLschoolLocation.replace("%data%", education.schools[degree].location);
-			formDates = HTMLschoolDates.replace("%data%", education.schools[degree].dates);
-			formEduurl = HTMLeduUrl.replace("%data%", education.schools[degree].url);
+		function displayFormalprojects() {
+			var selectItem3;
+			selectItem3 = $(".item-box:eq(2)");
 
-			lastEdu.append(formSchoolname);
-			lastEdu.append(formDegree);
-			lastEdu.append(formMajor);
-			lastEdu.append(HTMLformalInfo).append(formLocation + " " + formDates);
-			lastEdu.append(formEduurl);
-		}// 'for in' not wrapped in 'if' because wrapped in object
+			selectItem3.click(function() {
+				var basicSelect, selectDisplay3, scrollStart, targetProjects1;
+				basicSelect = $("#itemsDisplay");
+				selectDisplay3 = basicSelect.children().filter(":eq(2)");
+				scrollStart = $("html, body");
+				targetProjects1 = selectDisplay3.find("h1");
 
-*/
+				selectDisplay3.attr("style", "display: block");
 
-}
-display();
+				scrollStart.animate({
+					scrollTop: targetProjects1.offset().top
+				}, 1200);
+			}); // closes click function
+
+		}
+		displayFormalprojects();
+
+		function closeFormalprojects() {
+			var selectEdu, selectClose;
+			selectProjects = $("#projects");
+			selectClose = selectProjects.find("span:contains('Close...')");
+
+			selectClose.click(function() {
+				var basicSelect, selectDisplay3;
+				basicSelect = $("#itemsDisplay");
+				selectDisplay3 = basicSelect.children().filter(":eq(2)");
+
+				selectDisplay3.slideUp(1000);
+
+				var mq550, scrollStart, targetTop, targetFeatured;
+				mq550 = window.matchMedia("(min-width: 550px)");
+				scrollStart = $("html, body");
+				targetTop = $("#header");
+				targetFeatured = $("#featured");
+
+				if (mq550.matches) {
+					scrollStart.animate({
+						scrollTop: targetTop.offset().top
+					}, 1500);
+				} else {
+					scrollStart.animate({
+						scrollTop: targetFeatured.offset().top
+					}, 1500);
+				}
+			});//closes click(function)
+		}
+		closeFormalprojects();
+	}//closes 'display: function' in object
+}//closes object
+projects.display();
+
+//	JSONLint: valid JSON (without function)
+/*	JSHint for function: ok exept for external defined variables and not identifying
+	that 'for in' is wrapped in 'if' statement*/
+

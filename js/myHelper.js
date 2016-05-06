@@ -27,7 +27,7 @@ var HTMLdisplayMore = '<div class="boxReadmore" style="display: none"></div>';
 var HTMLdivMoreless = '<div class="readMoreless"></div>';
 var HTMLdivClosemore = '<div class="closeReadmore"></div>';
 var HTMLclosePage = '<span class="link asLink floatLeft"><br>Close...</span>';
-var HTMLclosePages = '<span class="link asLink floatLeft"><br>Close section...</span>';
+var HTMLclosePages = '<span class="link asLink floatLeft"><br>Close all...</span>';
 var HTMLreadMore = '<span class="link asLink floatRight"><br>Read more...</span>';
 var HTMLreadLess = '<span class="link asLink floatRight"><br>Read less...</span>';
 
@@ -61,12 +61,12 @@ var HTMLonlineUrl = '<div class="displayLastdiv removeFloat"><a href>%data%</a><
 // Html for 'projects object':
 
 var HTMLdisplayProjects = '<div id="projects" class="displayBox"><h1 class="titleBox">Projects (With Placeholders)</h1></div>';
-var HTMLentryStartflex = '<div class="item-entry flexRow flexDisplay"></div>';
-var HTMLflexItem1of2 = '<div class="itemUpleft"></div>';
-var HTMLflexItem2of2 = '<div class="itemDownright"></div>';
+var HTMLentryStartflex = '<div class="item-entry flexDisplay flexdisplay-box"></div>';
+var HTMLflexItem1of2 = '<div class="itemdisplay-pic"></div>';
+var HTMLflexItem2of2 = '<div class="itemdisplay-text"></div>';
 
 var HTMLprojectTitle = '<h2 class="displayFirstdiv caps">%data%</h2>';
-var HTMLprojectDates = '<span class="quote floatRight">%data%</span>';
+var HTMLprojectDates = '<span class="quote floatLeft">%data%</span>';
 var HTMLprojectDescription = '<div class="displayLastdiv removeFloat">%data%</div>';
 var HTMLprojectImage = '<img src="%data%">';
 
