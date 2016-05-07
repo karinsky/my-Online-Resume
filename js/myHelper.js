@@ -72,4 +72,3 @@ var HTMLprojectImage = '<img src="%data%">';
 
 
 
-

@@ -345,7 +345,7 @@ console.log(targetWorkmore);
 			function closeWorkfinal() {
 			var selectWork, selectClose;
 			selectWork = $("#work");
-			selectClose = selectWork.find("span:contains('Close section...')");
+			selectClose = selectWork.find("span:contains('Close all...')");
 
 				selectClose.click(function() {
 					var basicSelect, selectDisplay1;
@@ -657,7 +657,7 @@ console.log(targetEdumore);
 			function closeEdufinal() {
 			var selectEdu, selectClose;
 			selectEdu = $("#edu");
-			selectClose = selectEdu.find("span:contains('Close section...')");
+			selectClose = selectEdu.find("span:contains('Close all...')");
 
 				selectClose.click(function() {
 					var basicSelect, selectDisplay2;
@@ -830,4 +830,31 @@ projects.display();
 //	JSONLint: valid JSON (without function)
 /*	JSHint for function: ok exept for external defined variables and not identifying
 	that 'for in' is wrapped in 'if' statement*/
+
+
+/*	"console.log information about click locations":
+	I had to rearrange the "code shell" provided in helper.js a bit to get it working here
+*/
+
+$(document).click(function(loc) {
+	var x = loc.pageX;
+	var y = loc.pageY;
+
+	logClicks(x,y);
+});
+
+function logClicks(x,y) {
+	var clickLocations = [];
+	clickLocations.push(
+		{
+			x: x,
+			y: y
+		}
+	);
+	console.log('x location: ' + x + '; y location: ' + y);
+}
+//	JSHint: two functions; no comment besides metrics
+
+
+
 
