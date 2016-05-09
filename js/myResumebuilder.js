@@ -56,7 +56,7 @@ var bio = {
 		"mobile" : "(1) xxx 914 8834",
 		"email" : "k.s.korth@gmail.com",
 		"github" : "karinsky",
-		"located" : "Chicago (IL) U.S.A."
+		"location" : "Chicago, IL, U.S.A."
 		},
 	"welcomeMessage" : "Welcome!<br><br>I fell for Front End Web Development because it allows me to unite two long separated strands of my mind and life: my visual sences which love art and design, and my trained analytical brain which equally loves to systematically identify and solve problems.",
 	"skills" : [
@@ -164,7 +164,7 @@ var work = {
 		{
 			"employer" : "Family Time",
 			"title" : "Health Care Management and Migrating", 
-			"location" : "Schwelm/Frankfurt, Germany; Chicago, IL, U.S.A.",
+			"location" : "Schwelm and Frankfurt/Main, Germany; Chicago, IL, U.S.A.",
 			"dates" : "2009 - 2011",
 			"description" : "Caring for my father and, after he passed away, immigrating to the U.S.A. to live with my late husband."
 		},
@@ -178,14 +178,14 @@ var work = {
 		{
 			"employer" : "J. W. Goethe University, Department of Social Sciences",
 			"title" : "Research Associate and Lecturer",
-			"location" : "Frankfurt, Germany",
+			"location" : "Frankfurt/Main, Germany",
 			"dates" : "1995 - 2004",
 			"description" : "Teaching methods of social sciences, managing research projects and grants, editing publications, and organising conferences."
 		},
 		{
 			"employer" : "J. W. Goethe University, Department of Social Sciences",
 			"title" : "Office and Project Assistant",
-			"location" : "Frankfurt, Germany",
+			"location" : "Frankfurt/Main, Germany",
 			"dates" : "1989 - 1995",
 			"description" : "I managed an office, a team, a publication series, and grants."
 		},
@@ -452,7 +452,7 @@ var education = {
 	"schools" : [
 		{
 			"name" : "J W Goethe University, Department of Social Sciences",
-			"location" : "Frankfurt (Main), Germany",
+			"location" : "Frankfurt/Main, Germany",
 			"dates" : "2008",
 			"url" : "http://www.fb03.uni-frankfurt.de/39791667/international",
 			"degree" : "PhD in Sociology",
@@ -460,7 +460,7 @@ var education = {
 		},
 		{
 			"name" : "J W Goethe University, Department of Social Sciences",
-			"location" : "Frankfurt (Main), Germany",
+			"location" : "Frankfurt/Main, Germany",
 			"dates" : "1996",
 			"url" : "http://www.fb03.uni-frankfurt.de/39791667/international",
 			"degree" : "Certificate of Equivalence in Political Science",
@@ -706,17 +706,18 @@ console.log(targetEdumore);
 }//closes object
 education.display();
 
-// JSONLint: valid JSON (without function)
-// JSHint for function: ok exept for external defined variables and issues commented upon
+//	JSONLint: valid JSON (without function)
+//	JSHint for function: ok exept for external defined variables and issues commented upon
 
 
-/*The projects object (extension of 'featured items 3' ?):
+/*	The projects object (extension of 'featured items 3' ?)
+
 One remark ahead:
 I cannot, for the hell of me, relate to (more or less precise)
 start and end "dates" for a project. There might be some concept
 in the background which I do not get yet. But as I use 'placeholder'
 anyway for the time being, I settle on a 'release date' (without
-hyphen--but I trust to show than I can add a hyphen if necessary).*/
+hyphen--but I trust to show than I could add a hyphen if necessary).*/
 
 var projects = {
 	"locum" : [
@@ -734,7 +735,7 @@ var projects = {
 		}
 	],
 	"display" : function() {
-		var basicSelect, selectDisplay3, selectEdu;
+		var basicSelect, selectDisplay3, selectProjects;
 		basicSelect = $("#itemsDisplay");
 		basicSelect.append(HTMLfeaturedDisplay);
 		selectDisplay3 = basicSelect.children().filter(":eq(2)");
@@ -856,5 +857,144 @@ function logClicks(x,y) {
 //	JSHint: two functions; no comment besides metrics
 
 
+//	Last fun part: the map:
+
+function displayMap() {
+	var basicSelect, selectDisplay4, selectMapbox, selectMoreless;
+
+	basicSelect = $("#itemsDisplay");
+	basicSelect.append(HTMLfeaturedDisplay);
+	selectDisplay4 = basicSelect.children().filter(":eq(3)");
+	selectDisplay4.append(HTMLdisplayMap);
+	selectMapbox = $("#googleMap");
+	selectMapbox.append(HTMLgoogleMap, HTMLdivMoreless);
+	selectMoreless = selectMapbox.find(".readMoreless");
+	selectMoreless.append(HTMLclosePage);
+}
+displayMap();
 
 
+// declaring a global map variable:
+var map;
+
+//	InitializeMap() is called when page is loaded (see below):
+
+function initializeMap() {
+
+	var mapOptions = {
+    disableDefaultUI: true
+	};
+
+	map = new google.maps.Map(document.querySelector("#map"), mapOptions);
+
+	// Returning array of locations from bio, work, and education JSON objects
+	function locationFinder() {
+    
+		var locations = [];// declares empty array
+    
+		locations.push(bio.contacts.location);// adds single location from bio to array:
+
+		for (var loco in work.jobs) {
+			locations.push(work.jobs[loco].location);
+		}// collects + adds locations in work object to array
+
+		for (var place in education.schools) {
+			locations.push(education.schools[place].location);
+		}// same for edu object
+
+		return locations;
+	}// closes locationFinder()
+	locations = locationFinder();
+// console.log(locations) confirms array of locations from objects;
+
+  /*
+  createMapMarker(placeData) reads Google Places search results to create map pins.
+  placeData is the object returned from search results containing information
+  about a single location.
+  */
+
+	// function for running Google Places search to create map pins with results
+	// (in object/s 'placeData'):	
+	function createMapMarker(placeData) {
+
+		// Saves location data from search result object to local variables:
+		var lat = placeData.geometry.location.lat();  // latitude from place service (see below)
+		var lon = placeData.geometry.location.lng();  // longitude from place service
+		var name = placeData.formatted_address;   // name of the place from place service
+		var bounds = window.mapBounds;            // current boundaries of the map window
+
+		// marker is an object with additional (kind of?) data about the pin for a single location
+		var marker = new google.maps.Marker({
+			map: map,
+			position: placeData.geometry.location,
+			title: name
+		});
+
+		// infoWindows equivalent of what opens on hoover or click alert:
+		var infoWindow = new google.maps.InfoWindow({
+			content: name //They usually contain more information about a location: can I add more ?
+		});
+
+		// Opens infoWindow on click:
+		google.maps.event.addListener(marker, 'click', function() {
+			infoWindow.open(map, marker);
+		});
+
+		// this is where the pin actually gets added to the map.
+		// bounds.extend() takes in a map location object
+		bounds.extend(new google.maps.LatLng(lat, lon));
+		// fit the map to the new marker
+		map.fitBounds(bounds);
+		// center the map
+		map.setCenter(bounds.getCenter());
+	}// closes createMapMarker(placeData)
+
+	/*
+	callback(results, status) makes sure the search returned results for a location.
+	If so, it creates a new map marker for that location.
+	*/
+	function callback(results, status) {
+		if (status == google.maps.places.PlacesServiceStatus.OK) {
+			createMapMarker(results[0]);
+		}
+	}
+
+	/*
+	pinPoster(locations) takes in the array of locations created by locationFinder()
+	and fires off Google place searches for each location
+	*/
+	function pinPoster(locations) {
+
+		// creates a Google place search service object. PlacesService does the work of
+		// actually searching for location data.
+		var service = new google.maps.places.PlacesService(map);
+
+		// Iterates through the array of locations, creates a search object for each location
+		for (var place in locations) {
+
+			// the search request object
+			var request = {
+			query: locations[place]
+			};
+
+			// Actually searches the Google Maps API for location data and runs the callback
+			// function with the search results after each search.
+			service.textSearch(request, callback);
+		}
+	}// closes pinPoster(Locations)
+	pinPoster(locations);
+
+	// Sets the boundaries of the map based on pin locations
+	window.mapBounds = new google.maps.LatLngBounds();
+
+}//	closes initializeMap() function
+
+// Calls the initializeMap() function when the page loads
+window.addEventListener('load', initializeMap);
+
+// Vanilla JS way to listen for resizing of the window
+// and adjust map bounds + Make sure the map bounds 
+// get updated on page resize
+window.addEventListener('resize', function(e) {
+  map.fitBounds(mapBounds);
+});

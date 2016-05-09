@@ -70,5 +70,12 @@ var HTMLprojectDates = '<span class="quote floatLeft">%data%</span>';
 var HTMLprojectDescription = '<div class="displayLastdiv removeFloat">%data%</div>';
 var HTMLprojectImage = '<img src="%data%">';
 
+// Html for Google map:
 
+var HTMLdisplayMap = '<div id="googleMap" class="displayBox"><h1 class="titleBox">Where I worked and lived</h1></div>';
+var HTMLgoogleMap = '<div id="mapDiv"><div id="map"></div></div>';
 
+/*  
+code for console.log click locations as well as for appending the map and 'locationalize' it
+is in myResumebuilder.js
+*/

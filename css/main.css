@@ -485,6 +485,17 @@ span {
   max-width: 100%;
 }
 
+#mapDiv {
+  height: 300px;
+  width: 100%;
+}
+
+#map {
+  display: block;
+  height: 100%;
+  margin: 1px;
+}
+
 
 /*
 *
