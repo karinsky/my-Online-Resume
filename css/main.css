@@ -485,12 +485,12 @@ span {
   max-width: 100%;
 }
 
-#mapDiv {
+.mapDiv {
   height: 300px;
   width: 100%;
 }
 
-#map {
+.maps {
   display: block;
   height: 100%;
   margin: 1px;
