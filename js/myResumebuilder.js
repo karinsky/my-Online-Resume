@@ -860,7 +860,7 @@ function logClicks(x,y) {
 //	Last fun part: Google maps:
 
 function displayMaps() {
-	var basicSelect, selectDisplay4, selectMapbox, selectMoreless, adaptReadmore;
+	var basicSelect, selectDisplay4, selectMaps, selectMoreless, adaptReadmore;
 
 	basicSelect = $("#itemsDisplay");
 	basicSelect.append(HTMLfeaturedDisplay);
@@ -868,18 +868,19 @@ function displayMaps() {
 	selectDisplay4 = basicSelect.children().filter(":eq(3)");
 	selectDisplay4.append(HTMLdisplayMaps);
 
-	selectMapbox = $("#googleMaps");
-	selectMapbox.append(HTMLgoogleMap1, HTMLdivMoreless);
+	selectMaps = $("#googleMaps");
+	selectMaps.append(HTMLgoogleMap1, HTMLdivMoreless);
 
-	selectMoreless = selectMapbox.find(".readMoreless");
+	selectMoreless = selectMaps.find(".readMoreless");
 	selectMoreless.append(HTMLclosePage + " " + HTMLlinkmap2);
+	selectMaps.append(HTMLdisplayMore);
 
 	function makeMap1() {
 
 		// declaring a local map variable:
 		var map;
 
-		//	InitializeMap() is called 'pn click' (see below):
+		//	InitializeMap() is called 'on click' (see below):
 
 		function initializeMap() {
 
@@ -910,7 +911,7 @@ function displayMaps() {
 			// console.log(locations) confirms array of locations from objects;
 
 			// function for running Google Places search to create map pins with results
-			// (in object/s 'placeData'):	
+			// (in object/s 'placeData'):
 			function createMapMarker(placeData) {
 
 				// Saves location data from search result object to local variables:
@@ -921,7 +922,7 @@ function displayMaps() {
 
 				// marker is an object with additional (kind of?) data about the pin for a single location
 				var marker = new google.maps.Marker({
-					map1: map,
+					map: map,
 					position: placeData.geometry.location,
 					title: name
 				});
@@ -990,7 +991,7 @@ function displayMaps() {
 		document.getElementById("item4").addEventListener("click", initializeMap);
 
 		// Vanilla JS way to listen for resizing of the window
-		// and adjust map bounds + Make sure the map bounds 
+		// and adjust map bounds + Make sure the map bounds
 		// get updated on page resize
 		window.addEventListener('resize', function(e) {
 			map.fitBounds(mapBounds);
@@ -998,44 +999,101 @@ function displayMaps() {
 	}
 	makeMap1();
 
+	function displayMap1() {
+		var selectItem4;
+		selectItem4 = $(".item-box:eq(3)");
 
+		selectItem4.click(function() {
+			var basicSelect, selectDisplay4, scrollStart, targetDisplay4;
+			basicSelect = $("#itemsDisplay");
+			selectDisplay4 = basicSelect.children().filter(":eq(3)");
+			scrollStart = $("html, body");
+			targetDisplay4 = selectDisplay4.find("h1");
+
+			selectDisplay4.attr("style", "display: block");
+
+			scrollStart.animate({
+				scrollTop: targetDisplay4.offset().top
+			}, 1200);
+		}); // closes click function
+	}
+	displayMap1();
+
+	function closeMap1() {
+		var selectMapbox, selectClose;
+		selectMapbox = $("#googleMaps");
+		selectClose = selectMapbox.find("span:contains('Close...')");
+
+		selectClose.click(function() {
+			var basicSelect, selectDisplay4;
+			basicSelect = $("#itemsDisplay");
+			selectDisplay4 = basicSelect.children().filter(":eq(3)");
+
+			selectDisplay4.slideUp(1000);
+
+			var mq550, scrollStart, targetTop, targetFeatured;
+			mq550 = window.matchMedia("(min-width: 550px)");
+			scrollStart = $("html, body");
+			targetTop = $("#header");
+			targetFeatured = $("#featured");
+
+			if (mq550.matches) {
+				scrollStart.animate({
+					scrollTop: targetTop.offset().top
+				}, 1500);
+			} else {
+				scrollStart.animate({
+					scrollTop: targetFeatured.offset().top
+				}, 1500);
+			}
+		});//closes click(function)
+	}
+	closeMap1();
+
+	var selectMap2, maps2Headerand, selectClosefinal;
+
+	selectMap2 = selectMaps.find(".boxReadmore");
+	maps2Headerand = selectMap2.append(HTMLmaps2Header, HTMLgoogleMap2);
+	selectMap2.append(HTMLdivClosemore);
+
+	selectClosefinal = selectMap2.find(".closeReadmore");
+	selectClosefinal.append(HTMLclosePages + " " + HTMLseeLess);
 
 	function makeMap2() {
 
 		// declaring a local map variable:
-		var map2;
+		var map;
 
-		//	InitializeMap2() is called 'on click' (see below):
+		//	InitializeMap() is called 'on click' (see below):
+		function initializeMap() {
 
-		function initializeMap2() {
-
-			var map2Options = {
+			var mapOptions = {
 				disableDefaultUI: true
 			};
 
-			map2 = new google.maps.Map(document.querySelector("#map2"), map2Options);
+			map = new google.maps.Map(document.querySelector("#map2"), mapOptions);
 
 			// Returning array of locations from bio, work, and education JSON objects
-			function locationFinder2() {
+			function locationFinder() {
     
 				var locations = [];// declares empty array
 
-				for (var place in work.jobs) {
-					locations.push(work.jobs[place].location);
-				}// collects + adds locations in work object to array -> ADJUST!
+				for (i = 3; i < work.jobs.length; i++) {
+					locations.push(work.jobs[i].location);
+				}// collects + adds locations in work object to array
 
 				for (var place in education.schools) {
 					locations.push(education.schools[place].location);
-				}// same for edu object -> ADJUST!!
+				}// same for edu object
 
 				return locations;
 			}
-			locations = locationFinder2();
-console.log(locations);
+			locations = locationFinder();
+console.log(locations); //confirms array of locations from objects
 
 			// function for running Google Places search to create map pins with results
-			// (in object/s 'placeData'):	
-			function createMap2Marker(placeData) {
+			// (in object/s 'placeData'):
+			function createMapMarker(placeData) {
 
 				// Saves location data from search result object to local variables:
 				var lat = placeData.geometry.location.lat();  // latitude from place service (see below)
@@ -1045,7 +1103,7 @@ console.log(locations);
 
 				// marker is an object with additional (kind of?) data about the pin for a single location
 				var marker = new google.maps.Marker({
-					map2: map,
+					map: map,
 					position: placeData.geometry.location,
 					title: name
 				});
@@ -1057,16 +1115,16 @@ console.log(locations);
 
 				// Opens infoWindow on click:
 				google.maps.event.addListener(marker, 'click', function() {
-					infoWindow.open(map2, marker);
+					infoWindow.open(map, marker);
 				});
 
 				// this is where the pin actually gets added to the map.
 				// bounds.extend() takes in a map location object
 				bounds.extend(new google.maps.LatLng(lat, lon));
 				// fit the map to the new marker
-				map2.fitBounds(bounds);
+				map.fitBounds(bounds);
 				// center the map
-				map2.setCenter(bounds.getCenter());
+				map.setCenter(bounds.getCenter());
 			}// closes createMapMarker(placeData)
 
 
@@ -1075,7 +1133,7 @@ console.log(locations);
 
 			function callback(results, status) {
 				if (status == google.maps.places.PlacesServiceStatus.OK) {
-					createMap2Marker(results[0]);
+					createMapMarker(results[0]);
 				}
 			}
 
@@ -1087,7 +1145,7 @@ console.log(locations);
 
 				// creates a Google place search service object. PlacesService does the work of
 				// actually searching for location data.
-				var service = new google.maps.places.PlacesService(map2);
+				var service = new google.maps.places.PlacesService(map);
 
 				// Iterates through the array of locations, creates a search object for each location
 				for (var place in locations) {
@@ -1107,76 +1165,52 @@ console.log(locations);
 			// Sets the boundaries of the map based on pin locations
 			window.mapBounds = new google.maps.LatLngBounds();
 
-		}//	closes initializeMap2() function
-		initializeMap2();
-		// Calls the initializeMap2() function 'on click'
+		}//	closes initializeMap() function
+
+		// Calls the initializeMap() function 'on click'
 		// 'on load' did not work, I suppose because display is set to 'none' at page load.
-//		document.getElementById("map2").addEventListener("click", initializeMap);
+		document.getElementById("showMap2").addEventListener("click", initializeMap);
 
 		// Vanilla JS way to listen for resizing of the window
-		// and adjust map bounds + Make sure the map bounds 
+		// and adjust map bounds + Make sure the map bounds
 		// get updated on page resize
 		window.addEventListener('resize', function(e) {
-			map2.fitBounds(mapBounds);
+			map.fitBounds(mapBounds);
 		});
 	}
 	makeMap2();
 
+	function displayMap2() {
+
+		var selectMaps, selectMore;
+		selectMaps = $("#googleMaps");
+		selectMore = selectMaps.find("#showMap2");
+
+		selectMore.click(function() {
+			var selectMaps, displayMore;
+			selectMaps = $("#googleMaps");
+			displayMore = selectMaps.find(".boxReadmore");
+
+			displayMore.attr("style", "display: block");
+
+			var basicSelect, selectDisplay4, targetmoreMap;
+			basicSelect = $("#itemsDisplay");
+			selectDisplay4 = basicSelect.children().filter(":eq(3)");
+			targetmoreMap = selectDisplay4.find("h2");
+
+			selectDisplay4.animate({
+				scrollTop: targetmoreMap.position().top
+			}, 1200);
+	
+		});//closes click(function)
 
 
+	}
+	displayMap2();
 
-		function displayMap1() {
-			var selectItem4;
-			selectItem4 = $(".item-box:eq(3)");
 
-			selectItem4.click(function() {
-				var basicSelect, selectDisplay4, scrollStart, targetDisplay4;
-				basicSelect = $("#itemsDisplay");
-				selectDisplay4 = basicSelect.children().filter(":eq(3)");
-				scrollStart = $("html, body");
-				targetDisplay4 = selectDisplay4.find("h1");
-
-				selectDisplay4.attr("style", "display: block");
-
-				scrollStart.animate({
-					scrollTop: targetDisplay4.offset().top
-				}, 1200);
-			}); // closes click function
-
-		}
-		displayMap1();
-
-		function closeMap1() {
-			var selectMapbox, selectClose;
-			selectMapbox = $("#googleMaps");
-			selectClose = selectMapbox.find("span:contains('Close...')");
-
-			selectClose.click(function() {
-				var basicSelect, selectDisplay4;
-				basicSelect = $("#itemsDisplay");
-				selectDisplay4 = basicSelect.children().filter(":eq(3)");
-
-				selectDisplay4.slideUp(1000);
-
-				var mq550, scrollStart, targetTop, targetFeatured;
-				mq550 = window.matchMedia("(min-width: 550px)");
-				scrollStart = $("html, body");
-				targetTop = $("#header");
-				targetFeatured = $("#featured");
-
-				if (mq550.matches) {
-					scrollStart.animate({
-						scrollTop: targetTop.offset().top
-					}, 1500);
-				} else {
-					scrollStart.animate({
-						scrollTop: targetFeatured.offset().top
-					}, 1500);
-				}
-			});//closes click(function)
-		}
-		closeMap1();
-
+/*
+*/
 
 }
 displayMaps();

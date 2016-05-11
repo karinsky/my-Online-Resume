@@ -72,10 +72,12 @@ var HTMLprojectImage = '<img src="%data%">';
 
 // Html for Google map:
 
-var HTMLdisplayMaps = '<div id="googleMaps" class="displayBox"><h1 class="titleBox">Where I worked and lived</h1></div>';
-var HTML<gozogleMap1 = '<div class="mapDiv"><div id="map1" class="maps"></div></div>';
-var HTMLlinkmap2 = '<span class="link asLink floatRight"><br>German locations more detailed...</span>';
+var HTMLdisplayMaps = '<div id="googleMaps" class="displayBox"><h1 class="titleBox">Where I worked and studied</h1></div>';
+var HTMLgoogleMap1 = '<div class="mapDiv"><div id="map1" class="maps"></div></div>';
+var HTMLlinkmap2 = '<span id="showMap2" class="link asLink floatRight"><br>German locations more detailed...</span>';
 var HTMLgoogleMap2 = '<div class="mapDiv"><div id="map2" class="maps"></div></div>';
+var HTMLmaps2Header = '<div><h2 class="displayLastdiv caps">Where I worked and studied in Germany</h2></div>';
+var HTMLseeLess = '<span class="link asLink floatRight"><br>From local back to global overview...</span>';
 
 /*  
 code for console.log click locations as well as for appending the map and 'locationalize' it
