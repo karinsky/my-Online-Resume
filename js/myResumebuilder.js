@@ -859,6 +859,16 @@ function logClicks(x,y) {
 
 //	Last fun part: Google maps:
 
+/*	Faced by the challenge that different German locations do not display
+	well on a more global scale, invoced by my more recent US location, I try
+	to reuse the previous 'read more' set-up to display a 2nd, more deteiled
+	map.
+	As far as I see by now, the standard implementation of Google maps API
+	defines the map as a global variable which does not work for more than
+	one map displaying at the same time. I try to solve this by determining
+	which map is initialized at which user action.
+*/
+
 function displayMaps() {
 	var basicSelect, selectDisplay4, selectMaps, selectMoreless, adaptReadmore;
 
@@ -873,7 +883,58 @@ function displayMaps() {
 
 	selectMoreless = selectMaps.find(".readMoreless");
 	selectMoreless.append(HTMLclosePage + " " + HTMLlinkmap2);
-	selectMaps.append(HTMLdisplayMore);
+	selectMaps.append(HTMLfeaturedDisplay);
+
+	function displayMap1() {
+		var selectItem4;
+		selectItem4 = $(".item-box:eq(3)");
+
+		selectItem4.click(function() {
+			var basicSelect, selectDisplay4, scrollStart, targetDisplay4;
+			basicSelect = $("#itemsDisplay");
+			selectDisplay4 = basicSelect.children().filter(":eq(3)");
+			scrollStart = $("html, body");
+			targetDisplay4 = selectDisplay4.find("h1");
+
+			selectDisplay4.attr("style", "display: block");
+
+			scrollStart.animate({
+				scrollTop: targetDisplay4.offset().top
+			}, 1200);
+		}); // closes click function
+	}
+	displayMap1();
+
+	function closeMap1() {
+		var selectMapbox, selectClose;
+		selectMapbox = $("#googleMaps");
+		selectClose = selectMapbox.find("span:contains('Close...')");
+
+		selectClose.click(function() {
+			var basicSelect, selectDisplay4;
+			basicSelect = $("#itemsDisplay");
+			selectDisplay4 = basicSelect.children().filter(":eq(3)");
+
+			selectDisplay4.slideUp(1000);
+
+			var mq550, scrollStart, targetTop, targetFeatured;
+			mq550 = window.matchMedia("(min-width: 550px)");
+			scrollStart = $("html, body");
+			targetTop = $("#header");
+			targetFeatured = $("#featured");
+
+			if (mq550.matches) {
+				scrollStart.animate({
+					scrollTop: targetTop.offset().top
+				}, 1500);
+			} else {
+				scrollStart.animate({
+					scrollTop: targetFeatured.offset().top
+				}, 1500);
+			}
+		});//closes click(function)
+	}
+	closeMap1();
 
 	function makeMap1() {
 
@@ -897,18 +958,18 @@ function displayMaps() {
 
 				locations.push(bio.contacts.location);// adds single location from bio to array:
 
-				for (var place in work.jobs) {
-					locations.push(work.jobs[place].location);
-				}// collects + adds locations in work object to array
+				for (i = 5; i < work.jobs.length; i++) {
+					locations.push(work.jobs[i].location);
+				}// selects + adds locations in work object to array
 
-				for (var place in education.schools) {
-					locations.push(education.schools[place].location);
+				for (i = 3; i < education.schools.length; i++) {
+					locations.push(education.schools[i].location);
 				}// same for edu object
 
 				return locations;
 			}
 			locations = locationFinder();
-			// console.log(locations) confirms array of locations from objects;
+//	console.log(locations); confirms array of locations from objects
 
 			// function for running Google Places search to create map pins with results
 			// (in object/s 'placeData'):
@@ -999,66 +1060,6 @@ function displayMaps() {
 	}
 	makeMap1();
 
-	function displayMap1() {
-		var selectItem4;
-		selectItem4 = $(".item-box:eq(3)");
-
-		selectItem4.click(function() {
-			var basicSelect, selectDisplay4, scrollStart, targetDisplay4;
-			basicSelect = $("#itemsDisplay");
-			selectDisplay4 = basicSelect.children().filter(":eq(3)");
-			scrollStart = $("html, body");
-			targetDisplay4 = selectDisplay4.find("h1");
-
-			selectDisplay4.attr("style", "display: block");
-
-			scrollStart.animate({
-				scrollTop: targetDisplay4.offset().top
-			}, 1200);
-		}); // closes click function
-	}
-	displayMap1();
-
-	function closeMap1() {
-		var selectMapbox, selectClose;
-		selectMapbox = $("#googleMaps");
-		selectClose = selectMapbox.find("span:contains('Close...')");
-
-		selectClose.click(function() {
-			var basicSelect, selectDisplay4;
-			basicSelect = $("#itemsDisplay");
-			selectDisplay4 = basicSelect.children().filter(":eq(3)");
-
-			selectDisplay4.slideUp(1000);
-
-			var mq550, scrollStart, targetTop, targetFeatured;
-			mq550 = window.matchMedia("(min-width: 550px)");
-			scrollStart = $("html, body");
-			targetTop = $("#header");
-			targetFeatured = $("#featured");
-
-			if (mq550.matches) {
-				scrollStart.animate({
-					scrollTop: targetTop.offset().top
-				}, 1500);
-			} else {
-				scrollStart.animate({
-					scrollTop: targetFeatured.offset().top
-				}, 1500);
-			}
-		});//closes click(function)
-	}
-	closeMap1();
-
-	var selectMap2, maps2Headerand, selectClosefinal;
-
-	selectMap2 = selectMaps.find(".boxReadmore");
-	maps2Headerand = selectMap2.append(HTMLmaps2Header, HTMLgoogleMap2);
-	selectMap2.append(HTMLdivClosemore);
-
-	selectClosefinal = selectMap2.find(".closeReadmore");
-	selectClosefinal.append(HTMLclosePages + " " + HTMLseeLess);
-
 	function makeMap2() {
 
 		// declaring a local map variable:
@@ -1070,26 +1071,27 @@ function displayMaps() {
 			var mapOptions = {
 				disableDefaultUI: true
 			};
-
-			map = new google.maps.Map(document.querySelector("#map2"), mapOptions);
+/*	'zoom' does not work in current setting but seems to be code for map size display
+	(see: http://www.w3schools.com/googleapi/google_maps_basic.asp */
+			map = new google.maps.Map(document.querySelector("#map1"), mapOptions);
 
 			// Returning array of locations from bio, work, and education JSON objects
 			function locationFinder() {
     
 				var locations = [];// declares empty array
 
-				for (i = 3; i < work.jobs.length; i++) {
+				for (i = 5; i < work.jobs.length; i++) {
 					locations.push(work.jobs[i].location);
 				}// collects + adds locations in work object to array
 
-				for (var place in education.schools) {
-					locations.push(education.schools[place].location);
+				for (i = 3; i < education.schools.length; i++) {
+					locations.push(education.schools[i].location);
 				}// same for edu object
 
 				return locations;
 			}
 			locations = locationFinder();
-console.log(locations); //confirms array of locations from objects
+//	console.log(locations); confirms array of locations from objects
 
 			// function for running Google Places search to create map pins with results
 			// (in object/s 'placeData'):
@@ -1180,16 +1182,23 @@ console.log(locations); //confirms array of locations from objects
 	}
 	makeMap2();
 
-	function displayMap2() {
+/*	function displayMap2() {
 
 		var selectMaps, selectMore;
 		selectMaps = $("#googleMaps");
 		selectMore = selectMaps.find("#showMap2");
 
 		selectMore.click(function() {
-			var selectMaps, displayMore;
+			var basicSelect, selectDisplay4, targetDisplay4;
+			basicSelect = $("#itemsDisplay");
+			selectDisplay4 = basicSelect.children().filter(":eq(3)");
+			targetDisplay4 = selectDisplay4.find("h1");
+
+			selectDisplay4.attr("style", "display: none");
+*/
+/*			var selectMaps, displayMore;
 			selectMaps = $("#googleMaps");
-			displayMore = selectMaps.find(".boxReadmore");
+			displayMore = selectMaps.find(".displayCanvas");
 
 			displayMore.attr("style", "display: block");
 
@@ -1208,8 +1217,6 @@ console.log(locations); //confirms array of locations from objects
 	}
 	displayMap2();
 
-
-/*
 */
 
 }
