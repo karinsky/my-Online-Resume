@@ -1,4 +1,6 @@
-// Html for 'bio object':
+/*
+*  Html for the 'bio object'
+*/
 
 var HTMLcontactTopnode = $("<div><ul id='topContacts' class='flexRow flexContacts'></ul></div>");
 var HTMLcontactFootertitle = $("<h1 class='footerTitle white'>Let's connect!</h1>");
@@ -12,12 +14,14 @@ var HTMLgithub = '<li class="flexitemContacts"><span class="caps">Github</span><
 var HTMLlinkedin = '<li class="flexitemContacts"><span class="caps">Linkedin</span><span class="bold">%data%</span></li>';
 var HTMLlocation = '<li class="flexitemContacts"><span class="caps">Location</span><span class="bold">%data%</span></li>';
 
-//var HTMLbioPic = '<img src="%data%" class="biopic">' -- not used in this P3 project (see xxx);
+//var HTMLbioPic -- not used in my take on the Resume project (see myREADME);
 var HTMLwelcomeMsg = '<p id="welcome" class="quote white">%data%</p>';
 var HTMLskills = '<li class="flexitemContacts"><span class="bold">%data%</span></li>';
 
-
-// Html for interactive display of 'featured items' 1-3 (displaying work, education, and projects):
+/*
+*  General Html for the interactive display of 'featured items'
+*  (currently displaying work, education, projects, and Google maps)
+*/
 
 var HTMLfeaturedDisplay = '<div class="displayCanvas" style="display: none"></div>';
 var HTMLentryStart = '<div class="item-entry"></div>';
@@ -31,7 +35,7 @@ var HTMLclosePages = '<span class="link asLink floatLeft"><br>Close all...</span
 var HTMLreadMore = '<span class="link asLink floatRight"><br>Read more...</span>';
 var HTMLreadLess = '<span class="link asLink floatRight"><br>Read less...</span>';
 
-// Html for 'work object':
+//  Special Html for the 'work object':
 
 var HTMLdisplayWork = '<div id="work" class="displayBox"><h1 class="titleBox">Work Experience</h1></div>';
 
@@ -41,7 +45,7 @@ var HTMLworkDates = '<span class="quote floatRight">%data%</span>';
 var HTMLworkLocation = '<span class="quote floatLeft">%data%</span>';
 var HTMLworkDescription = '<div class="removeFloat displayLastdiv">%data%</div>';
 
-// Html for 'education object':
+//  Special Html for the 'education object':
 
 var HTMLdisplayEdu = '<div id="edu" class="displayBox"><h1 class="titleBox">Education</h1></div>';
 
@@ -58,7 +62,7 @@ var HTMLonlineSchool = '<span class="quote floatLeft">%data%</span>';
 var HTMLonlineDates = '<span class="quote floatRight">%data%</span>';
 var HTMLonlineUrl = '<div class="displayLastdiv removeFloat"><a href>%data%</a></div>';
 
-// Html for 'projects object':
+//  Special Html for the 'projects object':
 
 var HTMLdisplayProjects = '<div id="projects" class="displayBox"><h1 class="titleBox">Projects (With Placeholders)</h1></div>';
 var HTMLentryStartflex = '<div class="item-entry flexDisplay flexdisplay-box"></div>';
@@ -68,9 +72,9 @@ var HTMLflexItem2of2 = '<div class="itemdisplay-text"></div>';
 var HTMLprojectTitle = '<h2 class="displayFirstdiv caps">%data%</h2>';
 var HTMLprojectDates = '<span class="quote floatLeft">%data%</span>';
 var HTMLprojectDescription = '<div class="displayLastdiv removeFloat">%data%</div>';
-var HTMLprojectImage = '<img src="%data%">';
+var HTMLprojectImages = '<img src="%data%">';
 
-// Html for Google map:
+//  Special Html for Google maps:
 
 var HTMLdisplayMaps = '<div id="googleMaps" class="displayBox"><h1 class="titleBox">Where I worked and studied</h1></div>';
 var HTMLgoogleMap1 = '<div class="mapDiv"><div id="map1" class="maps"></div></div>';
@@ -80,6 +84,6 @@ var HTMLmaps2Header = '<div><h2 class="displayLastdiv caps">Where I worked and s
 var HTMLseeLess = '<span class="link asLink floatRight"><br>From local back to global overview...</span>';
 
 /*  
-code for console.log click locations as well as for appending the map and 'locationalize' it
-is in myResumebuilder.js
+* Code for console.log click locations as well as for appending the map and 'locationalize' is
+* in myResumebuilder.js.
 */

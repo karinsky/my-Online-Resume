@@ -1,4 +1,6 @@
-/* Css3 loader animation (thanks to w3schools.com) */
+/*
+* For Css3 loader animation (thanks to w3schools.com)
+*/
 
 #loader {
   position: absolute;
@@ -6,9 +8,8 @@
   top: 25%;
   z-index: 1;
   border: 6px solid #f4f8f9;
-  border-top: 6px solid #63BD8F;
+  border-top: 6px solid #f4f8f9;
   border-right: 6px solid #63BD8F;
-/*border-bottom: 10px solid #CC7B8A;*/
   border-radius: 90%;
   width: 100px;
   height: 100px;
@@ -31,7 +32,11 @@
   100% {transform: rotate(360deg);}
 }
 
-/* Basic css */
+/*
+*
+* Basic CSS
+*
+*/
 
 * {
   -webkit-box-sizing: border-box;
@@ -156,20 +161,13 @@ span {
   text-decoration: underline;
 }
 
-.asClicked {
-  font-size: 12px;
-  font-style: italic;
-  color: #DBDBF9;
-  text-decoration: underline;
-}
-
-.hidden {
-  display: none;
-}
-
-
 /*
-*Preparing for column use (only in section Header)*
+* Preparing for column use
+*
+* Only in section Header, still lingering from the previous
+* 'Build a Portfolio' project where it was meant just to show
+* that I can do columns (while I prefer flexbox design).
+*
 */
 
 .row {
@@ -186,9 +184,12 @@ span {
 .col8 {
   width: 66.67%;
 }
+
 /*
 *
-*Main Section: Header*
+* Main Section (1): Header
+*
+* (carried over from previous project)
 *
 */
 
@@ -250,8 +251,10 @@ span {
 }
 
 /*
-* P2 addition: append contacts (in the DOM: in section 'featured')
+* addition for current project: append contacts 
+* (reused in section footer)
 */
+
 .flexRow {
   display: flex;
   display: -webkit-flex;
@@ -275,7 +278,9 @@ span {
 
 /*
 *
-*Section: Main Pic*
+* Main Section (2): BigPic
+*
+* (carried over from previous project)
 *
 */
 
@@ -313,7 +318,7 @@ span {
   }
 
 #my-picture {
-  display: block; /*inline aligns left, block takes whole width*/
+  display: block; /*(inline aligns left, block takes whole width)*/
   margin: 0 auto;
   max-height: 300px;
   width: 35%;
@@ -323,7 +328,9 @@ span {
   border-radius: 50%;
 }
 
-/*Including 'welcomeText'*/
+/*
+* Adding 'welcomeText' for current Online Resume project
+*/
 
 #welcome {
   max-width: 100%;
@@ -335,10 +342,10 @@ span {
 
 /*
 *
-* Main Section: Featured*
-* (2 main breakpoints adjust to 2-row and 4-row display for the*
-* main <div id="featuredItems"> (see below))*
+* Main Section (3): Featured
 *
+* 2 main breakpoints adjust to 2-row and 4-row display for the
+* main <div id="featuredItems"> (see below)
 */
 
 #featured {
@@ -357,7 +364,7 @@ span {
 }
 
 /*
-* 1) in current use: skills*
+* Main Part (1) in current use: #id skills
 */
 
 #skills {
@@ -366,7 +373,7 @@ span {
 }
 
 /*
-* 2) in current use: Featured Items*
+* Main Part (2) in current use: #id featuredItems
 */
 
 #featuredItems {
@@ -406,7 +413,10 @@ span {
 }
 
 /*
-* 3) in current use: Items Display*
+* Main Part (3) in current use: #id itemsDisplay
+*
+* Added in 'Online Resume project' to add/swap content to be
+* displayed interactively with handlers in part 2 (see above)
 */
 
 #itemsDisplay {
@@ -471,7 +481,7 @@ span {
 
 .flexdisplay-box {
   width: 100%;
-  padding: 20px 20px 10px 20px;
+  padding: 20px;
   margin: 10px 0 20px 0;
   border: 1px solid;
   border-color: #777474;
@@ -489,6 +499,7 @@ span {
 .mapDiv {
   height: 300px;
   width: 100%;
+  margin: 20px 0 25px 0;
 }
 
 .maps {
@@ -499,8 +510,9 @@ span {
 
 /*
 *
-*Footer Section: Introdced for P2 'Let's connect'*
-*(breakpoints??)*
+* Footer Section
+*
+* Introduced for 'Let's connect' in Online Resume project
 */
 
 #footer {
@@ -520,7 +532,11 @@ span {
 
 /*
 *
-*Media Querries*
+*
+* Media Querries*
+*
+* (Adjustments for current Online Resume project just added to existing
+* breakpoints)
 *
 */
 
@@ -532,8 +548,9 @@ span {
     font-size: 36px;
   }
 }
+
 /*
-*@ Section Header
+* @ Section Header
 */
 
 @media screen and (min-width: 490px) {
@@ -585,8 +602,9 @@ span {
     padding-top: 45px;
   }
 }
+
 /*
-*@ Section BigPic
+* @ Section BigPic
 */
 
 @media screen and (min-width: 490px) {
@@ -645,10 +663,11 @@ span {
 }
 
 /*
-*@ Section Featured
-    with 2 major break points:
-    1) at screen width 550px (item display changes to 2 columns)
-    2) at screen width 1100px (item display changes to 1 row)
+* @ Section Featured
+*
+*   with 2 major break points:
+*   1) at screen width 550px (item display changes to 2 columns)
+*   2) at screen width 1100px (item display changes to 1 row)
 */
 
 @media screen and (min-width: 416px) and (max-width: 549px) {
@@ -754,10 +773,18 @@ span {
     width: 90%;
   }
   .displayCanvas {
-  max-width: 80%;
-  height: 500px;
-  margin: 20px auto;
+    max-width: 80%;
+    height: 500px;
+    margin: 20px auto;
   }
+  .displayBox {
+    padding: 15px 20px;
+  }
+
+  .flexdisplay-box {
+    margin: 20px 0 28px 0;
+  }
+
   .readMoreless {
     max-width: 100%;
   }

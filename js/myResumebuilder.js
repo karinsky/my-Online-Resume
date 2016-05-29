@@ -1,4 +1,11 @@
-/* Turn off loader */
+/*
+*
+*	Code for loading
+*
+*	('Bio object' follows)
+*/
+
+//	(1) Turn off loader animation
 
 $(document).ready(function() {
 	var myLoader;
@@ -7,8 +14,7 @@ $(document).ready(function() {
 	myLoader.hide("slow");
 });
 
-/* To header section (bio object follows immediately);
-mouseover identifying logos:*/
+//	(2) Mouseover identifying logos in 'header section'
 
 function hoover() {
 	var getLogo1, getLogo2, getLogo3;
@@ -33,21 +39,25 @@ function hoover() {
 }
 hoover();
 
-/* The 'bio object' (1)
-(adding to the 'bigpic', 'featured', and 'footer' sections)*/
+/*
+*	The 'bio object' (1)
+*
+*	(adding to the 'bigpic', 'featured', and 'footer' sections)
+*/
 
 /*The project specifications demand that we need to build four
-JSON objects and that each one needs to follow the provides schemas
-exactly. My objects comply -- but the specifications do not demand
-to actually use all object's elements in the display function.
+JSON objects and that each one needs to follow the provided schemas
+exactly. My objects comply (as far as I can see) -- but the
+specifications do not demand to actually use all object elements
+in the display function.
 My project is based on the assumption that the header section and
-the core of the 'bigpic' section stay the same while other content
-can be swapt in js. On this line, it seemed forced and artificial
-to write code which would 'swap in' my name, role, and biopic.
-In the same time, I believe, my project makes up for missing such,
-in the provided framework, rather plain 'chores' by adding some
-interactivity to the main resume parts which, in my project, are
-added to the 'featured' section.*/
+the core of the 'bigpic' section represent a kind of a constant
+'brand presentation' while other content can be swapt with js/jQuery. 
+Along this line, it would seems forced and artificial to write code
+which would 'swap in' my name, role, and biopic.
+In the same time, I believe, my project makes up for missing out on
+another 'swapping chore' with adding some more interactivity,
+especially in the 'featured' section.*/
 
 var bio = {
 	"name": "Karin S Korth",
@@ -112,28 +122,34 @@ var bio = {
 };
 bio.display();
 
-/*  Media queries adjusting for screen size in css.
-	(They use the same break points; thus it seemed more 
-	efficient to add some css to existing media queries.)*/
+/*
+*	Media queries adjusting for screen size appear in css.
+*	(They use the same break points; thus it seemed more efficient
+*	to add some css to existing media queries.)
+*/
 
 
-/*	Section 'featured'
-	prepared for diff. use, here: Online Resume;
-
-1)	The 1st main <div id='skills'> is appended in 'bio.display()'.
-2)	The 2nd main <div id='featuredItems'> contains 4 'tiles' (with
-	images) set up as event handlers to provide the other required
-	P3 objects (work experience, education, projects) plus, 4th,
-	the map 'on click'.
-3)	The 3rd main <div id='itemsDisplay' provides the 'anchor' to
-	append, in js, further 'boxes' and their display content.
-
-	The main 'display functions' for the 4 types of content have
-	the same basic structure:
-1)	Display content with event handlers at the end which allow to
-	either close or, with more extended content:
-2)	append more content, again with event handlers at the end which
-	allow to 'close section' or 'read less'.
+/*
+*	To Main Section (3) 'featured'
+*
+*	Along my basic project assumption -- with a header (including the
+*	'bigpic section') in constant 'brand' display -- I try to prepare this
+*	section for different use through 'adding/swapping' content -- here:
+*	my Online Resume (project) with 4 main parts: 'work', 'education',
+*	'projects', and Google map/s.
+*
+*	This section's structure more in details: 	
+*	1)	The 1st main <div id='skills'> is appended within 'bio.display()'.
+*	2)	The 2nd main <div id='featuredItems'> contains 4 'tiles' (with
+*		images) set up as event handlers to provide more information 'on
+*		click':
+*		in the current Resume project: on work experience, education,
+*		projects, and for Google map/s.
+*	3)	The 3rd main <div id='itemsDisplay'> provides the 'anchor' to
+*		append/swap further html 'on click' and, thus, to display content
+*		in user interactivity by js/jQuery code (currently for 'work' and
+*		'education': a 1st set of information on a 1st click, and a 2nd set
+*		of information on a 2nd click).
 */
 
 function replaceTitle() {
@@ -143,7 +159,9 @@ function replaceTitle() {
 }
 replaceTitle();
 
-// The 'work object' (2)
+/*
+*	The 'work object' (2)
+*/
 
 var work = {
 	"jobs" : [
@@ -248,7 +266,6 @@ var work = {
 			formLocation = HTMLworkLocation.replace("%data%", work.jobs[i].location);
 			formDates = HTMLworkDates.replace("%data%", work.jobs[i].dates);
 			formDescription = HTMLworkDescription.replace("%data%", work.jobs[i].description);
-//	acc. JSHint 'already defined'--but 'out of scope' in following when not defined (->defined again)
 
 			finalWork.append(formEmployer);
 			finalWork.append(formTitle);
@@ -261,10 +278,11 @@ var work = {
 		selectClosefinal = selectReadmore.find(".closeReadmore");
 		selectClosefinal.append(HTMLclosePages + " " + HTMLreadLess);
 
-//	scrolling effect as follows courtesy Cory LaViska
-//	http://www.abeautifulsite.net/smoothly-scroll-to-an-element-without-a-jquery-plugin-2/
-//	bug: does not work properly on repeated clicks (and neither in overflow elements)
-
+/*
+*	Animated scrolling into or within an overflow element does not yet
+*	work as intended on REPEATED click action (see also myREADME). This
+*	affects exspecially the display of 'work' and 'education' content.
+*/
 		function displayRecent() {
 			var selectItem1;
 			selectItem1 = $(".item-box:eq(0)");
@@ -279,13 +297,11 @@ var work = {
 				selectDisplay1.attr("style", "display: block");
 
 				scrollStart.animate({
-					scrollTop: targetDisplay1.offset().top
+					scrollTop: targetDisplay1.get(0).offsetTop
 				}, 1200);
 			});
 		}
 		displayRecent();
-
-//	currently in work below object.
 
 		function closeRecent() {
 			var selectWork, selectClose;
@@ -302,7 +318,7 @@ var work = {
 				var mq550, scrollStart, targetTop, targetFeatured;
 				mq550 = window.matchMedia("(min-width: 550px)");
 				scrollStart = $("html, body");
-				targetTop = $("#header");
+				targetTop = $("#topContacts");
 				targetFeatured = $("#featured");
 
 				if (mq550.matches) {
@@ -334,14 +350,12 @@ var work = {
 				basicSelect = $("#itemsDisplay");
 				selectDisplay1 = basicSelect.children().filter(":eq(0)");
 				targetWorkmore = selectDisplay1.find(".boxReadmore");
-console.log(targetWorkmore);
+
 				selectDisplay1.animate({
 					scrollTop: targetWorkmore.position().top
 				}, 1200);
 			});//closes click(function)
-//	bug: does not scroll to intended target/position (-> still in state of trials;
-//	some left over in work below object). 
-//
+
 			function closeWorkfinal() {
 			var selectWork, selectClose;
 			selectWork = $("#work");
@@ -357,7 +371,7 @@ console.log(targetWorkmore);
 					var mq550, scrollStart, targetTop, targetFeatured;
 					mq550 = window.matchMedia("(min-width: 550px)");
 					scrollStart = $("html, body");
-					targetTop = $("#header");
+					targetTop = $("#topContacts");
 					targetFeatured = $("#featured");
 
 					if (mq550.matches) {
@@ -398,55 +412,24 @@ work.display();
 // JSONLint: object valid JSON (without function)
 // JSHint for function: ok exept for external defined variables and issues commented upon
 
-// Work on scrolling into/in overflow containers
-// 1) into (for 'displayRecent')
 
-/*	function myTest() {
-		var selectItem1;
-			selectItem1 = $(".item-box:eq(0)");
-
-		selectItem1.click(function() {
-			document.getElementById("displayItem1").style.display = "block";
-
-			$("#displayItem1").scrollTop($("#displayItem1").scrollTop()+$("h1.titleBox").position().top);
-		console.log($("h1.titleBox"));
-		});
-		}
-		myTest();*/
-
-// 2) within (for/in 'displayMore')
-
-/*	function myTest2() {
-		var basicSelect, selectDisplay1, selectMore;
-		basicSelect = $("#itemsDisplay");
-		selectDisplay1 = basicSelect.children().filter(":eq(0)");
-		selectMore = selectDisplay1.find("#more");
-
-		selectMore.click(function() {
-			document.getElementById("ShowMore").style.display = "block";
-
-			$("#displayItem1").scrollTop($("#displayItem1").scrollTop()+$(".readMoreless").position().top);
-		console.log($(".readMoreless"));
-		});
-	}
-	myTest2();*/
-
-
-/*The education object (to 'id item1' ?):
-
-Preface on presenting my education:
-a) The structure and degrees in the German educational system
-   are (were: this is changing) not directly comparable to the
-   American system, i.e. I do not have completed majors, though
-   I have a PhD. Thus I need to adjust the given set-up.
-b) A PhD in Germany did not require attending a program, and
-   there was no formal start date. In academics, a PhD is listed
-   usually just with the year of it's accomplishment.
-   In a longer life and career, exact dates become anyway
-   less relevant. In a common resume formate, I give the year
-   in which a formal degree was received; and I give month and
-   year for more recent online courses.*/
-
+/*
+*	The education object (3)
+*
+*	Preface on presenting my German education:
+*	(1)	The structure and degrees in the German educational system
+*		were -- this is changing -- not directly comparable to the
+*		American system, i.e. I do not have completed majors, though
+*		I have a PhD. Thus I needed to adjust the given set-up.
+*	(2)	A PhD in Germany did not require attending a program, and
+*		there was no formal start date. In academics, a PhD is listed
+*		usually just with the year of it's accomplishment; and in a
+*		longer life course, exact dates become anyway less relevant.
+*		Thus in a common resume formate (as previously accepted by
+*		the University of Chicago), I provide the year in which	a
+*		formal degree was achieved; and I provide month and year for
+*		more recent online courses.
+*/
 
 var education = {
 	"schools" : [
@@ -456,7 +439,7 @@ var education = {
 			"dates" : "2008",
 			"url" : "http://www.fb03.uni-frankfurt.de/39791667/international",
 			"degree" : "PhD in Sociology",
-			"major" : "(With a thesis on Methodology)"
+			"major" : ["(With a thesis on Methodology)"]
 		},
 		{
 			"name" : "J W Goethe University, Department of Social Sciences",
@@ -464,7 +447,7 @@ var education = {
 			"dates" : "1996",
 			"url" : "http://www.fb03.uni-frankfurt.de/39791667/international",
 			"degree" : "Certificate of Equivalence in Political Science",
-			"major" : "(of previous studies; see next)"
+			"major" : ["(of previous studies; see next)"]
 		},
 		{
 			"name" : "Ruhr University Bochum, Faculty of Social Sciences",
@@ -472,7 +455,7 @@ var education = {
 			"dates" : "1988",
 			"url" : "http://www.sowi.rub.de/index.html.en",
 			"degree" : "Diploma in Social Sciences",
-			"major" : "(Roughly equivalent to a major in sociology)"
+			"major" : ["(Roughly equivalent to a major in sociology)"]
 		},
 		{
 			"name" : "Märkisches Gymnasium",
@@ -480,7 +463,7 @@ var education = {
 			"dates" : "1976",
 			"url" : "http://www.mgs-schwelm.de/",
 			"degree" : "University-Entrance Diploma",
-			"major" : "(on a 'stem path' avant le lettre)"
+			"major" : ["(on a 'stem path' avant la lettre)"]
 		}
 	],
 	"onlineCourses" : [
@@ -571,9 +554,10 @@ var education = {
 		selectClosefinal = selectOnlineedu.find(".closeReadmore");
 		selectClosefinal.append(HTMLclosePages + " " + HTMLreadLess);
 
-//	scrolling effect as follows courtesy Cory LaViska
-//	http://www.abeautifulsite.net/smoothly-scroll-to-an-element-without-a-jquery-plugin-2/
-//	bug: does not work properly on repeated clicks (and neither in overflow elements)
+/*
+*	See above, line 282-284, on bugged animated scrolling into or within
+*	overflow elements on repeated clicks.
+*/
 
 		function displayFormaledu() {
 			var selectItem2;
@@ -589,7 +573,7 @@ var education = {
 				selectDisplay2.attr("style", "display: block");
 
 				scrollStart.animate({
-					scrollTop: targetDisplay2.offset().top
+					scrollTop: targetDisplay2.get(0).offsetTop
 				}, 1200);
 			});
 
@@ -611,7 +595,7 @@ var education = {
 				var mq550, scrollStart, targetTop, targetFeatured;
 				mq550 = window.matchMedia("(min-width: 550px)");
 				scrollStart = $("html, body");
-				targetTop = $("#header");
+				targetTop = $("#topContacts");
 				targetFeatured = $("#featured");
 
 				if (mq550.matches) {
@@ -649,10 +633,6 @@ var education = {
 				}, 1200);
 	
 			});//closes click(function)
-//	bug: does not scroll to intended target/position...
-//	(this was 'approximate compromise' before--I'm not sure what I thought;
-//	started new trials in work section...: the whole concept of what is
-//	'scrollStart' and what 'target' seems very unclear!!!);
 
 			function closeEdufinal() {
 			var selectEdu, selectClose;
@@ -669,7 +649,7 @@ var education = {
 					var mq550, scrollStart, targetTop, targetFeatured;
 					mq550 = window.matchMedia("(min-width: 550px)");
 					scrollStart = $("html, body");
-					targetTop = $("#header");
+					targetTop = $("#topContacts");
 					targetFeatured = $("#featured");
 
 					if (mq550.matches) {
@@ -709,15 +689,21 @@ education.display();
 //	JSONLint: valid JSON (without function)
 //	JSHint for function: ok exept for external defined variables and issues commented upon
 
-
-/*	The projects object (extension of 'featured items 3' ?)
-
-One remark ahead:
-I cannot, for the hell of me, relate to (more or less precise)
-start and end "dates" for a project. There might be some concept
-in the background which I do not get yet. But as I use 'placeholder'
-anyway for the time being, I settle on a 'release date' (without
-hyphen--but I trust to show than I could add a hyphen if necessary).*/
+/*
+*	The projects object (3)
+*
+*	Just one remark ahead:
+*	I cannot, for the hell of me, relate to (more or less precise)
+*	start and end "dates" for a project. To my mind, a project is
+*	rather a creative enterprise which mostly does not come with a
+*	stamped 'start date' (though sometimes with an identifyably
+*	'release date').
+*	I might not yet get what drives Udacity's concept in this respect.
+*	But for the time being, I have 'placeholder' content anyway -- for
+*	which I apply 'release dates', thus without hyphen; but I trust that
+*	I am showing in my take on the project than I could add a hyphen if
+*	necessary ;-).
+*/
 
 var projects = {
 	"locum" : [
@@ -725,13 +711,13 @@ var projects = {
 			"title" : "'Vom Text zum Wissen'",
 			"released" : "Konstanz, Germany, 2008",
 			"description" : "Phd Thesis ('From Text To Knowledge') on Theories and Problems Of Qualitative Social Research",
-			"projectImage" : ["images/2009_Diss-fromAmazon4x3_300w.JPG"]
+			"projectImages" : ["images/2009_Diss-fromAmazon4x3_300w.JPG"]
 		},
 		{
 			"title" : "Performance is...? Short Cuts on Voice and Other Metaphors",
 			"released" : "Urbana-Champaign (IL), 2010",
 			"description" : "1st publication in the U.S.A.",
-			"projectImage" : ["images/2010_IRQR-PerformanceIs4x3_300w.JPG"]
+			"projectImages" : ["images/2010_IRQR-PerformanceIs4x3_300w.JPG"]
 		}
 	],
 	"display" : function() {
@@ -748,15 +734,15 @@ var projects = {
 				myProject = selectProjects.append(HTMLentryStartflex);
 				lastProject = myProject.children(".item-entry:last");
 
-				var formProjecttitle, formProjectdates, formProjectdescription, formProjectimage;
+				var formProjecttitle, formProjectdates, formProjectdescription, formProjectimages;
 				formProjecttitle = HTMLprojectTitle.replace("%data%", projects.locum[project].title);
 				formProjectdates = HTMLprojectDates.replace("%data%", projects.locum[project].released);
 				formProjectdescription = HTMLprojectDescription.replace("%data%", projects.locum[project].description);
-				formProjectimage = HTMLprojectImage.replace("%data%", projects.locum[project].projectImage);
+				formProjectimages = HTMLprojectImages.replace("%data%", projects.locum[project].projectImages);
 
 				lastProject.append(HTMLflexItem1of2);
 				lastProject.append(HTMLflexItem2of2);
-				lastProject.children(".itemdisplay-pic").append(formProjectimage);
+				lastProject.children(".itemdisplay-pic").append(formProjectimages);
 				lastProject.children(".itemdisplay-text").append(formProjecttitle);
 				lastProject.children(".itemdisplay-text").append(HTMLformalInfo).append(formProjectdates);
 				lastProject.children(".itemdisplay-text").append(formProjectdescription);
@@ -769,10 +755,6 @@ var projects = {
 		selectMoreless = selectProjects.find(".readMoreless");
 		selectMoreless.append(HTMLclosePage);
 		
-//	scrolling effect as follows courtesy Cory LaViska
-//	http://www.abeautifulsite.net/smoothly-scroll-to-an-element-without-a-jquery-plugin-2/
-//	bug: does not work properly on repeated clicks (and neither in overflow elements)
-
 		function displayFormalprojects() {
 			var selectItem3;
 			selectItem3 = $(".item-box:eq(2)");
@@ -809,7 +791,7 @@ var projects = {
 				var mq550, scrollStart, targetTop, targetFeatured;
 				mq550 = window.matchMedia("(min-width: 550px)");
 				scrollStart = $("html, body");
-				targetTop = $("#header");
+				targetTop = $("#topContacts");
 				targetFeatured = $("#featured");
 
 				if (mq550.matches) {
@@ -829,12 +811,15 @@ var projects = {
 projects.display();
 
 //	JSONLint: valid JSON (without function)
-/*	JSHint for function: ok exept for external defined variables and not identifying
-	that 'for in' is wrapped in 'if' statement*/
+//	JSHint for function: ok except for external defined variables and not
+//	identifying that 'for in' is wrapped in 'if' statement
 
 
-/*	"console.log information about click locations":
-	I had to rearrange the "code shell" provided in helper.js a bit to get it working here
+/*	
+*	"console.log information about click locations"
+*
+*	I had to rearrange the "code shell" provided in helper.js a bit
+*	to get it working here.
 */
 
 $(document).click(function(loc) {
@@ -856,17 +841,23 @@ function logClicks(x,y) {
 }
 //	JSHint: two functions; no comment besides metrics
 
-
-//	Last fun part: Google maps:
-
-/*	Faced by the challenge that different German locations do not display
-	well on a more global scale, invoced by my more recent US location, I try
-	to reuse the previous 'read more' set-up to display a 2nd, more deteiled
-	map.
-	As far as I see by now, the standard implementation of Google maps API
-	defines the map as a global variable which does not work for more than
-	one map displaying at the same time. I try to solve this by determining
-	which map is initialized at which user action.
+/*
+*	Last fun part: The Google map/s (4)
+*
+*	Preface on the challenge posed by the locations in my biography:
+*	a cluster of German locations do not display well on the much more
+*	global scale required by including my more recent US location. Thus
+*	I tried to reuse the previous 'read more' set-up to display a 2nd,
+*	more detailed map for that cluster of German locations.
+*	As far as I see by now, the standard implementation of the Google
+*	maps API defines the map as a global variable which does not work
+*	well for more than one map displaying at the same time. I try to
+*	solve this, for the time being (in a certainyl clumsy and not very
+*	efficient way) by defining 2 maps and determining which map is
+*	initialized at which user action.
+*	Finally, I decided to leave notes for further use in place: I gathered
+*	that there will be another 'map project' (and I do have an idea
+*	already on how to turn it into another rather personal project :-) 
 */
 
 function displayMaps() {
@@ -920,7 +911,7 @@ function displayMaps() {
 			var mq550, scrollStart, targetTop, targetFeatured;
 			mq550 = window.matchMedia("(min-width: 550px)");
 			scrollStart = $("html, body");
-			targetTop = $("#header");
+			targetTop = $("#topContacts");
 			targetFeatured = $("#featured");
 
 			if (mq550.matches) {
@@ -932,7 +923,7 @@ function displayMaps() {
 					scrollTop: targetFeatured.offset().top
 				}, 1500);
 			}
-		});//closes click(function)
+		});// closes click(function)
 	}
 	closeMap1();
 
@@ -941,8 +932,7 @@ function displayMaps() {
 		// declaring a local map variable:
 		var map;
 
-		//	InitializeMap() is called 'on click' (see below):
-
+		// InitializeMap() is called 'on click' (see below):
 		function initializeMap() {
 
 			var mapOptions = {
@@ -956,11 +946,11 @@ function displayMaps() {
     
 				var locations = [];// declares empty array
 
-				locations.push(bio.contacts.location);// adds single location from bio to array:
+				locations.push(bio.contacts.location);// adds 'Chicago' from bio to array:
 
 				for (i = 5; i < work.jobs.length; i++) {
 					locations.push(work.jobs[i].location);
-				}// selects + adds locations in work object to array
+				}// selects + adds previous locations in work object to array
 
 				for (i = 3; i < education.schools.length; i++) {
 					locations.push(education.schools[i].location);
@@ -1007,7 +997,6 @@ function displayMaps() {
 				map.setCenter(bounds.getCenter());
 			}// closes createMapMarker(placeData)
 
-
 			// callback(results, status) makes sure the search returned results for a location.
 			// If so, it creates a new map marker for that location [i.e. 'calls' createMapMarker()].
 
@@ -1016,11 +1005,9 @@ function displayMaps() {
 					createMapMarker(results[0]);
 				}
 			}
-
-			/*
-			pinPoster(locations) takes in the array of locations created by locationFinder()
-			and fires off Google place searches for each location
-			*/
+			
+			//	pinPoster(locations) takes in the array of locations created by locationFinder()
+			//	and fires off Google place searches for each location
 			function pinPoster(locations) {
 
 				// creates a Google place search service object. PlacesService does the work of
@@ -1065,14 +1052,17 @@ function displayMaps() {
 		// declaring a local map variable:
 		var map;
 
-		//	InitializeMap() is called 'on click' (see below):
+		// initializeMap() is called 'on click' (see below):
 		function initializeMap() {
 
 			var mapOptions = {
-				disableDefaultUI: true
+				disableDefaultUI: true,
+				maxZoom:5
 			};
-/*	'zoom' does not work in current setting but seems to be code for map size display
-	(see: http://www.w3schools.com/googleapi/google_maps_basic.asp */
+/*
+*	follow-up later: 'zoom' vs. 'fitBounds' in sizing a map display
+*	(see: http://www.w3schools.com/googleapi/google_maps_basic.asp)
+*/
 			map = new google.maps.Map(document.querySelector("#map1"), mapOptions);
 
 			// Returning array of locations from bio, work, and education JSON objects
@@ -1110,9 +1100,9 @@ function displayMaps() {
 					title: name
 				});
 
-				// infoWindows equivalent of what opens on hoover or click alert:
+				// infoWindows equivalent of what opens on hover or click alert:
 				var infoWindow = new google.maps.InfoWindow({
-					content: name //They usually contain more information about a location: can I add more ?
+					content: name // Usually contains more information about a location.
 				});
 
 				// Opens infoWindow on click:
@@ -1131,25 +1121,23 @@ function displayMaps() {
 
 
 			// callback(results, status) makes sure the search returned results for a location.
-			// If so, it creates a new map marker for that location [i.e. 'calls' createMapMarker()].
+			// If so, it creates a new map marker for that location[i.e. 'calls' createMapMarker()].
 
 			function callback(results, status) {
 				if (status == google.maps.places.PlacesServiceStatus.OK) {
 					createMapMarker(results[0]);
 				}
 			}
-
-			/*
-			pinPoster(locations) takes in the array of locations created by locationFinder()
-			and fires off Google place searches for each location
-			*/
+			
+			// pinPoster(locations) takes in the array of locations created by locationFinder()
+			// and fires off Google place searches for each location
 			function pinPoster(locations) {
 
 				// creates a Google place search service object. PlacesService does the work of
 				// actually searching for location data.
 				var service = new google.maps.places.PlacesService(map);
 
-				// Iterates through the array of locations, creates a search object for each location
+				// iterates through the array of locations, creates a search object for each location
 				for (var place in locations) {
 
 					// the search request object
@@ -1164,12 +1152,12 @@ function displayMaps() {
 			}
 			pinPoster(locations);
 
-			// Sets the boundaries of the map based on pin locations
+			// sets the boundaries of the map based on pin locations
 			window.mapBounds = new google.maps.LatLngBounds();
 
 		}//	closes initializeMap() function
 
-		// Calls the initializeMap() function 'on click'
+		// calls the initializeMap() function 'on click'
 		// 'on load' did not work, I suppose because display is set to 'none' at page load.
 		document.getElementById("showMap2").addEventListener("click", initializeMap);
 
@@ -1181,44 +1169,6 @@ function displayMaps() {
 		});
 	}
 	makeMap2();
-
-/*	function displayMap2() {
-
-		var selectMaps, selectMore;
-		selectMaps = $("#googleMaps");
-		selectMore = selectMaps.find("#showMap2");
-
-		selectMore.click(function() {
-			var basicSelect, selectDisplay4, targetDisplay4;
-			basicSelect = $("#itemsDisplay");
-			selectDisplay4 = basicSelect.children().filter(":eq(3)");
-			targetDisplay4 = selectDisplay4.find("h1");
-
-			selectDisplay4.attr("style", "display: none");
-*/
-/*			var selectMaps, displayMore;
-			selectMaps = $("#googleMaps");
-			displayMore = selectMaps.find(".displayCanvas");
-
-			displayMore.attr("style", "display: block");
-
-			var basicSelect, selectDisplay4, targetmoreMap;
-			basicSelect = $("#itemsDisplay");
-			selectDisplay4 = basicSelect.children().filter(":eq(3)");
-			targetmoreMap = selectDisplay4.find("h2");
-
-			selectDisplay4.animate({
-				scrollTop: targetmoreMap.position().top
-			}, 1200);
-	
-		});//closes click(function)
-
-
-	}
-	displayMap2();
-
-*/
-
 }
 displayMaps();
 
