@@ -52,7 +52,7 @@ specifications do not demand to actually use all object elements
 in the display function.
 My project is based on the assumption that the header section and
 the core of the 'bigpic' section represent a kind of a constant
-'brand presentation' while other content can be swapt with js/jQuery. 
+'brand presentation' while other content can be swapt with js/jQuery.
 Along this line, it would seems forced and artificial to write code
 which would 'swap in' my name, role, and biopic.
 In the same time, I believe, my project makes up for missing out on
@@ -68,7 +68,7 @@ var bio = {
 		"github" : "karinsky",
 		"location" : "Chicago, IL, U.S.A."
 		},
-	"welcomeMessage" : "Welcome!<br><br>I fell for Front End Web Development because it allows me to unite two long separated strands of my mind and life: my visual sences which love art and design, and my trained analytical brain which equally loves to systematically identify and solve problems.",
+	"welcomeMessage" : "Welcome!<br><br>I fell for Front End Web Development because it allows me to unite two long separated strands of my mind and life: my visual senses which love art and design, and my trained analytic brain which equally loves to systematically identify and solve problems.",
 	"skills" : [
 		"Analysis",
 		"Project Management",
@@ -92,7 +92,7 @@ var bio = {
 		formMobile = HTMLmobile.replace("%data%", bio.contacts.mobile);
 		formEmail = HTMLemail.replace("%data%", bio.contacts.email);
 		formGithub = HTMLgithub.replace("%data%", bio.contacts.github);
-		formLocation = HTMLlocation.replace("%data%", bio.contacts.located);
+		formLocation = HTMLlocation.replace("%data%", bio.contacts.location);
 
 		contactTop.append(formMobile, formEmail, formGithub, formLocation);
 		contactBottom.append(formMobile, formEmail, formGithub, formLocation);
@@ -114,7 +114,7 @@ var bio = {
 				selectSkills.append(formSkills);
 			}
 		}
-	
+
 		var glanceSelect;
 		glanceSelect = $("#skills");
 		glanceSelect.prepend(HTMLglanceText);
@@ -138,7 +138,7 @@ bio.display();
 *	my Online Resume (project) with 4 main parts: 'work', 'education',
 *	'projects', and Google map/s.
 *
-*	This section's structure more in details: 	
+*	This section's structure more in details:
 *	1)	The 1st main <div id='skills'> is appended within 'bio.display()'.
 *	2)	The 2nd main <div id='featuredItems'> contains 4 'tiles' (with
 *		images) set up as event handlers to provide more information 'on
@@ -167,7 +167,7 @@ var work = {
 	"jobs" : [
 		{
 			"employer" : "Family Time",
-			"title" : "Health Care and Estate Management", 
+			"title" : "Health Care and Estate Management",
 			"location" : "Chicago, IL, U.S.A.",
 			"dates" : "2013 - current",
 			"description" : "Caring for my husband after he was diagnosed with stage 3 cancer; still caring for his estate and charting a new life after he passed away."
@@ -181,7 +181,7 @@ var work = {
 		},
 		{
 			"employer" : "Family Time",
-			"title" : "Health Care Management and Migrating", 
+			"title" : "Health Care Management and Migrating",
 			"location" : "Schwelm and Frankfurt/Main, Germany; Chicago, IL, U.S.A.",
 			"dates" : "2009 - 2011",
 			"description" : "Caring for my father and, after he passed away, immigrating to the U.S.A. to live with my late husband."
@@ -631,7 +631,7 @@ var education = {
 				selectDisplay2.animate({
 					scrollTop: targetEdumore.position().top
 				}, 1200);
-	
+
 			});//closes click(function)
 
 			function closeEdufinal() {
@@ -754,7 +754,7 @@ var projects = {
 		var selectMoreless;
 		selectMoreless = selectProjects.find(".readMoreless");
 		selectMoreless.append(HTMLclosePage);
-		
+
 		function displayFormalprojects() {
 			var selectItem3;
 			selectItem3 = $(".item-box:eq(2)");
@@ -815,7 +815,7 @@ projects.display();
 //	identifying that 'for in' is wrapped in 'if' statement
 
 
-/*	
+/*
 *	"console.log information about click locations"
 *
 *	I had to rearrange the "code shell" provided in helper.js a bit
@@ -857,7 +857,7 @@ function logClicks(x,y) {
 *	initialized at which user action.
 *	Finally, I decided to leave notes for further use in place: I gathered
 *	that there will be another 'map project' (and I do have an idea
-*	already on how to turn it into another rather personal project :-) 
+*	already on how to turn it into another rather personal project :-)
 */
 
 function displayMaps() {
@@ -943,7 +943,7 @@ function displayMaps() {
 
 			// Returning array of locations from bio, work, and education JSON objects
 			function locationFinder() {
-    
+
 				var locations = [];// declares empty array
 
 				locations.push(bio.contacts.location);// adds 'Chicago' from bio to array:
@@ -1005,7 +1005,7 @@ function displayMaps() {
 					createMapMarker(results[0]);
 				}
 			}
-			
+
 			//	pinPoster(locations) takes in the array of locations created by locationFinder()
 			//	and fires off Google place searches for each location
 			function pinPoster(locations) {
@@ -1057,7 +1057,7 @@ function displayMaps() {
 
 			var mapOptions = {
 				disableDefaultUI: true,
-				maxZoom:5
+				maxZoom:6
 			};
 /*
 *	follow-up later: 'zoom' vs. 'fitBounds' in sizing a map display
@@ -1067,7 +1067,7 @@ function displayMaps() {
 
 			// Returning array of locations from bio, work, and education JSON objects
 			function locationFinder() {
-    
+
 				var locations = [];// declares empty array
 
 				for (i = 5; i < work.jobs.length; i++) {
@@ -1128,7 +1128,7 @@ function displayMaps() {
 					createMapMarker(results[0]);
 				}
 			}
-			
+
 			// pinPoster(locations) takes in the array of locations created by locationFinder()
 			// and fires off Google place searches for each location
 			function pinPoster(locations) {
